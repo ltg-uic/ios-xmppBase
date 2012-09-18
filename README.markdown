@@ -1,5 +1,5 @@
-An iOS project preconfigured with xmppFramework.
+An iOS project preconfigured with xmppFrameworks dependencies and libraries.  Enables the use of xmpp out of the box without have to start from scratch.
 
 <br/>
-**[Info](https://github.com/ltg-uic/ios-xmppBase/wiki)**<br/>
+**[Wiki](https://github.com/ltg-uic/ios-xmppBase/wiki)**<br/>
 
