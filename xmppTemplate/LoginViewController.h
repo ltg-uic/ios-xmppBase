@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LoginViewController : UITableViewController
+@interface LoginViewController : UIViewController {
+    
+    __weak IBOutlet UITextField *loginTextField;
+    __weak IBOutlet UITextField *passTextField;
+}
+
 
 @end

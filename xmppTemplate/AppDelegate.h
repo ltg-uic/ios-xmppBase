@@ -7,9 +7,30 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "XMPPFramework.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate> {
+    XMPPStream *xmppStream;
+	XMPPReconnect *xmppReconnect;
+    NSString *password;
+	
+	BOOL allowSelfSignedCertificates;
+	BOOL allowSSLHostNameMismatch;
+	
+	BOOL isXmppConnected;
+}
 
 @property (strong, nonatomic) UIWindow *window;
+@property (nonatomic, strong, readonly) XMPPStream *xmppStream;
+@property (nonatomic, strong, readonly) XMPPReconnect *xmppReconnect;
+
+- (BOOL)connect;
+- (void)disconnect;
+
+- (void)setupStream;
+- (void)teardownStream;
+
+- (void)goOnline;
+- (void)goOffline;
 
 @end
