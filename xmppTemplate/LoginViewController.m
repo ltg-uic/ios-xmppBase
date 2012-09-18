@@ -7,6 +7,7 @@
 //
 
 #import "LoginViewController.h"
+#import "AppDelegate.h"
 
 
 @implementation LoginViewController
@@ -15,13 +16,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
+
+- (AppDelegate *)appDelegate
+{
+	return (AppDelegate *)[[UIApplication sharedApplication] delegate];
+}
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark View lifecycle
@@ -36,10 +37,14 @@
     
     if( l != nil ) {
         loginTextField.text = l;
+    } else {
+        loginTextField.text = @"@phenomena.evl.uic.edu";
     }
     
     if( p != nil ) {
         passTextField.text = p;
+    } else {
+         passTextField.text = @"password";
     }
     
     
@@ -69,8 +74,9 @@
     [self setField:loginTextField forKey:@"kXMPPmyJID"];
     [self setField:passTextField forKey:@"kXMPPmyPassword"];
     
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:^(void){
+        [[self appDelegate] connect];
+    }];
 }
-
 
 @end

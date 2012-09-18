@@ -29,7 +29,7 @@ NSString *const kXMPPmyPassword = @"kXMPPmyPassword";
 {
     
     //[[NSUserDefaults standardUserDefaults] setObject:@"@phenomena.evl.uic.edu" forKey:kXMPPmyJID];
-    //[[NSUserDefaults standardUserDefaults] setObject:@"agentspassword" forKey:kXMPPmyPassword];
+    //[[NSUserDefaults standardUserDefaults] setObject:@"password" forKey:kXMPPmyPassword];
     // Configure logging framework
 	
 	[DDLog addLogger:[DDTTYLogger sharedInstance]];

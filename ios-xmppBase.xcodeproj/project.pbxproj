@@ -279,6 +279,8 @@
 		700C3A57160427DA005A9E34 /* xmppTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				707C2C3716080C6A00A09AB8 /* LoginViewController.h */,
+				707C2C3816080C6A00A09AB8 /* LoginViewController.m */,
 				700C3A60160427DA005A9E34 /* AppDelegate.h */,
 				700C3A61160427DA005A9E34 /* AppDelegate.m */,
 				700C3A69160427DA005A9E34 /* MainStoryboard_iPhone.storyboard */,
@@ -286,8 +288,6 @@
 				700C3A6F160427DA005A9E34 /* RootViewController.h */,
 				700C3A70160427DA005A9E34 /* RootViewController.m */,
 				700C3A58160427DA005A9E34 /* Supporting Files */,
-				707C2C3716080C6A00A09AB8 /* LoginViewController.h */,
-				707C2C3816080C6A00A09AB8 /* LoginViewController.m */,
 			);
 			path = xmppTemplate;
 			sourceTree = "<group>";
