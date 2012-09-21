@@ -28,8 +28,11 @@ NSString *const kXMPPmyPassword = @"kXMPPmyPassword";
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     
+    //only have this we are hardcoding the username
+    
     //[[NSUserDefaults standardUserDefaults] setObject:@"@phenomena.evl.uic.edu" forKey:kXMPPmyJID];
     //[[NSUserDefaults standardUserDefaults] setObject:@"password" forKey:kXMPPmyPassword];
+    
     // Configure logging framework
 	
 	[DDLog addLogger:[DDTTYLogger sharedInstance]];
