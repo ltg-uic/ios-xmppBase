@@ -31,6 +31,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
+    //dont hardcode fucking passwords in the code.
     
     NSString *l = [[NSUserDefaults standardUserDefaults] stringForKey:@"kXMPPmyJID"];
     NSString *p = [[NSUserDefaults standardUserDefaults] stringForKey:@"kXMPPmyPassword"];

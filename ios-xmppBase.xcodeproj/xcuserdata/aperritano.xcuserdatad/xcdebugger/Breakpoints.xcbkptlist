@@ -78,8 +78,8 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "241"
          endingLineNumber = "241"
-         landmarkName = "-goOnline"
-         landmarkType = "5">
+         landmarkName = "@implementation AppDelegate"
+         landmarkType = "3">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -91,8 +91,8 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "406"
          endingLineNumber = "406"
-         landmarkName = "-xmppStream:didReceiveMessage:"
-         landmarkType = "5">
+         landmarkName = "@implementation AppDelegate"
+         landmarkType = "3">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
