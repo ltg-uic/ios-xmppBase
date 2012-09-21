@@ -2,6 +2,9 @@ An iOS project preconfigured with xmppFrameworks dependencies and libraries.  En
 
 To use this project for your own. Just fork it. 
 
+Check out the wiki:
+
 <br/>
 **[Wiki](https://github.com/ltg-uic/ios-xmppBase/wiki)**<br/>
+
 
