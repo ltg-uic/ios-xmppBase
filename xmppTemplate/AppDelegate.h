@@ -8,21 +8,28 @@
 
 #import <UIKit/UIKit.h>
 #import "XMPPFramework.h"
+#import "XMPPBaseNewMessageDelegate.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate> {
     XMPPStream *xmppStream;
 	XMPPReconnect *xmppReconnect;
     NSString *password;
-	
+    NSMutableDictionary *lastMessageDict;
+
+    
 	BOOL allowSelfSignedCertificates;
 	BOOL allowSSLHostNameMismatch;
 	
 	BOOL isXmppConnected;
+    
+    id <XMPPBaseNewMessageDelegate> __weak xmppBaseNewMessageDelegate;
+
 }
 
 @property (strong, nonatomic) UIWindow *window;
 @property (nonatomic, strong, readonly) XMPPStream *xmppStream;
 @property (nonatomic, strong, readonly) XMPPReconnect *xmppReconnect;
+@property (nonatomic, weak) id <XMPPBaseNewMessageDelegate> xmppBaseNewMessageDelegate;
 
 - (BOOL)connect;
 - (void)disconnect;

@@ -298,6 +298,7 @@
 		70879012160BB0510099DD5D /* XMPPDateTimeProfiles.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XMPPDateTimeProfiles.h; sourceTree = "<group>"; };
 		70879013160BB0510099DD5D /* XMPPDateTimeProfiles.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XMPPDateTimeProfiles.m; sourceTree = "<group>"; };
 		70879018160BB0A50099DD5D /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		70A97B6E1618E73900148530 /* XMPPBaseNewMessageDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPBaseNewMessageDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -368,6 +369,7 @@
 				700C3A6C160427DA005A9E34 /* MainStoryboard_iPad.storyboard */,
 				700C3A6F160427DA005A9E34 /* RootViewController.h */,
 				700C3A70160427DA005A9E34 /* RootViewController.m */,
+				70A97B6E1618E73900148530 /* XMPPBaseNewMessageDelegate.h */,
 				700C3A58160427DA005A9E34 /* Supporting Files */,
 			);
 			path = xmppTemplate;

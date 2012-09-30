@@ -419,6 +419,15 @@ NSString *const kXMPPmyPassword = @"kXMPPmyPassword";
 		//NSString *body = [[message elementForName:@"body"] stringValue];
 		//NSString *displayName = [user displayName];
         
+        NSString *msg = [[message elementForName:@"body"] stringValue];
+        
+        
+        NSString *from = [[message attributeForName:@"from"] stringValue];
+        
+        lastMessageDict = [[NSMutableDictionary alloc] init];
+        [lastMessageDict setObject:msg forKey:@"msg"];
+        [lastMessageDict setObject:from forKey:@"sender"];
+        
         NSString *displayName = @"Hello";
         
         
@@ -440,6 +449,8 @@ NSString *const kXMPPmyPassword = @"kXMPPmyPassword";
             
 			[[UIApplication sharedApplication] presentLocalNotificationNow:localNotification];
 		}
+        [xmppBaseNewMessageDelegate newMessageReceived:lastMessageDict];
+
 	}
 }
 
