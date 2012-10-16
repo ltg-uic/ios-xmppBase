@@ -10,6 +10,7 @@
 #import "DDLog.h"
 #import "DDTTYLogger.h"
 #import "LoginViewController.h"
+#import "XMPPRoomMemoryStorage.h"
 
 // Log levels: off, error, warn, info, verbose
 #if DEBUG
@@ -25,14 +26,20 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 
 NSString *const kXMPPmyJID = @"kXMPPmyJID";
 NSString *const kXMPPmyPassword = @"kXMPPmyPassword";
+BOOL isMUC = YES;
+
+#define ROOM_JID       @"foraging-group@conference.ltg.evl.uic.edu"
+#define XMPP_HOSTNAME  @"ltg.evl.uic.edu"
+#define XMPP_JID       @"fg-patch-1@ltg.evl.uic.edu"
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     
     //only have this we are hardcoding the username
     
-    //[[NSUserDefaults standardUserDefaults] setObject:@"@phenomena.evl.uic.edu" forKey:kXMPPmyJID];
-    //[[NSUserDefaults standardUserDefaults] setObject:@"password" forKey:kXMPPmyPassword];
+    [[NSUserDefaults standardUserDefaults] setObject:@"fg-patch-1@ltg.evl.uic.edu" forKey:kXMPPmyJID];
+    [[NSUserDefaults standardUserDefaults] setObject:@"fg-patch-1" forKey:kXMPPmyPassword];
     
     // Configure logging framework
 	
@@ -56,7 +63,7 @@ NSString *const kXMPPmyPassword = @"kXMPPmyPassword";
             
           
             
-			[self.window.rootViewController presentViewController:controller animated:YES completion:nil];
+			//[self.window.rootViewController presentViewController:controller animated:YES completion:nil];
 		});
 	}
 }
@@ -182,7 +189,19 @@ NSString *const kXMPPmyPassword = @"kXMPPmyPassword";
     
 	// Activate xmpp modules
     
-	[xmppReconnect         activate:xmppStream];
+    //xmppStream.hostName = XMPP_HOSTNAME;
+    
+    if( isMUC ) {
+    //setup of room
+        XMPPJID *roomJID = [XMPPJID jidWithString:ROOM_JID];
+    
+        xmppRoom = [[XMPPRoom alloc] initWithRoomStorage:self jid:roomJID];
+        [xmppRoom              activate:xmppStream];
+        [xmppStream addDelegate:self delegateQueue:dispatch_get_main_queue()];
+    }
+        
+  	[xmppReconnect         activate:xmppStream];
+    
 //	[xmppRoster            activate:xmppStream];
 //	[xmppvCardTempModule   activate:xmppStream];
 //	[xmppvCardAvatarModule activate:xmppStream];
@@ -190,7 +209,11 @@ NSString *const kXMPPmyPassword = @"kXMPPmyPassword";
 //    
 	// Add ourself as a delegate to anything we may be interested in
     
-	[xmppStream addDelegate:self delegateQueue:dispatch_get_main_queue()];
+     [xmppRoom addDelegate:self delegateQueue:dispatch_get_main_queue()];
+   
+    
+    
+    
 	//[xmppRoster addDelegate:self delegateQueue:dispatch_get_main_queue()];
     
 	// Optional:
@@ -278,8 +301,13 @@ NSString *const kXMPPmyPassword = @"kXMPPmyPassword";
 		return NO;
 	}
     
+
+    
 	[xmppStream setMyJID:[XMPPJID jidWithString:myJID]];
+    [xmppStream setHostName:[[XMPPJID jidWithString:myJID] domain ] ];
+    
 	password = myPassword;
+    
     
 	NSError *error = nil;
 	if (![xmppStream connect:&error])
@@ -295,7 +323,7 @@ NSString *const kXMPPmyPassword = @"kXMPPmyPassword";
         
 		return NO;
 	}
-    
+
 	return YES;
 }
 
@@ -389,7 +417,12 @@ NSString *const kXMPPmyPassword = @"kXMPPmyPassword";
 - (void)xmppStreamDidAuthenticate:(XMPPStream *)sender
 {
 	DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
-	
+    
+    if( isMUC) {
+        NSString *myJID = [[NSUserDefaults standardUserDefaults] stringForKey:kXMPPmyJID];
+        [xmppRoom joinRoomUsingNickname:myJID history:nil];
+    }
+    
 	[self goOnline];
 }
 
@@ -435,7 +468,7 @@ NSString *const kXMPPmyPassword = @"kXMPPmyPassword";
 		if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive)
 		{
 			UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:displayName
-                                                                message:@"hye"
+                                                                message:@"hey"
                                                                delegate:nil
                                                       cancelButtonTitle:@"Ok"
                                                       otherButtonTitles:nil];
@@ -477,6 +510,111 @@ NSString *const kXMPPmyPassword = @"kXMPPmyPassword";
 	}
 }
 
+#pragma mark - XMPP Room Delegate
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark XMPPRoom Delegate
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+- (void)xmppRoomDidCreate:(XMPPRoom *)sender
+{
+	DDLogInfo(@"%@: %@", THIS_FILE, THIS_METHOD);
+}
+
+- (void)xmppRoomDidJoin:(XMPPRoom *)sender
+{
+	DDLogInfo(@"%@: %@", THIS_FILE, THIS_METHOD);
+	
+	[xmppRoom fetchConfigurationForm];
+	[xmppRoom fetchBanList];
+	[xmppRoom fetchMembersList];
+	[xmppRoom fetchModeratorsList];
+}
+
+- (void)xmppRoom:(XMPPRoom *)sender didFetchConfigurationForm:(NSXMLElement *)configForm
+{
+	DDLogInfo(@"%@: %@", THIS_FILE, THIS_METHOD);
+}
+
+- (void)xmppRoom:(XMPPRoom *)sender didFetchBanList:(NSArray *)items
+{
+	DDLogInfo(@"%@: %@", THIS_FILE, THIS_METHOD);
+}
+
+- (void)xmppRoom:(XMPPRoom *)sender didNotFetchBanList:(XMPPIQ *)iqError
+{
+	DDLogInfo(@"%@: %@", THIS_FILE, THIS_METHOD);
+}
+
+- (void)xmppRoom:(XMPPRoom *)sender didFetchMembersList:(NSArray *)items
+{
+	DDLogInfo(@"%@: %@", THIS_FILE, THIS_METHOD);
+}
+
+- (void)xmppRoom:(XMPPRoom *)sender didNotFetchMembersList:(XMPPIQ *)iqError
+{
+	DDLogInfo(@"%@: %@", THIS_FILE, THIS_METHOD);
+}
+
+- (void)xmppRoom:(XMPPRoom *)sender didFetchModeratorsList:(NSArray *)items
+{
+	DDLogInfo(@"%@: %@", THIS_FILE, THIS_METHOD);
+}
+
+- (void)xmppRoom:(XMPPRoom *)sender didNotFetchModeratorsList:(XMPPIQ *)iqError
+{
+	DDLogInfo(@"%@: %@", THIS_FILE, THIS_METHOD);
+}
+
+- (void)handleDidLeaveRoom:(XMPPRoom *)room
+{
+	DDLogInfo(@"%@: %@", THIS_FILE, THIS_METHOD);
+}
+
+- (void)xmppRoom:(XMPPRoom *)sender didReceiveMessage:(XMPPMessage *)message fromNick:(NSString *)nick {
+    
+    
+    NSString *msg = [[message elementForName:@"body"] stringValue];
+    NSString *from = [[message attributeForName:@"from"] stringValue];
+    
+    lastMessageDict = [[NSMutableDictionary alloc] init];
+    [lastMessageDict setObject:msg forKey:@"msg"];
+    [lastMessageDict setObject:from forKey:@"sender"];
+    
+    if( ![nick isEqualToString:from] ) {
+        
+        [xmppBaseNewMessageDelegate newMessageReceived:lastMessageDict];
+
+        DDLogVerbose(@"xmpp room did receiveMessage");
+    }
+}
+- (void)xmppRoom:(XMPPRoom *)sender didChangeOccupants:(NSDictionary *)occupants {
+    DDLogVerbose(@"xmpp room did receiveMessage");
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark XMPPRoomStorage Protocol
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+- (void)handlePresence:(XMPPPresence *)presence room:(XMPPRoom *)room
+{
+    
+}
+
+- (void)handleIncomingMessage:(XMPPMessage *)message room:(XMPPRoom *)room
+{
+    
+}
+
+- (void)handleOutgoingMessage:(XMPPMessage *)message room:(XMPPRoom *)room
+{
+    
+}
+
+- (BOOL)configureWithParent:(XMPPRoom *)aParent queue:(dispatch_queue_t)queue
+{
+	return YES;
+}
 
 
 @end
