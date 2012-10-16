@@ -10,7 +10,6 @@
 #import "DDLog.h"
 #import "DDTTYLogger.h"
 #import "LoginViewController.h"
-#import "XMPPRoomMemoryStorage.h"
 
 // Log levels: off, error, warn, info, verbose
 #if DEBUG
@@ -26,6 +25,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 
 NSString *const kXMPPmyJID = @"kXMPPmyJID";
 NSString *const kXMPPmyPassword = @"kXMPPmyPassword";
+
 BOOL isMUC = YES;
 
 #define ROOM_JID       @"foraging-group@conference.ltg.evl.uic.edu"
@@ -443,9 +443,18 @@ BOOL isMUC = YES;
 	DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
     
 	// A simple example of inbound message handling.
-    
-	if ([message isChatMessageWithBody])
-	{
+    if( [message isGroupChatMessageWithBody]) {
+        NSString *msg = [[message elementForName:@"body"] stringValue];
+        
+        NSString *from = [[message attributeForName:@"from"] stringValue];
+        
+        lastMessageDict = [[NSMutableDictionary alloc] init];
+        [lastMessageDict setObject:msg forKey:@"msg"];
+        [lastMessageDict setObject:from forKey:@"sender"];
+        
+        [xmppBaseNewMessageDelegate newMessageReceived:lastMessageDict];
+
+	} else if ([message isChatMessageWithBody]) {
 		//XMPPUserCoreDataStorageObject *user = [xmppRosterStorage userForJID:[message from]
 		//                                                         xmppStream:xmppStream
 		 //                                              managedObjectContext:[self managedObjectContext_roster]];
@@ -461,13 +470,11 @@ BOOL isMUC = YES;
         lastMessageDict = [[NSMutableDictionary alloc] init];
         [lastMessageDict setObject:msg forKey:@"msg"];
         [lastMessageDict setObject:from forKey:@"sender"];
-        
-        NSString *displayName = @"Hello";
-        
+    
         
 		if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive)
 		{
-			UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:displayName
+			UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"test"
                                                                 message:@"hey"
                                                                delegate:nil
                                                       cancelButtonTitle:@"Ok"
@@ -571,23 +578,6 @@ BOOL isMUC = YES;
 	DDLogInfo(@"%@: %@", THIS_FILE, THIS_METHOD);
 }
 
-- (void)xmppRoom:(XMPPRoom *)sender didReceiveMessage:(XMPPMessage *)message fromNick:(NSString *)nick {
-    
-    
-    NSString *msg = [[message elementForName:@"body"] stringValue];
-    NSString *from = [[message attributeForName:@"from"] stringValue];
-    
-    lastMessageDict = [[NSMutableDictionary alloc] init];
-    [lastMessageDict setObject:msg forKey:@"msg"];
-    [lastMessageDict setObject:from forKey:@"sender"];
-    
-    if( ![nick isEqualToString:from] ) {
-        
-        [xmppBaseNewMessageDelegate newMessageReceived:lastMessageDict];
-
-        DDLogVerbose(@"xmpp room did receiveMessage");
-    }
-}
 - (void)xmppRoom:(XMPPRoom *)sender didChangeOccupants:(NSDictionary *)occupants {
     DDLogVerbose(@"xmpp room did receiveMessage");
 }

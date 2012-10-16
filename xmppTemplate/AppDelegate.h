@@ -9,6 +9,7 @@
 #import "XMPPFramework.h"
 #import "XMPPBaseNewMessageDelegate.h"
 #import "XMPPRoom.h"
+#import "XMPPMessage+XEP0045.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, XMPPRoomStorage> {
     XMPPStream *xmppStream;
