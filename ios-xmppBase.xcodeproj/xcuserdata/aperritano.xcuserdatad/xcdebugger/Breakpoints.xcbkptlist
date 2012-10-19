@@ -21,11 +21,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "xmppTemplate/AppDelegate.m"
-         timestampString = "372117800.436364"
+         timestampString = "372379190.819146"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "283"
-         endingLineNumber = "283"
+         startingLineNumber = "285"
+         endingLineNumber = "285"
          landmarkName = "@implementation AppDelegate"
          landmarkType = "3">
       </FileBreakpoint>
@@ -34,11 +34,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "xmppTemplate/AppDelegate.m"
-         timestampString = "372117800.436364"
+         timestampString = "372379190.819146"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "305"
-         endingLineNumber = "305"
+         startingLineNumber = "307"
+         endingLineNumber = "307"
          landmarkName = "-connect"
          landmarkType = "5">
       </FileBreakpoint>
@@ -47,11 +47,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "xmppTemplate/AppDelegate.m"
-         timestampString = "372117800.436364"
+         timestampString = "372379190.819146"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "286"
-         endingLineNumber = "286"
+         startingLineNumber = "288"
+         endingLineNumber = "288"
          landmarkName = "-connect"
          landmarkType = "5">
       </FileBreakpoint>
@@ -73,11 +73,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "xmppTemplate/AppDelegate.m"
-         timestampString = "372117800.436364"
+         timestampString = "372379190.819146"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "264"
-         endingLineNumber = "264"
+         startingLineNumber = "266"
+         endingLineNumber = "266"
          landmarkName = "@implementation AppDelegate"
          landmarkType = "3">
       </FileBreakpoint>
@@ -86,11 +86,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "xmppTemplate/AppDelegate.m"
-         timestampString = "372118029.49873"
+         timestampString = "372379190.819146"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "439"
-         endingLineNumber = "439"
+         startingLineNumber = "441"
+         endingLineNumber = "441"
          landmarkName = "-xmppStream:didReceiveIQ:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -125,11 +125,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "xmppTemplate/AppDelegate.m"
-         timestampString = "372117800.436364"
+         timestampString = "372379190.819146"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "306"
-         endingLineNumber = "306"
+         startingLineNumber = "308"
+         endingLineNumber = "308"
          landmarkName = "-connect"
          landmarkType = "5">
       </FileBreakpoint>
@@ -164,11 +164,24 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "xmppTemplate/AppDelegate.m"
-         timestampString = "372118029.49873"
+         timestampString = "372379190.819146"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "521"
-         endingLineNumber = "521"
+         startingLineNumber = "548"
+         endingLineNumber = "548"
+         landmarkName = "@implementation AppDelegate"
+         landmarkType = "3">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "xmppTemplate/AppDelegate.m"
+         timestampString = "372379190.819146"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "553"
+         endingLineNumber = "553"
          landmarkName = "-xmppRoomDidCreate:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -177,11 +190,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "xmppTemplate/AppDelegate.m"
-         timestampString = "372118029.49873"
+         timestampString = "372379190.819146"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "526"
-         endingLineNumber = "526"
+         startingLineNumber = "563"
+         endingLineNumber = "563"
          landmarkName = "-xmppRoomDidJoin:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -190,11 +203,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "xmppTemplate/AppDelegate.m"
-         timestampString = "372118029.49873"
+         timestampString = "372379190.819146"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "536"
-         endingLineNumber = "536"
+         startingLineNumber = "568"
+         endingLineNumber = "568"
          landmarkName = "-xmppRoom:didFetchConfigurationForm:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -203,24 +216,24 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "xmppTemplate/AppDelegate.m"
-         timestampString = "372118029.49873"
+         timestampString = "372379190.819146"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "541"
-         endingLineNumber = "541"
-         landmarkName = "-xmppRoom:didFetchBanList:"
-         landmarkType = "5">
+         startingLineNumber = "572"
+         endingLineNumber = "572"
+         landmarkName = "@implementation AppDelegate"
+         landmarkType = "3">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "xmppTemplate/AppDelegate.m"
-         timestampString = "372118029.49873"
+         timestampString = "372379190.819146"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "545"
-         endingLineNumber = "545"
+         startingLineNumber = "578"
+         endingLineNumber = "578"
          landmarkName = "-xmppRoom:didNotFetchBanList:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -229,11 +242,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "xmppTemplate/AppDelegate.m"
-         timestampString = "372118029.49873"
+         timestampString = "372379190.819146"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "551"
-         endingLineNumber = "551"
+         startingLineNumber = "583"
+         endingLineNumber = "583"
          landmarkName = "-xmppRoom:didFetchMembersList:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -242,11 +255,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "xmppTemplate/AppDelegate.m"
-         timestampString = "372118029.49873"
+         timestampString = "372379190.819146"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "556"
-         endingLineNumber = "556"
+         startingLineNumber = "588"
+         endingLineNumber = "588"
          landmarkName = "-xmppRoom:didNotFetchMembersList:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -255,11 +268,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "xmppTemplate/AppDelegate.m"
-         timestampString = "372118029.49873"
+         timestampString = "372379190.819146"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "561"
-         endingLineNumber = "561"
+         startingLineNumber = "593"
+         endingLineNumber = "593"
          landmarkName = "-xmppRoom:didFetchModeratorsList:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -268,11 +281,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "xmppTemplate/AppDelegate.m"
-         timestampString = "372118029.49873"
+         timestampString = "372379190.819146"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "566"
-         endingLineNumber = "566"
+         startingLineNumber = "598"
+         endingLineNumber = "598"
          landmarkName = "-xmppRoom:didNotFetchModeratorsList:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -281,12 +294,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "xmppTemplate/AppDelegate.m"
-         timestampString = "372118029.49873"
+         timestampString = "372379190.819146"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "571"
-         endingLineNumber = "571"
-         landmarkName = "-handleDidLeaveRoom:"
+         startingLineNumber = "564"
+         endingLineNumber = "564"
+         landmarkName = "-xmppRoomDidJoin:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -294,12 +307,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "xmppTemplate/AppDelegate.m"
-         timestampString = "372118029.49873"
+         timestampString = "372379190.819146"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "537"
-         endingLineNumber = "537"
-         landmarkName = "-xmppRoom:didFetchConfigurationForm:"
+         startingLineNumber = "562"
+         endingLineNumber = "562"
+         landmarkName = "-xmppRoomDidJoin:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -307,24 +320,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "xmppTemplate/AppDelegate.m"
-         timestampString = "372118029.49873"
+         timestampString = "372379190.819146"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "535"
-         endingLineNumber = "535"
-         landmarkName = "-xmppRoom:didFetchConfigurationForm:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "xmppTemplate/AppDelegate.m"
-         timestampString = "372117800.436364"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "300"
-         endingLineNumber = "300"
+         startingLineNumber = "302"
+         endingLineNumber = "302"
          landmarkName = "-connect"
          landmarkType = "5">
       </FileBreakpoint>
@@ -333,11 +333,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "xmppTemplate/AppDelegate.m"
-         timestampString = "372117800.436364"
+         timestampString = "372379190.819146"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "304"
-         endingLineNumber = "304"
+         startingLineNumber = "306"
+         endingLineNumber = "306"
          landmarkName = "-connect"
          landmarkType = "5">
       </FileBreakpoint>
@@ -346,12 +346,25 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "xmppTemplate/AppDelegate.m"
-         timestampString = "372118265.036705"
+         timestampString = "372379190.819146"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "447"
-         endingLineNumber = "447"
+         startingLineNumber = "449"
+         endingLineNumber = "449"
          landmarkName = "-xmppStream:didReceiveMessage:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "xmppTemplate/AppDelegate.m"
+         timestampString = "372379156.673767"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "69"
+         endingLineNumber = "69"
+         landmarkName = "-application:didFinishLaunchingWithOptions:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

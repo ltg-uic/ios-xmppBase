@@ -256,6 +256,7 @@
 		700C3B3516042FE5005A9E34 /* XMPPReconnect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XMPPReconnect.h; sourceTree = "<group>"; };
 		700C3B3616042FE5005A9E34 /* XMPPReconnect.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XMPPReconnect.m; sourceTree = "<group>"; };
 		700C3B39160430DA005A9E34 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		7042A38016320B3C001B44B5 /* XMPPBaseOnlineDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XMPPBaseOnlineDelegate.h; sourceTree = "<group>"; };
 		707C2C3716080C6A00A09AB8 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		707C2C3816080C6A00A09AB8 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		70878FC1160BAF620099DD5D /* XMPPRoom.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = XMPPRoom.xcdatamodel; sourceTree = "<group>"; };
@@ -369,6 +370,7 @@
 				700C3A6C160427DA005A9E34 /* MainStoryboard_iPad.storyboard */,
 				700C3A6F160427DA005A9E34 /* RootViewController.h */,
 				700C3A70160427DA005A9E34 /* RootViewController.m */,
+				7042A38016320B3C001B44B5 /* XMPPBaseOnlineDelegate.h */,
 				70A97B6E1618E73900148530 /* XMPPBaseNewMessageDelegate.h */,
 				700C3A58160427DA005A9E34 /* Supporting Files */,
 			);

@@ -8,6 +8,7 @@
 #import <UIKit/UIKit.h>
 #import "XMPPFramework.h"
 #import "XMPPBaseNewMessageDelegate.h"
+#import "XMPPBaseOnlineDelegate.h"
 #import "XMPPRoom.h"
 #import "XMPPMessage+XEP0045.h"
 
@@ -27,6 +28,7 @@
 	BOOL isXmppConnected;
     
     id <XMPPBaseNewMessageDelegate> __weak xmppBaseNewMessageDelegate;
+    id <XMPPBaseOnlineDelegate>     __weak xmppBaseOnlineDelegate;
 
 }
 
@@ -35,6 +37,8 @@
 @property (nonatomic, strong, readonly) XMPPReconnect *xmppReconnect;
 
 @property (nonatomic, weak) id <XMPPBaseNewMessageDelegate> xmppBaseNewMessageDelegate;
+@property (nonatomic, weak) id <XMPPBaseOnlineDelegate>     xmppBaseOnlineDelegate;
+
 
 - (BOOL)connect;
 - (void)disconnect;

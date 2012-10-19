@@ -65,7 +65,9 @@ BOOL isMUC = YES;
             
 			//[self.window.rootViewController presentViewController:controller animated:YES completion:nil];
 		});
-	}
+	} else {
+        [xmppBaseOnlineDelegate isAvailable:YES];
+    }
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -497,9 +499,34 @@ BOOL isMUC = YES;
 
 
 
-- (void)xmppStream:(XMPPStream *)sender didReceivePresence:(XMPPPresence *)presence
-{
-	DDLogVerbose(@"%@: %@ - %@", THIS_FILE, THIS_METHOD, [presence fromStr]);
+- (void)xmppStream:(XMPPStream *)sender didReceivePresence:(XMPPPresence *)presence {
+//	DDLogVerbose(@"%@: %@ - %@", THIS_FILE, THIS_METHOD, [presence fromStr]);
+//    
+//    NSString *presenceType = [presence type]; // online/offline
+//	NSString *myUsername = [[sender myJID] user];
+//	NSString *presenceFromUser = [[presence from] user];
+//	
+//	if ([presenceFromUser isEqualToString:myUsername]) {
+//		
+//		if ([presenceType isEqualToString:@"available"]) {
+//            
+//            NSString *t = [NSString stringWithFormat:@"%@@%@", presenceFromUser, @"jerry.local"];
+//            DDLogVerbose(t);
+//			
+//            [xmppBaseOnlineDelegate isAvailable:YES];
+//			
+//		} else if ([presenceType isEqualToString:@"unavailable"]) {
+//			
+//            NSString *t = [NSString stringWithFormat:@"%@@%@", presenceFromUser, @"jerry.local"];
+//            DDLogVerbose(t);
+//            
+//            [xmppBaseOnlineDelegate isAvailable:NO];
+//			
+//		}
+//		
+//	}
+//    
+//    
 }
 
 - (void)xmppStream:(XMPPStream *)sender didReceiveError:(id)error
