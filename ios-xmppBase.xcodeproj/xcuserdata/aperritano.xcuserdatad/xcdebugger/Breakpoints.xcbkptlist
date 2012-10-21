@@ -78,8 +78,8 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "266"
          endingLineNumber = "266"
-         landmarkName = "@implementation AppDelegate"
-         landmarkType = "3">
+         landmarkName = "-goOnline"
+         landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -352,19 +352,6 @@
          startingLineNumber = "449"
          endingLineNumber = "449"
          landmarkName = "-xmppStream:didReceiveMessage:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "xmppTemplate/AppDelegate.m"
-         timestampString = "372379156.673767"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "69"
-         endingLineNumber = "69"
-         landmarkName = "-application:didFinishLaunchingWithOptions:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
