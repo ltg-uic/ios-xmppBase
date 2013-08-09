@@ -88,6 +88,8 @@
 		70B44C1717B2FE1700C47B61 /* XMPPCoreDataStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 70B44C1517B2FE1700C47B61 /* XMPPCoreDataStorage.m */; };
 		70B44C1B17B3478300C47B61 /* awareness_icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70B44C1A17B3478300C47B61 /* awareness_icons.xcassets */; };
 		70B44C2917B40D2000C47B61 /* libidn.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 70B44B6117B2F9A000C47B61 /* libidn.a */; };
+		70CD9B3417B4988E008625BF /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70CD9B3317B4988E008625BF /* AudioToolbox.framework */; };
+		70CD9B3617B49BF2008625BF /* logon_sound.aif in Resources */ = {isa = PBXBuildFile; fileRef = 70CD9B3517B49BF2008625BF /* logon_sound.aif */; };
 		70EDB4D017B475960005E144 /* libresolv.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 70B44C1817B31E8D00C47B61 /* libresolv.9.dylib */; };
 /* End PBXBuildFile section */
 
@@ -257,6 +259,8 @@
 		70B44C1C17B35B4B00C47B61 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
 		70B44C1F17B3607A00C47B61 /* libiconv.2.4.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.2.4.0.dylib; path = usr/lib/libiconv.2.4.0.dylib; sourceTree = SDKROOT; };
 		70B44C2417B4076700C47B61 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = "../../../Library/Developer/Xcode/iOS DeviceSupport/7.0 (11A4449a)/Symbols/usr/lib/libxml2.dylib"; sourceTree = "<group>"; };
+		70CD9B3317B4988E008625BF /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		70CD9B3517B49BF2008625BF /* logon_sound.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = logon_sound.aif; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -267,13 +271,14 @@
 				70EDB4D017B475960005E144 /* libresolv.9.dylib in Frameworks */,
 				70B4119017B4600900F61347 /* libxml2.2.dylib in Frameworks */,
 				70B44C2917B40D2000C47B61 /* libidn.a in Frameworks */,
+				70CD9B3417B4988E008625BF /* AudioToolbox.framework in Frameworks */,
+				700C3A9E16042944005A9E34 /* CFNetwork.framework in Frameworks */,
+				700C3A56160427DA005A9E34 /* CoreGraphics.framework in Frameworks */,
 				70879019160BB0A50099DD5D /* CoreData.framework in Frameworks */,
+				700C3A54160427DA005A9E34 /* Foundation.framework in Frameworks */,
 				700C3B3A160430DA005A9E34 /* SystemConfiguration.framework in Frameworks */,
 				700C3B2E16042BBD005A9E34 /* Security.framework in Frameworks */,
-				700C3A9E16042944005A9E34 /* CFNetwork.framework in Frameworks */,
 				700C3A52160427DA005A9E34 /* UIKit.framework in Frameworks */,
-				700C3A54160427DA005A9E34 /* Foundation.framework in Frameworks */,
-				700C3A56160427DA005A9E34 /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,6 +306,7 @@
 		700C3A50160427DA005A9E34 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				70CD9B3317B4988E008625BF /* AudioToolbox.framework */,
 				70B4119517B4607F00F61347 /* libobjc.A.dylib */,
 				70B4119317B4607900F61347 /* libobjc.dylib */,
 				70B4119117B4606600F61347 /* libSystem.dylib */,
@@ -333,7 +339,6 @@
 				7042A38016320B3C001B44B5 /* XMPPBaseOnlineDelegate.h */,
 				70A97B6E1618E73900148530 /* XMPPBaseNewMessageDelegate.h */,
 				70B44BF717B2FBCB00C47B61 /* XMPPFramework.h */,
-				70B44C1A17B3478300C47B61 /* awareness_icons.xcassets */,
 				700C3A58160427DA005A9E34 /* Supporting Files */,
 			);
 			name = template;
@@ -343,6 +348,8 @@
 		700C3A58160427DA005A9E34 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				70B44C1A17B3478300C47B61 /* awareness_icons.xcassets */,
+				70CD9B3517B49BF2008625BF /* logon_sound.aif */,
 				700C3A59160427DA005A9E34 /* ios-xmppBase-Info.plist */,
 				700C3A5A160427DA005A9E34 /* InfoPlist.strings */,
 				700C3A5D160427DA005A9E34 /* main.m */,
@@ -766,6 +773,11 @@
 				TargetAttributes = {
 					700C3A4C160427DA005A9E34 = {
 						DevelopmentTeam = YD334HZ49B;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -795,6 +807,7 @@
 				700C3A64160427DA005A9E34 /* Default.png in Resources */,
 				70B44BAC17B2F9A000C47B61 /* build-libidn.sh in Resources */,
 				700C3A66160427DA005A9E34 /* Default@2x.png in Resources */,
+				70CD9B3617B49BF2008625BF /* logon_sound.aif in Resources */,
 				700C3A68160427DA005A9E34 /* Default-568h@2x.png in Resources */,
 				70B44C1B17B3478300C47B61 /* awareness_icons.xcassets in Resources */,
 				700C3A6B160427DA005A9E34 /* MainStoryboard_iPhone.storyboard in Resources */,

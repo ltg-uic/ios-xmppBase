@@ -10,6 +10,7 @@
 #import "DDLog.h"
 #import "DDTTYLogger.h"
 #import "LoginViewController.h"
+#import <AudioToolbox/AudioToolbox.h>
 
 // Log levels: off, error, warn, info, verbose
 #if DEBUG
@@ -433,7 +434,23 @@ BOOL isMUC = YES;
 	if (![[self xmppStream] authenticateWithPassword:password error:&error])
 	{
 		DDLogError(@"Error authenticating: %@", error);
-	}
+	} else {
+        //play sound
+        
+        NSString *logonSoundPath = [[NSBundle mainBundle] pathForResource:@"logon_sound" ofType:@"aif"];
+        NSURL *logonSoundURL = [NSURL fileURLWithPath:logonSoundPath];
+        
+        SystemSoundID _logonSound;
+        
+        AudioServicesCreateSystemSoundID((__bridge CFURLRef)logonSoundURL, &_logonSound);
+        
+        //Just sound
+        //AudioServicesPlaySystemSound(_pewPewSound);
+        
+        //sound and vibrate
+        AudioServicesPlayAlertSound(_logonSound);
+    
+    }
 }
 
 - (void)xmppStreamDidAuthenticate:(XMPPStream *)sender
@@ -497,7 +514,7 @@ BOOL isMUC = YES;
 		if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive)
 		{
 			UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"test"
-                                                                message:@"hey"
+                                                                message:msg
                                                                delegate:nil
                                                       cancelButtonTitle:@"Ok"
                                                       otherButtonTitles:nil];
