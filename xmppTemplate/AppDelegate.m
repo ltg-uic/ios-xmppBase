@@ -491,6 +491,26 @@ BOOL isMUC = YES;
         [lastMessageDict setObject:msg forKey:@"msg"];
         [lastMessageDict setObject:from forKey:@"sender"];
         
+        
+        if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive)
+		{
+			UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"test"
+                                                                message:msg
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"Ok"
+                                                      otherButtonTitles:nil];
+			[alertView show];
+		}
+		else
+		{
+			// We are not active, so use a local notification instead
+			UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+			localNotification.alertAction = @"Ok";
+			//localNotification.alertBody = [NSString stringWithFormat:@"From: %@\n\n%@",displayName,body];
+            
+			[[UIApplication sharedApplication] presentLocalNotificationNow:localNotification];
+		}
+        
         [_xmppBaseNewMessageDelegate newMessageReceived:lastMessageDict];
 
 	} else if ([message isChatMessageWithBody]) {
@@ -604,6 +624,7 @@ BOOL isMUC = YES;
 
 - (void)xmppRoom:(XMPPRoom *)sender didFetchConfigurationForm:(NSXMLElement *)configForm
 {
+    [_xmppBaseOnlineDelegate isAvailable:YES];
 	DDLogInfo(@"%@: %@", THIS_FILE, THIS_METHOD);
 }
 
@@ -644,6 +665,8 @@ BOOL isMUC = YES;
 
 - (void)xmppRoom:(XMPPRoom *)sender didChangeOccupants:(NSDictionary *)occupants {
     DDLogVerbose(@"xmpp room did receiveMessage");
+    //this is not correct should tell when leaves room
+    [_xmppBaseOnlineDelegate isAvailable:NO];
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
