@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "XMPPBaseOnlineDelegate.h"
 
-@interface RootViewController : UIViewController
+@interface RootViewController : UIViewController <XMPPBaseOnlineDelegate>
+@property (weak, nonatomic) IBOutlet UIImageView *red_awareness;
+@property (weak, nonatomic) IBOutlet UIImageView *green_awareness;
 
 @end

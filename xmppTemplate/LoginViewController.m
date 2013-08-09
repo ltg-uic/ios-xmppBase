@@ -39,13 +39,13 @@
     if( l != nil ) {
         loginTextField.text = l;
     } else {
-        loginTextField.text = @"@phenomena.evl.uic.edu";
+        loginTextField.text = @"tester@ltg.evl.uic.edu";
     }
     
     if( p != nil ) {
         passTextField.text = p;
     } else {
-         passTextField.text = @"password";
+         passTextField.text = @"tester";
     }
     
     
@@ -76,6 +76,7 @@
     [self setField:passTextField forKey:@"kXMPPmyPassword"];
     
     [self dismissViewControllerAnimated:YES completion:^(void){
+        [[self appDelegate] disconnect];
         [[self appDelegate] connect];
     }];
 }

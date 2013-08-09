@@ -10,6 +10,7 @@
 #import "DDLog.h"
 #import "DDTTYLogger.h"
 #import "LoginViewController.h"
+#import <AudioToolbox/AudioToolbox.h>
 
 // Log levels: off, error, warn, info, verbose
 #if DEBUG
@@ -28,9 +29,9 @@ NSString *const kXMPPmyPassword = @"kXMPPmyPassword";
 
 BOOL isMUC = YES;
 
-#define ROOM_JID       @"foraging-group@conference.ltg.evl.uic.edu"
+#define ROOM_JID       @"hg-test@conference.ltg.evl.uic.edu"
 #define XMPP_HOSTNAME  @"ltg.evl.uic.edu"
-#define XMPP_JID       @"fg-patch-1@ltg.evl.uic.edu"
+#define XMPP_JID       @"tester@ltg.evl.uic.edu"
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -38,9 +39,11 @@ BOOL isMUC = YES;
     
     //only have this we are hardcoding the username
     
-    [[NSUserDefaults standardUserDefaults] setObject:@"fg-patch-1@ltg.evl.uic.edu" forKey:kXMPPmyJID];
-    [[NSUserDefaults standardUserDefaults] setObject:@"fg-patch-1" forKey:kXMPPmyPassword];
+    //[[NSUserDefaults standardUserDefaults] setObject:@"tester@ltg.evl.uic.edu" forKey:kXMPPmyJID];
+    //[[NSUserDefaults standardUserDefaults] setObject:@"tester" forKey:kXMPPmyPassword];
     
+    [[NSUserDefaults standardUserDefaults] setObject:nil forKey:kXMPPmyJID];
+    [[NSUserDefaults standardUserDefaults] setObject:nil forKey:kXMPPmyPassword];
     // Configure logging framework
 	
 	[DDLog addLogger:[DDTTYLogger sharedInstance]];
@@ -63,9 +66,10 @@ BOOL isMUC = YES;
             
           
             
-			//[self.window.rootViewController presentViewController:controller animated:YES completion:nil];
+			[self.window.rootViewController presentViewController:controller animated:YES completion:nil];
 		});
 	}
+    return YES;
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -78,6 +82,27 @@ BOOL isMUC = YES;
 {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    
+   
+	DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
+    
+#if TARGET_IPHONE_SIMULATOR
+	DDLogError(@"The iPhone simulator does not process background network traffic. "
+			   @"Inbound traffic is queued until the keepAliveTimeout:handler: fires.");
+#endif
+    
+	if ([application respondsToSelector:@selector(setKeepAliveTimeout:handler:)])
+	{
+		[application setKeepAliveTimeout:600 handler:^{
+			
+			DDLogVerbose(@"KeepAliveHandler");
+			
+			// Do other keep alive stuff here.
+		}];
+	}
+    
+    
+    
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -240,11 +265,7 @@ BOOL isMUC = YES;
 - (void)teardownStream
 {
 	[xmppStream removeDelegate:self];
-
-	
-	[xmppReconnect         deactivate];
-	
-	
+	[xmppReconnect deactivate];
 	[xmppStream disconnect];
 	
 	xmppStream = nil;
@@ -269,7 +290,7 @@ BOOL isMUC = YES;
 	
 	[[self xmppStream] sendElement:presence];
     
-    [xmppBaseOnlineDelegate isAvailable:YES];
+    [_xmppBaseOnlineDelegate isAvailable:YES];
 }
 
 - (void)goOffline
@@ -312,7 +333,7 @@ BOOL isMUC = YES;
     
     
 	NSError *error = nil;
-	if (![xmppStream connect:&error])
+	if (![xmppStream connectWithTimeout:XMPPStreamTimeoutNone error:&error])
 	{
 		UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error connecting"
 		                                                    message:@"See console for error details."
@@ -413,7 +434,23 @@ BOOL isMUC = YES;
 	if (![[self xmppStream] authenticateWithPassword:password error:&error])
 	{
 		DDLogError(@"Error authenticating: %@", error);
-	}
+	} else {
+        //play sound
+        
+        NSString *logonSoundPath = [[NSBundle mainBundle] pathForResource:@"logon_sound" ofType:@"aif"];
+        NSURL *logonSoundURL = [NSURL fileURLWithPath:logonSoundPath];
+        
+        SystemSoundID _logonSound;
+        
+        AudioServicesCreateSystemSoundID((__bridge CFURLRef)logonSoundURL, &_logonSound);
+        
+        //Just sound
+        //AudioServicesPlaySystemSound(_logonSound);
+        
+        //sound and vibrate
+        AudioServicesPlayAlertSound(_logonSound);
+    
+    }
 }
 
 - (void)xmppStreamDidAuthenticate:(XMPPStream *)sender
@@ -454,7 +491,27 @@ BOOL isMUC = YES;
         [lastMessageDict setObject:msg forKey:@"msg"];
         [lastMessageDict setObject:from forKey:@"sender"];
         
-        [xmppBaseNewMessageDelegate newMessageReceived:lastMessageDict];
+        
+        if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive)
+		{
+			UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"test"
+                                                                message:msg
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"Ok"
+                                                      otherButtonTitles:nil];
+			[alertView show];
+		}
+		else
+		{
+			// We are not active, so use a local notification instead
+			UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+			localNotification.alertAction = @"Ok";
+			//localNotification.alertBody = [NSString stringWithFormat:@"From: %@\n\n%@",displayName,body];
+            
+			[[UIApplication sharedApplication] presentLocalNotificationNow:localNotification];
+		}
+        
+        [_xmppBaseNewMessageDelegate newMessageReceived:lastMessageDict];
 
 	} else if ([message isChatMessageWithBody]) {
 		//XMPPUserCoreDataStorageObject *user = [xmppRosterStorage userForJID:[message from]
@@ -477,7 +534,7 @@ BOOL isMUC = YES;
 		if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive)
 		{
 			UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"test"
-                                                                message:@"hey"
+                                                                message:msg
                                                                delegate:nil
                                                       cancelButtonTitle:@"Ok"
                                                       otherButtonTitles:nil];
@@ -492,7 +549,7 @@ BOOL isMUC = YES;
             
 			[[UIApplication sharedApplication] presentLocalNotificationNow:localNotification];
 		}
-        [xmppBaseNewMessageDelegate newMessageReceived:lastMessageDict];
+        [_xmppBaseNewMessageDelegate newMessageReceived:lastMessageDict];
 
 	}
 }
@@ -511,16 +568,16 @@ BOOL isMUC = YES;
 		if ([presenceType isEqualToString:@"available"]) {
             
             NSString *t = [NSString stringWithFormat:@"%@@%@", presenceFromUser, @"jerry.local"];
-            DDLogVerbose(t);
+            DDLogVerbose(@"%@",t);
 			
-            [xmppBaseOnlineDelegate isAvailable:YES];
+            [_xmppBaseOnlineDelegate isAvailable:YES];
 			
 		} else if ([presenceType isEqualToString:@"unavailable"]) {
 			
             NSString *t = [NSString stringWithFormat:@"%@@%@", presenceFromUser, @"jerry.local"];
-            DDLogVerbose(t);
+            DDLogVerbose(@"%@",t);
             
-            [xmppBaseOnlineDelegate isAvailable:NO];
+            [_xmppBaseOnlineDelegate isAvailable:NO];
 			
 		}
 		
@@ -567,6 +624,7 @@ BOOL isMUC = YES;
 
 - (void)xmppRoom:(XMPPRoom *)sender didFetchConfigurationForm:(NSXMLElement *)configForm
 {
+    [_xmppBaseOnlineDelegate isAvailable:YES];
 	DDLogInfo(@"%@: %@", THIS_FILE, THIS_METHOD);
 }
 
@@ -607,6 +665,8 @@ BOOL isMUC = YES;
 
 - (void)xmppRoom:(XMPPRoom *)sender didChangeOccupants:(NSDictionary *)occupants {
     DDLogVerbose(@"xmpp room did receiveMessage");
+    //this is not correct should tell when leaves room
+    [_xmppBaseOnlineDelegate isAvailable:NO];
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
