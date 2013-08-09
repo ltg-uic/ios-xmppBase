@@ -445,7 +445,7 @@ BOOL isMUC = YES;
         AudioServicesCreateSystemSoundID((__bridge CFURLRef)logonSoundURL, &_logonSound);
         
         //Just sound
-        //AudioServicesPlaySystemSound(_pewPewSound);
+        //AudioServicesPlaySystemSound(_logonSound);
         
         //sound and vibrate
         AudioServicesPlayAlertSound(_logonSound);
