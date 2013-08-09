@@ -7,6 +7,7 @@
 //
 
 #import "RootViewController.h"
+#import "AppDelegate.h"
 
 @interface RootViewController ()
 
@@ -14,9 +15,17 @@
 
 @implementation RootViewController
 
+- (AppDelegate *)appDelegate
+{
+	return (AppDelegate *)[[UIApplication sharedApplication] delegate];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.appDelegate.xmppBaseOnlineDelegate = self;
+    _green_awareness.hidden = YES;
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -26,4 +35,15 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)isAvailable:(BOOL)available {
+    
+    if( available ) {
+        _red_awareness.hidden = YES;
+        _green_awareness.hidden = NO;
+    } else {
+        _red_awareness.hidden = NO;
+        _green_awareness.hidden = YES;
+    }
+    
+}
 @end
