@@ -77,8 +77,6 @@
 		70B44BF017B2F9F700C47B61 /* XMPPMUC.m in Sources */ = {isa = PBXBuildFile; fileRef = 70B44BD617B2F9F700C47B61 /* XMPPMUC.m */; };
 		70B44BF117B2F9F700C47B61 /* XMPPRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 70B44BD817B2F9F700C47B61 /* XMPPRoom.m */; };
 		70B44BF417B2F9F700C47B61 /* NSXMLElement+XEP_0203.m in Sources */ = {isa = PBXBuildFile; fileRef = 70B44BE317B2F9F700C47B61 /* NSXMLElement+XEP_0203.m */; };
-		70B44BF517B2FB4C00C47B61 /* stringprep.h in Sources */ = {isa = PBXBuildFile; fileRef = 70B44B6217B2F9A000C47B61 /* stringprep.h */; };
-		70B44BF617B2FB6200C47B61 /* idn-int.h in Sources */ = {isa = PBXBuildFile; fileRef = 70B44B6017B2F9A000C47B61 /* idn-int.h */; };
 		70B44BFB17B2FC4F00C47B61 /* XMPPReconnect.m in Sources */ = {isa = PBXBuildFile; fileRef = 70B44BFA17B2FC4F00C47B61 /* XMPPReconnect.m */; };
 		70B44C0117B2FD7800C47B61 /* NSDate+XMPPDateTimeProfiles.m in Sources */ = {isa = PBXBuildFile; fileRef = 70B44BFE17B2FD7800C47B61 /* NSDate+XMPPDateTimeProfiles.m */; };
 		70B44C0217B2FD7800C47B61 /* XMPPDateTimeProfiles.m in Sources */ = {isa = PBXBuildFile; fileRef = 70B44C0017B2FD7800C47B61 /* XMPPDateTimeProfiles.m */; };
@@ -812,9 +810,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				70B44BF617B2FB6200C47B61 /* idn-int.h in Sources */,
 				70B44C0217B2FD7800C47B61 /* XMPPDateTimeProfiles.m in Sources */,
-				70B44BF517B2FB4C00C47B61 /* stringprep.h in Sources */,
 				70B44BFB17B2FC4F00C47B61 /* XMPPReconnect.m in Sources */,
 				70B44BE817B2F9F700C47B61 /* XMPPRoomHybrid.xcdatamodeld in Sources */,
 				70B44B7617B2F9A000C47B61 /* RFImageToDataTransformer.m in Sources */,

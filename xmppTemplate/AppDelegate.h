@@ -26,9 +26,7 @@
 	BOOL allowSSLHostNameMismatch;
 	
 	BOOL isXmppConnected;
-    
-    id <XMPPBaseNewMessageDelegate> __weak xmppBaseNewMessageDelegate;
-    id <XMPPBaseOnlineDelegate>     __weak xmppBaseOnlineDelegate;
+   
 
 }
 

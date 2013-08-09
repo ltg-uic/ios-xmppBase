@@ -68,6 +68,7 @@ BOOL isMUC = YES;
 			[self.window.rootViewController presentViewController:controller animated:YES completion:nil];
 		});
 	}
+    return YES;
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -530,14 +531,14 @@ BOOL isMUC = YES;
 		if ([presenceType isEqualToString:@"available"]) {
             
             NSString *t = [NSString stringWithFormat:@"%@@%@", presenceFromUser, @"jerry.local"];
-            DDLogVerbose(t);
+            DDLogVerbose(@"%@",t);
 			
             [_xmppBaseOnlineDelegate isAvailable:YES];
 			
 		} else if ([presenceType isEqualToString:@"unavailable"]) {
 			
             NSString *t = [NSString stringWithFormat:@"%@@%@", presenceFromUser, @"jerry.local"];
-            DDLogVerbose(t);
+            DDLogVerbose(@"%@",t);
             
             [_xmppBaseOnlineDelegate isAvailable:NO];
 			
