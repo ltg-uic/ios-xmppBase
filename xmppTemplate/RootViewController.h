@@ -14,11 +14,11 @@
 
 @interface RootViewController : CoreDataTableViewController<XMPPBaseOnlineDelegate,XMPPBaseNewMessageDelegate> {
     
+    __weak IBOutlet UIBarButtonItem *statusBarButton;
     
 }
 
 @property (weak, nonatomic) IBOutlet UIImageView *red_awareness;
 @property (weak, nonatomic) IBOutlet UIImageView *green_awareness;
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
-//@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @end

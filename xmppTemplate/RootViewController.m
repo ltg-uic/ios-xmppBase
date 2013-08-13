@@ -25,12 +25,9 @@
 {
     [super viewDidLoad];
     
-//    self.appDelegate.xmppBaseOnlineDelegate = self;
+    self.appDelegate.xmppBaseOnlineDelegate = self;
     self.appDelegate.xmppBaseNewMessageDelegate = self;
-    _green_awareness.hidden = YES;
-    
-    
-    
+   
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -45,11 +42,9 @@
 - (void)isAvailable:(BOOL)available {
     
     if( available ) {
-        _red_awareness.hidden = YES;
-        _green_awareness.hidden = NO;
+        statusBarButton.tintColor = [UIColor greenColor];
     } else {
-        _red_awareness.hidden = NO;
-        _green_awareness.hidden = YES;
+        statusBarButton.tintColor = [UIColor redColor];
     }
     
 }
