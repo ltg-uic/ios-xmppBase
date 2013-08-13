@@ -25,7 +25,6 @@
     
 	BOOL allowSelfSignedCertificates;
 	BOOL allowSSLHostNameMismatch;
-	
 	BOOL isXmppConnected;
     
 @private
