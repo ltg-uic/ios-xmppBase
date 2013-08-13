@@ -34,16 +34,81 @@ BOOL isMUC = YES;
 #define XMPP_JID       @"tester@ltg.evl.uic.edu"
 
 
+
+- (void)insertDataPointWith:(NSString *)from To:(NSString *)to WithMessage:(NSString *)message
+{
+    
+    DataPoint *dp = [NSEntityDescription insertNewObjectForEntityForName:@"DataPoint"
+                                               inManagedObjectContext:self.managedObjectContext];
+    
+    dp.from = from;
+    dp.to = to;
+    dp.message = message;
+    dp.timestamp = [NSDate date];
+    
+    [self.managedObjectContext save:nil];
+    
+}
+
+- (void)importTestData {
+    NSLog(@"Importing Core Data Default Values for DataPoints...");
+    [self insertDataPointWith:@"Obama" To:@"Biden" WithMessage:@"Don't fuck up"];
+    [self insertDataPointWith:@"TEster" To:@"Biden" WithMessage:@"Don't fuck up asshole"];
+    NSLog(@"Importing Core Data Default Values for DataPoints Completed!");
+}
+
+- (void)setupFetchedResultsController
+{
+    // 1 - Decide what Entity you want
+    NSString *entityName = @"DataPoint"; // Put your entity name here
+    NSLog(@"Setting up a Fetched Results Controller for the Entity named %@", entityName);
+    
+    // 2 - Request that Entity
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:entityName];
+    
+    // 3 - Filter it if you want
+    //request.predicate = [NSPredicate predicateWithFormat:@"Person.name = Blah"];
+    
+    // 4 - Sort it if you want
+    request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"timestamp"
+                                                                                     ascending:YES
+                                                                                      selector:@selector(localizedCaseInsensitiveCompare:)]];
+    // 5 - Fetch it
+    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
+                                                                        managedObjectContext:self.managedObjectContext
+                                                                          sectionNameKeyPath:nil
+                                                                                   cacheName:nil];
+    [self.fetchedResultsController performFetch:nil];
+}
+
+
+
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-        
+    
+   // [self importTestData];
+    
+   
+//    
+//    
+//    [self setupFetchedResultsController];
+//    
+//    if (![[self.fetchedResultsController fetchedObjects] count] > 0 ) {
+//        NSLog(@"!!!!! ~~> There's nothing in the database so defaults will be inserted");
+//        [self importTestData];
+//    }
+//    else {
+//        NSLog(@"There's stuff in the database so skipping the import of default data");
+//    }
+//    
     //only have this we are hardcoding the username
     
-    //[[NSUserDefaults standardUserDefaults] setObject:@"tester@ltg.evl.uic.edu" forKey:kXMPPmyJID];
-    //[[NSUserDefaults standardUserDefaults] setObject:@"tester" forKey:kXMPPmyPassword];
+    [[NSUserDefaults standardUserDefaults] setObject:@"tester@ltg.evl.uic.edu" forKey:kXMPPmyJID];
+    [[NSUserDefaults standardUserDefaults] setObject:@"tester" forKey:kXMPPmyPassword];
     
-    [[NSUserDefaults standardUserDefaults] setObject:nil forKey:kXMPPmyJID];
-    [[NSUserDefaults standardUserDefaults] setObject:nil forKey:kXMPPmyPassword];
+    //[[NSUserDefaults standardUserDefaults] setObject:nil forKey:kXMPPmyJID];
+    //[[NSUserDefaults standardUserDefaults] setObject:nil forKey:kXMPPmyPassword];
     // Configure logging framework
 	
 	[DDLog addLogger:[DDTTYLogger sharedInstance]];
@@ -529,6 +594,17 @@ BOOL isMUC = YES;
         lastMessageDict = [[NSMutableDictionary alloc] init];
         [lastMessageDict setObject:msg forKey:@"msg"];
         [lastMessageDict setObject:from forKey:@"sender"];
+        
+        DataPoint *dp = [NSEntityDescription insertNewObjectForEntityForName:@"DataPoint"
+                                                   inManagedObjectContext:self.managedObjectContext];
+        
+        dp.from = from;
+        dp.to = @"bob";
+        dp.message = msg;
+        dp.timestamp = [NSDate date];
+
+        
+        [self.managedObjectContext save:nil];
     
         
 		if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive)
@@ -693,5 +769,91 @@ BOOL isMUC = YES;
 	return YES;
 }
 
+#pragma mark CoreDataManagement Protocol
+
+/**
+ Returns the URL to the application's Documents directory.
+ */
+- (NSURL *)applicationDocumentsDirectory
+{
+    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+}
+
+- (void)saveContext
+{
+    
+    NSError *error = nil;
+    NSManagedObjectContext *objectContext = self.managedObjectContext;
+    if (objectContext != nil)
+    {
+        if ([objectContext hasChanges] && ![objectContext save:&error])
+        {
+            // add error handling here
+            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            abort();
+        }
+    }
+}
+
+/**
+ Returns the managed object context for the application.
+ If the context doesn't already exist, it is created and bound to the persistent store coordinator for the application.
+ */
+- (NSManagedObjectContext *)managedObjectContext
+{
+    
+    if (managedObjectContext != nil)
+    {
+        return managedObjectContext;
+    }
+    
+    NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
+    if (coordinator != nil)
+    {
+        managedObjectContext = [[NSManagedObjectContext alloc] init];
+        [managedObjectContext setPersistentStoreCoordinator:coordinator];
+    }
+    return managedObjectContext;
+}
+
+/**
+ Returns the managed object model for the application.
+ If the model doesn't already exist, it is created from the application's model.
+ */
+- (NSManagedObjectModel *)managedObjectModel
+{
+    if (managedObjectModel != nil)
+    {
+        return managedObjectModel;
+    }
+    managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
+    
+    return managedObjectModel;
+}
+
+/**
+ Returns the persistent store coordinator for the application.
+ If the coordinator doesn't already exist, it is created and the application's store added to it.
+ */
+- (NSPersistentStoreCoordinator *)persistentStoreCoordinator
+{
+    
+    if (persistentStoreCoordinator != nil)
+    {
+        return persistentStoreCoordinator;
+    }
+    
+    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"CoreDataTabBarTutorial.sqlite"];
+    
+    NSError *error = nil;
+    persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
+    if (![persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error])
+    {
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }
+    
+    return persistentStoreCoordinator;
+}
 
 @end

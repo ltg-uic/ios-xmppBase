@@ -15,62 +15,65 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="2" kind="relationship" relationship="rootViewController" id="3q4-nV-LII"/>
+                        <segue destination="Urz-0s-BeD" kind="relationship" relationship="rootViewController" id="0nW-b2-3kW"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="og5-NY-vkt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1312" y="-884"/>
         </scene>
-        <!--Root View Controller-->
-        <scene sceneID="4">
+        <!--Root View Controller - XMPP BASE TESTER-->
+        <scene sceneID="OyB-98-NGg">
             <objects>
-                <viewController id="2" customClass="RootViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="TDh-Vm-PuJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="tsg-l1-ofE"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="5">
-                        <rect key="frame" x="0.0" y="44" width="1024" height="680"/>
+                <tableViewController id="Urz-0s-BeD" customClass="RootViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="singleLineEtched" rowHeight="84" sectionHeaderHeight="22" sectionFooterHeight="22" id="PTb-uF-VZe">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="red_light" translatesAutoresizingMaskIntoConstraints="NO" id="qfJ-hh-3lS">
-                                <rect key="frame" x="35" y="218" width="120" height="120"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="green_light" translatesAutoresizingMaskIntoConstraints="NO" id="oAu-ZR-iWK">
-                                <rect key="frame" x="35" y="218" width="120" height="120"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-                    </view>
-                    <extendedEdge key="edgesForExtendedLayout"/>
-                    <toolbarItems>
-                        <barButtonItem title="Item" id="XLN-j5-3SZ"/>
-                    </toolbarItems>
-                    <navigationItem key="navigationItem" id="aWE-NY-gCs">
-                        <barButtonItem key="rightBarButtonItem" title="Login" id="8kK-Zk-11z">
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="xmpp_cell" textLabel="MhI-Ho-Iba" imageView="48f-K1-7qk" rowHeight="84" style="IBUITableViewCellStyleDefault" id="OLA-mh-mYg">
+                                <rect key="frame" x="0.0" y="66" width="768" height="84"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="OLA-mh-mYg" id="hDx-lQ-mNE">
+                                    <rect key="frame" x="0.0" y="0.0" width="768" height="83"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" ambiguous="YES" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="MhI-Ho-Iba">
+                                            <rect key="frame" x="113" y="0.0" width="640" height="83"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" image="green_light" id="48f-K1-7qk">
+                                            <rect key="frame" x="15" y="0.0" width="83" height="83"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </imageView>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Urz-0s-BeD" id="ySE-GK-mNm"/>
+                            <outlet property="delegate" destination="Urz-0s-BeD" id="1Gg-dy-1wH"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="XMPP BASE TESTER" id="hpX-Pv-9Uk">
+                        <barButtonItem key="leftBarButtonItem" title="RED" id="fuP-tt-U4T"/>
+                        <barButtonItem key="rightBarButtonItem" title="Login" id="Lwv-Rd-idK">
                             <connections>
-                                <segue destination="Uwm-4r-tn3" kind="modal" id="ItA-zS-7Aa"/>
+                                <segue destination="Uwm-4r-tn3" kind="modal" modalPresentationStyle="formSheet" id="Z1J-4g-omC"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <nil key="simulatedStatusBarMetrics"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
-                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
-                    <connections>
-                        <outlet property="green_awareness" destination="oAu-ZR-iWK" id="oM8-BK-SQy"/>
-                        <outlet property="red_awareness" destination="qfJ-hh-3lS" id="j2U-T2-j6y"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3" sceneMemberID="firstResponder"/>
-                <customObject id="Hnt-3G-a2D"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TxC-yV-7WD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-264" y="-140"/>
+            <point key="canvasLocation" x="410" y="-587"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="hho-8T-d0E">
@@ -131,7 +134,6 @@
                             </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <nil key="simulatedStatusBarMetrics"/>
@@ -144,8 +146,16 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qni-hL-r1c" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="red_light" id="qfJ-hh-3lS">
+                    <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="green_light" id="oAu-ZR-iWK">
+                    <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
             </objects>
-            <point key="canvasLocation" x="1082" y="-297"/>
+            <point key="canvasLocation" x="1230" y="-317"/>
         </scene>
     </scenes>
     <resources>

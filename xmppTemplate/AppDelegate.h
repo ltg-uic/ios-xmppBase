@@ -11,6 +11,7 @@
 #import "XMPPBaseOnlineDelegate.h"
 #import "XMPPRoom.h"
 #import "XMPPMessage+XEP0045.h"
+#import "DataPoint.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, XMPPRoomStorage> {
     XMPPStream *xmppStream;
@@ -26,6 +27,11 @@
 	BOOL allowSSLHostNameMismatch;
 	
 	BOOL isXmppConnected;
+    
+@private
+    NSManagedObjectContext *managedObjectContext;
+    NSManagedObjectModel *managedObjectModel;
+    NSPersistentStoreCoordinator *persistentStoreCoordinator;
    
 
 }
@@ -36,7 +42,13 @@
 
 @property (nonatomic, weak) id <XMPPBaseNewMessageDelegate> xmppBaseNewMessageDelegate;
 @property (nonatomic, weak) id <XMPPBaseOnlineDelegate>     xmppBaseOnlineDelegate;
+@property (nonatomic, strong, readonly) NSManagedObjectContext *managedObjectContext;
+@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 
+
+
+- (NSURL *)applicationDocumentsDirectory;
+- (void)saveContext;
 
 - (BOOL)connect;
 - (void)disconnect;

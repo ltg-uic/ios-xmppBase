@@ -8,9 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "XMPPBaseOnlineDelegate.h"
+#import "XMPPBaseNewMessageDelegate.h"
+#import "CoreDataTableViewController.h" // so we can fetch
+#import "DataPoint.h"
 
-@interface RootViewController : UIViewController <XMPPBaseOnlineDelegate>
+@interface RootViewController : CoreDataTableViewController<XMPPBaseOnlineDelegate,XMPPBaseNewMessageDelegate> {
+    
+    
+}
+
 @property (weak, nonatomic) IBOutlet UIImageView *red_awareness;
 @property (weak, nonatomic) IBOutlet UIImageView *green_awareness;
-
+@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
+//@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @end
