@@ -5,48 +5,36 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>418CBBFC-2E6E-43DB-9B63-EDFF9BC99C46</string>
+	<string>EDB8F740-210E-42DB-B46E-33E2F29466D2</string>
 	<key>IDESourceControlProjectName</key>
 	<string>ios-xmppBase</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>AEDC6C5A-4FDD-45E0-972A-BBC49D4EB258</key>
-		<string>https://github.com/ltg-uic/ios-xmppBase.git</string>
-		<key>B613C1C4-83AB-40AF-938D-95C8420F0955</key>
-		<string>https://github.com/robbiehanson/XMPPFramework.git</string>
+		<key>3EADB027-2FEF-46F3-B373-715EC4FDF154</key>
+		<string>https://github.com/ltg-uic/hg-ios-class-display.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>ios-xmppBase.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>AEDC6C5A-4FDD-45E0-972A-BBC49D4EB258</key>
+		<key>3EADB027-2FEF-46F3-B373-715EC4FDF154</key>
 		<string>../..</string>
-		<key>B613C1C4-83AB-40AF-938D-95C8420F0955</key>
-		<string>../../XMPPFramework</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/ltg-uic/ios-xmppBase.git</string>
+	<string>https://github.com/ltg-uic/hg-ios-class-display.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>AEDC6C5A-4FDD-45E0-972A-BBC49D4EB258</string>
+	<string>3EADB027-2FEF-46F3-B373-715EC4FDF154</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>AEDC6C5A-4FDD-45E0-972A-BBC49D4EB258</string>
+			<string>3EADB027-2FEF-46F3-B373-715EC4FDF154</string>
 			<key>IDESourceControlWCCName</key>
-			<string>ios-xmppBase</string>
-		</dict>
-		<dict>
-			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.git</string>
-			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>B613C1C4-83AB-40AF-938D-95C8420F0955</string>
-			<key>IDESourceControlWCCName</key>
-			<string>XMPPFramework</string>
+			<string>hg-ios-class-display</string>
 		</dict>
 	</array>
 </dict>

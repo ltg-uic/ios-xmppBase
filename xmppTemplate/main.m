@@ -12,6 +12,7 @@
 
 int main(int argc, char *argv[])
 {
+    //This is hunger games whole class viz
     @autoreleasepool {
         return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
     }

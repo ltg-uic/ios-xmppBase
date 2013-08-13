@@ -26,38 +26,6 @@
         <scene sceneID="OyB-98-NGg">
             <objects>
                 <tableViewController id="Urz-0s-BeD" customClass="RootViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="singleLineEtched" rowHeight="84" sectionHeaderHeight="22" sectionFooterHeight="22" id="PTb-uF-VZe">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="xmpp_cell" textLabel="Uaa-vo-cFn" imageView="j2L-Tc-7mm" rowHeight="84" style="IBUITableViewCellStyleDefault" id="OLA-mh-mYg">
-                                <rect key="frame" x="0.0" y="66" width="768" height="84"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="OLA-mh-mYg" id="hDx-lQ-mNE">
-                                    <rect key="frame" x="0.0" y="0.0" width="768" height="83"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" ambiguous="YES" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Uaa-vo-cFn">
-                                            <rect key="frame" x="50" y="0.0" width="703" height="83"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" image="message" id="j2L-Tc-7mm">
-                                            <rect key="frame" x="15" y="31" width="20" height="20"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </imageView>
-                                    </subviews>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="Urz-0s-BeD" id="ySE-GK-mNm"/>
-                            <outlet property="delegate" destination="Urz-0s-BeD" id="1Gg-dy-1wH"/>
-                        </connections>
-                    </tableView>
                     <navigationItem key="navigationItem" title="XMPP BASE TESTER" id="hpX-Pv-9Uk">
                         <barButtonItem key="leftBarButtonItem" title="Item" image="red_light" id="fuP-tt-U4T">
                             <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -165,7 +133,6 @@
     </scenes>
     <resources>
         <image name="green_light" width="20" height="20"/>
-        <image name="message" width="20" height="20"/>
         <image name="red_light" width="20" height="20"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
