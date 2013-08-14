@@ -7,6 +7,7 @@
         <!--Navigation Controller - XMPP Base-->
         <scene sceneID="jBw-OB-UFs">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="og5-NY-vkt" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController title="XMPP Base" definesPresentationContext="YES" id="DCK-A1-vkk" sceneMemberID="viewController">
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -15,18 +16,18 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="Urz-0s-BeD" kind="relationship" relationship="rootViewController" id="0nW-b2-3kW"/>
+                        <segue destination="Urz-0s-BeD" kind="relationship" relationship="rootViewController" id="cn7-Jz-Le4"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="og5-NY-vkt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1312" y="-884"/>
         </scene>
-        <!--Root View Controller - XMPP BASE TESTER-->
+        <!--Root View Controller - Hunger Games-->
         <scene sceneID="OyB-98-NGg">
             <objects>
-                <tableViewController id="Urz-0s-BeD" customClass="RootViewController" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" title="XMPP BASE TESTER" id="hpX-Pv-9Uk">
+                <tableViewController storyboardIdentifier="rootview_controller" useStoryboardIdentifierAsRestorationIdentifier="YES" clearsSelectionOnViewWillAppear="NO" id="Urz-0s-BeD" customClass="RootViewController" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Hunger Games" id="hpX-Pv-9Uk">
                         <barButtonItem key="leftBarButtonItem" title="Item" image="red_light" id="fuP-tt-U4T">
                             <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         </barButtonItem>
@@ -39,14 +40,61 @@
                     <nil key="simulatedStatusBarMetrics"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
-                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
                         <outlet property="statusBarButton" destination="fuP-tt-U4T" id="CT5-Sz-mwO"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TxC-yV-7WD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="410" y="-587"/>
+            <point key="canvasLocation" x="53" y="-205"/>
+        </scene>
+        <!--Viz Page View Controller - Page View Controller-->
+        <scene sceneID="gRd-lQ-dTt">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="USX-o0-Vuz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <pageViewController storyboardIdentifier="page_controller" autoresizesArchivedViewToFullSize="NO" title="Page View Controller" useStoryboardIdentifierAsRestorationIdentifier="YES" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="HN6-rz-31p" customClass="VizPageViewController" sceneMemberID="viewController">
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                </pageViewController>
+            </objects>
+            <point key="canvasLocation" x="1052" y="-1399"/>
+        </scene>
+        <!--Child View Controller-->
+        <scene sceneID="MyN-7Z-qM1">
+            <objects>
+                <viewController storyboardIdentifier="screen_one" useStoryboardIdentifierAsRestorationIdentifier="YES" id="zhw-SS-yZ4" customClass="APPChildViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="nzY-4o-qIq"/>
+                        <viewControllerLayoutGuide type="bottom" id="L7b-Kf-bU9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kNX-0f-3PH">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" ambiguous="YES" text="Screen #n" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Y8-Lg-Jzk">
+                                <rect key="frame" x="403" y="280" width="170" height="73"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="73" id="C6R-Gb-xAh"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="38"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="highlightedColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <connections>
+                        <outlet property="screenNumber" destination="7Y8-Lg-Jzk" id="xLF-BG-8ai"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="d9y-W0-JEs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2292" y="-1399"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="hho-8T-d0E">
@@ -107,6 +155,7 @@
                             </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <nil key="simulatedStatusBarMetrics"/>
@@ -128,7 +177,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
             </objects>
-            <point key="canvasLocation" x="1230" y="-317"/>
+            <point key="canvasLocation" x="1662" y="-177"/>
         </scene>
     </scenes>
     <resources>

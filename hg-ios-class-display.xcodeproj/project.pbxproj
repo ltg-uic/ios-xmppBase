@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		700450FF17B5C99E000A83F1 /* DataPointModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 700450FD17B5C99E000A83F1 /* DataPointModel.xcdatamodeld */; };
-		7004510617B92028000A83F1 /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7004510417B92028000A83F1 /* CoreDataTableViewController.m */; };
 		7004510C17B92392000A83F1 /* DataPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 7004510B17B92392000A83F1 /* DataPoint.m */; };
 		700C3A52160427DA005A9E34 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 700C3A51160427DA005A9E34 /* UIKit.framework */; };
 		700C3A54160427DA005A9E34 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 700C3A53160427DA005A9E34 /* Foundation.framework */; };
@@ -19,12 +18,13 @@
 		700C3A64160427DA005A9E34 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 700C3A63160427DA005A9E34 /* Default.png */; };
 		700C3A66160427DA005A9E34 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 700C3A65160427DA005A9E34 /* Default@2x.png */; };
 		700C3A68160427DA005A9E34 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 700C3A67160427DA005A9E34 /* Default-568h@2x.png */; };
-		700C3A6B160427DA005A9E34 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 700C3A69160427DA005A9E34 /* MainStoryboard_iPhone.storyboard */; };
 		700C3A6E160427DA005A9E34 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 700C3A6C160427DA005A9E34 /* MainStoryboard_iPad.storyboard */; };
 		700C3A71160427DA005A9E34 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 700C3A70160427DA005A9E34 /* RootViewController.m */; };
 		700C3A9E16042944005A9E34 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 700C3A9D16042944005A9E34 /* CFNetwork.framework */; };
 		700C3B2E16042BBD005A9E34 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 700C3B2D16042BBD005A9E34 /* Security.framework */; };
 		700C3B3A160430DA005A9E34 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 700C3B39160430DA005A9E34 /* SystemConfiguration.framework */; };
+		704B138B17BB2D7C0097FDF1 /* APPChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 704B138817BB2D7C0097FDF1 /* APPChildViewController.m */; };
+		706DD1D817BBF42D0075E87B /* VizPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 706DD1D717BBF42D0075E87B /* VizPageViewController.m */; };
 		707C2C3916080C6A00A09AB8 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 707C2C3816080C6A00A09AB8 /* LoginViewController.m */; };
 		70879019160BB0A50099DD5D /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70879018160BB0A50099DD5D /* CoreData.framework */; };
 		70B4119017B4600900F61347 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 70B44C1C17B35B4B00C47B61 /* libxml2.2.dylib */; };
@@ -98,8 +98,6 @@
 
 /* Begin PBXFileReference section */
 		700450FE17B5C99E000A83F1 /* DataPointModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataPointModel.xcdatamodel; sourceTree = "<group>"; };
-		7004510417B92028000A83F1 /* CoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataTableViewController.m; sourceTree = "<group>"; };
-		7004510517B92028000A83F1 /* CoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataTableViewController.h; sourceTree = "<group>"; };
 		7004510A17B92392000A83F1 /* DataPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataPoint.h; path = entity/DataPoint.h; sourceTree = "<group>"; };
 		7004510B17B92392000A83F1 /* DataPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataPoint.m; path = entity/DataPoint.m; sourceTree = "<group>"; };
 		700C3A4D160427DA005A9E34 /* hg-ios-class-display.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "hg-ios-class-display.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -115,7 +113,6 @@
 		700C3A63160427DA005A9E34 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		700C3A65160427DA005A9E34 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		700C3A67160427DA005A9E34 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		700C3A6A160427DA005A9E34 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		700C3A6D160427DA005A9E34 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		700C3A6F160427DA005A9E34 /* RootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		700C3A70160427DA005A9E34 /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
@@ -123,6 +120,10 @@
 		700C3B2D16042BBD005A9E34 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		700C3B39160430DA005A9E34 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		7042A38016320B3C001B44B5 /* XMPPBaseOnlineDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = XMPPBaseOnlineDelegate.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		704B138817BB2D7C0097FDF1 /* APPChildViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APPChildViewController.m; sourceTree = "<group>"; };
+		704B138917BB2D7C0097FDF1 /* APPChildViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APPChildViewController.h; sourceTree = "<group>"; };
+		706DD1D617BBF42D0075E87B /* VizPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VizPageViewController.h; sourceTree = "<group>"; };
+		706DD1D717BBF42D0075E87B /* VizPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VizPageViewController.m; sourceTree = "<group>"; };
 		707C2C3716080C6A00A09AB8 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		707C2C3816080C6A00A09AB8 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		70879018160BB0A50099DD5D /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -337,15 +338,16 @@
 		700C3A57160427DA005A9E34 /* template */ = {
 			isa = PBXGroup;
 			children = (
-				7004510417B92028000A83F1 /* CoreDataTableViewController.m */,
-				7004510517B92028000A83F1 /* CoreDataTableViewController.h */,
+				706DD1D617BBF42D0075E87B /* VizPageViewController.h */,
+				706DD1D717BBF42D0075E87B /* VizPageViewController.m */,
+				704B138817BB2D7C0097FDF1 /* APPChildViewController.m */,
+				704B138917BB2D7C0097FDF1 /* APPChildViewController.h */,
 				700C3A6F160427DA005A9E34 /* RootViewController.h */,
 				700C3A70160427DA005A9E34 /* RootViewController.m */,
 				707C2C3716080C6A00A09AB8 /* LoginViewController.h */,
 				707C2C3816080C6A00A09AB8 /* LoginViewController.m */,
 				700C3A60160427DA005A9E34 /* AppDelegate.h */,
 				700C3A61160427DA005A9E34 /* AppDelegate.m */,
-				700C3A69160427DA005A9E34 /* MainStoryboard_iPhone.storyboard */,
 				700C3A6C160427DA005A9E34 /* MainStoryboard_iPad.storyboard */,
 				7042A38016320B3C001B44B5 /* XMPPBaseOnlineDelegate.h */,
 				70A97B6E1618E73900148530 /* XMPPBaseNewMessageDelegate.h */,
@@ -823,7 +825,6 @@
 				70CD9B3617B49BF2008625BF /* logon_sound.aif in Resources */,
 				700C3A68160427DA005A9E34 /* Default-568h@2x.png in Resources */,
 				70B44C1B17B3478300C47B61 /* awareness_icons.xcassets in Resources */,
-				700C3A6B160427DA005A9E34 /* MainStoryboard_iPhone.storyboard in Resources */,
 				70B44B8217B2F9A000C47B61 /* README.txt in Resources */,
 				700C3A6E160427DA005A9E34 /* MainStoryboard_iPad.storyboard in Resources */,
 			);
@@ -839,7 +840,6 @@
 				70B44C0217B2FD7800C47B61 /* XMPPDateTimeProfiles.m in Sources */,
 				70B44BFB17B2FC4F00C47B61 /* XMPPReconnect.m in Sources */,
 				7004510C17B92392000A83F1 /* DataPoint.m in Sources */,
-				7004510617B92028000A83F1 /* CoreDataTableViewController.m in Sources */,
 				70B44BE817B2F9F700C47B61 /* XMPPRoomHybrid.xcdatamodeld in Sources */,
 				70B44B7617B2F9A000C47B61 /* RFImageToDataTransformer.m in Sources */,
 				70B44B7917B2F9A000C47B61 /* XMPPStringPrep.m in Sources */,
@@ -886,6 +886,7 @@
 				70B44B8117B2F9A000C47B61 /* DispatchQueueLogFormatter.m in Sources */,
 				70B44B7417B2F9A000C47B61 /* DDList.m in Sources */,
 				70B44BF417B2F9F700C47B61 /* NSXMLElement+XEP_0203.m in Sources */,
+				704B138B17BB2D7C0097FDF1 /* APPChildViewController.m in Sources */,
 				70B44BF117B2F9F700C47B61 /* XMPPRoom.m in Sources */,
 				70B44B6717B2F9A000C47B61 /* XMPPPlainAuthentication.m in Sources */,
 				70B44C1117B2FDDF00C47B61 /* XMPPCapsResourceCoreDataStorageObject.m in Sources */,
@@ -901,6 +902,7 @@
 				70B44C1217B2FDDF00C47B61 /* XMPPCapabilities.m in Sources */,
 				70B44B6417B2F9A000C47B61 /* XMPPDeprecatedDigestAuthentication.m in Sources */,
 				70B44B7217B2F9A000C47B61 /* XMPPPresence.m in Sources */,
+				706DD1D817BBF42D0075E87B /* VizPageViewController.m in Sources */,
 				70B44B7717B2F9A000C47B61 /* XMPPIDTracker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -914,14 +916,6 @@
 				700C3A5B160427DA005A9E34 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		700C3A69160427DA005A9E34 /* MainStoryboard_iPhone.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				700C3A6A160427DA005A9E34 /* en */,
-			);
-			name = MainStoryboard_iPhone.storyboard;
 			sourceTree = "<group>";
 		};
 		700C3A6C160427DA005A9E34 /* MainStoryboard_iPad.storyboard */ = {
