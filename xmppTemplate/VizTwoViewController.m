@@ -1,18 +1,18 @@
 //
-//  VizPageViewController.m
+//  VizTwoViewController.m
 //  hg-ios-class-display
 //
 //  Created by Anthony Perritano on 8/14/13.
 //  Copyright (c) 2013 Learning Technologies Group. All rights reserved.
 //
 
-#import "VizPageViewController.h"
+#import "VizTwoViewController.h"
 
-@interface VizPageViewController ()
+@interface VizTwoViewController ()
 
 @end
 
-@implementation VizPageViewController
+@implementation VizTwoViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -25,11 +25,7 @@
 
 - (void)viewDidLoad
 {
-   
     [super viewDidLoad];
-    //[[self view] setBackgroundColor:[UIColor whiteColor]];
-    //[[self view] setTintColor:[UIColor blueColor]];
-
 	// Do any additional setup after loading the view.
 }
 

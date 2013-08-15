@@ -23,7 +23,7 @@
 		700C3A9E16042944005A9E34 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 700C3A9D16042944005A9E34 /* CFNetwork.framework */; };
 		700C3B2E16042BBD005A9E34 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 700C3B2D16042BBD005A9E34 /* Security.framework */; };
 		700C3B3A160430DA005A9E34 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 700C3B39160430DA005A9E34 /* SystemConfiguration.framework */; };
-		704B138B17BB2D7C0097FDF1 /* APPChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 704B138817BB2D7C0097FDF1 /* APPChildViewController.m */; };
+		704B138B17BB2D7C0097FDF1 /* VizViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 704B138817BB2D7C0097FDF1 /* VizViewController.m */; };
 		706DD1D817BBF42D0075E87B /* VizPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 706DD1D717BBF42D0075E87B /* VizPageViewController.m */; };
 		707C2C3916080C6A00A09AB8 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 707C2C3816080C6A00A09AB8 /* LoginViewController.m */; };
 		70879019160BB0A50099DD5D /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70879018160BB0A50099DD5D /* CoreData.framework */; };
@@ -91,9 +91,15 @@
 		70B44C1717B2FE1700C47B61 /* XMPPCoreDataStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 70B44C1517B2FE1700C47B61 /* XMPPCoreDataStorage.m */; };
 		70B44C1B17B3478300C47B61 /* awareness_icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70B44C1A17B3478300C47B61 /* awareness_icons.xcassets */; };
 		70B44C2917B40D2000C47B61 /* libidn.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 70B44B6117B2F9A000C47B61 /* libidn.a */; };
+		70CAF27217BC35730038CC47 /* VizOneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70CAF27117BC35730038CC47 /* VizOneViewController.m */; };
+		70CAF27517BC35A40038CC47 /* VizTwoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70CAF27417BC35A40038CC47 /* VizTwoViewController.m */; };
+		70CAF27817BC35B00038CC47 /* VizThreeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70CAF27717BC35B00038CC47 /* VizThreeViewController.m */; };
 		70CD9B3417B4988E008625BF /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70CD9B3317B4988E008625BF /* AudioToolbox.framework */; };
 		70CD9B3617B49BF2008625BF /* logon_sound.aif in Resources */ = {isa = PBXBuildFile; fileRef = 70CD9B3517B49BF2008625BF /* logon_sound.aif */; };
 		70EDB4D017B475960005E144 /* libresolv.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 70B44C1817B31E8D00C47B61 /* libresolv.9.dylib */; };
+		70F98FA117BC931C00A691EB /* screen 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 70F98F9E17BC931B00A691EB /* screen 3.png */; };
+		70F98FA217BC931C00A691EB /* screen 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 70F98F9F17BC931C00A691EB /* screen 2.png */; };
+		70F98FA317BC931C00A691EB /* screen 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 70F98FA017BC931C00A691EB /* screen 1.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -120,8 +126,8 @@
 		700C3B2D16042BBD005A9E34 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		700C3B39160430DA005A9E34 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		7042A38016320B3C001B44B5 /* XMPPBaseOnlineDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = XMPPBaseOnlineDelegate.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		704B138817BB2D7C0097FDF1 /* APPChildViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APPChildViewController.m; sourceTree = "<group>"; };
-		704B138917BB2D7C0097FDF1 /* APPChildViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APPChildViewController.h; sourceTree = "<group>"; };
+		704B138817BB2D7C0097FDF1 /* VizViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VizViewController.m; sourceTree = "<group>"; };
+		704B138917BB2D7C0097FDF1 /* VizViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VizViewController.h; sourceTree = "<group>"; };
 		706DD1D617BBF42D0075E87B /* VizPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VizPageViewController.h; sourceTree = "<group>"; };
 		706DD1D717BBF42D0075E87B /* VizPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VizPageViewController.m; sourceTree = "<group>"; };
 		707C2C3716080C6A00A09AB8 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -264,8 +270,17 @@
 		70B44C1A17B3478300C47B61 /* awareness_icons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = awareness_icons.xcassets; sourceTree = "<group>"; };
 		70B44C1C17B35B4B00C47B61 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
 		70B44C1F17B3607A00C47B61 /* libiconv.2.4.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.2.4.0.dylib; path = usr/lib/libiconv.2.4.0.dylib; sourceTree = SDKROOT; };
+		70CAF27017BC35730038CC47 /* VizOneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VizOneViewController.h; sourceTree = "<group>"; };
+		70CAF27117BC35730038CC47 /* VizOneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VizOneViewController.m; sourceTree = "<group>"; };
+		70CAF27317BC35A40038CC47 /* VizTwoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VizTwoViewController.h; sourceTree = "<group>"; };
+		70CAF27417BC35A40038CC47 /* VizTwoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VizTwoViewController.m; sourceTree = "<group>"; };
+		70CAF27617BC35B00038CC47 /* VizThreeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VizThreeViewController.h; sourceTree = "<group>"; };
+		70CAF27717BC35B00038CC47 /* VizThreeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VizThreeViewController.m; sourceTree = "<group>"; };
 		70CD9B3317B4988E008625BF /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		70CD9B3517B49BF2008625BF /* logon_sound.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = logon_sound.aif; sourceTree = "<group>"; };
+		70F98F9E17BC931B00A691EB /* screen 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screen 3.png"; sourceTree = "<group>"; };
+		70F98F9F17BC931C00A691EB /* screen 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screen 2.png"; sourceTree = "<group>"; };
+		70F98FA017BC931C00A691EB /* screen 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screen 1.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -303,7 +318,7 @@
 			isa = PBXGroup;
 			children = (
 				70B44AAE17B2F97B00C47B61 /* XMPP */,
-				700C3A57160427DA005A9E34 /* template */,
+				700C3A57160427DA005A9E34 /* Display */,
 				700C3A50160427DA005A9E34 /* Frameworks */,
 				700C3A4E160427DA005A9E34 /* Products */,
 			);
@@ -335,13 +350,10 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		700C3A57160427DA005A9E34 /* template */ = {
+		700C3A57160427DA005A9E34 /* Display */ = {
 			isa = PBXGroup;
 			children = (
-				706DD1D617BBF42D0075E87B /* VizPageViewController.h */,
-				706DD1D717BBF42D0075E87B /* VizPageViewController.m */,
-				704B138817BB2D7C0097FDF1 /* APPChildViewController.m */,
-				704B138917BB2D7C0097FDF1 /* APPChildViewController.h */,
+				70CAF27917BC35BE0038CC47 /* Viz */,
 				700C3A6F160427DA005A9E34 /* RootViewController.h */,
 				700C3A70160427DA005A9E34 /* RootViewController.m */,
 				707C2C3716080C6A00A09AB8 /* LoginViewController.h */,
@@ -356,7 +368,7 @@
 				7004510317B5CA4E000A83F1 /* Entity */,
 				700C3A58160427DA005A9E34 /* Supporting Files */,
 			);
-			name = template;
+			name = Display;
 			path = xmppTemplate;
 			sourceTree = "<group>";
 		};
@@ -368,6 +380,9 @@
 				700C3A59160427DA005A9E34 /* hg-ios-class-display-Info.plist */,
 				700C3A5A160427DA005A9E34 /* InfoPlist.strings */,
 				700C3A5D160427DA005A9E34 /* main.m */,
+				70F98F9E17BC931B00A691EB /* screen 3.png */,
+				70F98F9F17BC931C00A691EB /* screen 2.png */,
+				70F98FA017BC931C00A691EB /* screen 1.png */,
 				700C3A5F160427DA005A9E34 /* hg-ios-class-display-Prefix.pch */,
 				700C3A63160427DA005A9E34 /* Default.png */,
 				700C3A65160427DA005A9E34 /* Default@2x.png */,
@@ -757,6 +772,23 @@
 			path = XMPPFramework/Extensions/CoreDataStorage;
 			sourceTree = "<group>";
 		};
+		70CAF27917BC35BE0038CC47 /* Viz */ = {
+			isa = PBXGroup;
+			children = (
+				706DD1D617BBF42D0075E87B /* VizPageViewController.h */,
+				706DD1D717BBF42D0075E87B /* VizPageViewController.m */,
+				704B138917BB2D7C0097FDF1 /* VizViewController.h */,
+				704B138817BB2D7C0097FDF1 /* VizViewController.m */,
+				70CAF27017BC35730038CC47 /* VizOneViewController.h */,
+				70CAF27117BC35730038CC47 /* VizOneViewController.m */,
+				70CAF27317BC35A40038CC47 /* VizTwoViewController.h */,
+				70CAF27417BC35A40038CC47 /* VizTwoViewController.m */,
+				70CAF27617BC35B00038CC47 /* VizThreeViewController.h */,
+				70CAF27717BC35B00038CC47 /* VizThreeViewController.m */,
+			);
+			name = Viz;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -818,8 +850,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				70F98FA117BC931C00A691EB /* screen 3.png in Resources */,
 				700C3A5C160427DA005A9E34 /* InfoPlist.strings in Resources */,
+				70F98FA217BC931C00A691EB /* screen 2.png in Resources */,
 				700C3A64160427DA005A9E34 /* Default.png in Resources */,
+				70F98FA317BC931C00A691EB /* screen 1.png in Resources */,
 				70B44BAC17B2F9A000C47B61 /* build-libidn.sh in Resources */,
 				700C3A66160427DA005A9E34 /* Default@2x.png in Resources */,
 				70CD9B3617B49BF2008625BF /* logon_sound.aif in Resources */,
@@ -842,6 +877,7 @@
 				7004510C17B92392000A83F1 /* DataPoint.m in Sources */,
 				70B44BE817B2F9F700C47B61 /* XMPPRoomHybrid.xcdatamodeld in Sources */,
 				70B44B7617B2F9A000C47B61 /* RFImageToDataTransformer.m in Sources */,
+				70CAF27517BC35A40038CC47 /* VizTwoViewController.m in Sources */,
 				70B44B7917B2F9A000C47B61 /* XMPPStringPrep.m in Sources */,
 				70B44B7017B2F9A000C47B61 /* XMPPModule.m in Sources */,
 				70B44B6E17B2F9A000C47B61 /* XMPPJID.m in Sources */,
@@ -849,6 +885,7 @@
 				70B44B7817B2F9A000C47B61 /* XMPPSRVResolver.m in Sources */,
 				70B44BE717B2F9F700C47B61 /* XMPPRoomOccupantCoreDataStorageObject.m in Sources */,
 				70B44BE617B2F9F700C47B61 /* XMPPRoomMessageCoreDataStorageObject.m in Sources */,
+				70CAF27817BC35B00038CC47 /* VizThreeViewController.m in Sources */,
 				70B44BE917B2F9F700C47B61 /* XMPPRoomHybridStorage.m in Sources */,
 				70B44B7517B2F9A000C47B61 /* GCDMulticastDelegate.m in Sources */,
 				70B44C0E17B2FDDF00C47B61 /* XMPPCapabilities.xcdatamodel in Sources */,
@@ -871,6 +908,7 @@
 				70B44B7C17B2F9A000C47B61 /* DDASLLogger.m in Sources */,
 				70B44BEA17B2F9F700C47B61 /* XMPPRoomMessageHybridCoreDataStorageObject.m in Sources */,
 				70B44C1017B2FDDF00C47B61 /* XMPPCapsCoreDataStorageObject.m in Sources */,
+				70CAF27217BC35730038CC47 /* VizOneViewController.m in Sources */,
 				70B44B6C17B2F9A000C47B61 /* XMPPElement.m in Sources */,
 				70B44B6617B2F9A000C47B61 /* XMPPDigestMD5Authentication.m in Sources */,
 				700C3A71160427DA005A9E34 /* RootViewController.m in Sources */,
@@ -886,7 +924,7 @@
 				70B44B8117B2F9A000C47B61 /* DispatchQueueLogFormatter.m in Sources */,
 				70B44B7417B2F9A000C47B61 /* DDList.m in Sources */,
 				70B44BF417B2F9F700C47B61 /* NSXMLElement+XEP_0203.m in Sources */,
-				704B138B17BB2D7C0097FDF1 /* APPChildViewController.m in Sources */,
+				704B138B17BB2D7C0097FDF1 /* VizViewController.m in Sources */,
 				70B44BF117B2F9F700C47B61 /* XMPPRoom.m in Sources */,
 				70B44B6717B2F9A000C47B61 /* XMPPPlainAuthentication.m in Sources */,
 				70B44C1117B2FDDF00C47B61 /* XMPPCapsResourceCoreDataStorageObject.m in Sources */,

@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface APPChildViewController : UIViewController
+@interface VizViewController : UIViewController {
+   
+}
 
-@property (assign, nonatomic) NSInteger index;
+@property (assign, nonatomic,readwrite) NSInteger index;
 @property (strong, nonatomic) IBOutlet UILabel *screenNumber;
 
 @end

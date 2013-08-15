@@ -6,13 +6,15 @@
 //  Copyright (c) 2013 Appcoda. All rights reserved.
 //
 
-#import "APPChildViewController.h"
+#import "VizViewController.h"
 
-@interface APPChildViewController ()
+@interface VizViewController ()
 
 @end
 
-@implementation APPChildViewController
+@implementation VizViewController
+
+@synthesize index;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     

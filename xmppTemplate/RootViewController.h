@@ -10,11 +10,12 @@
 #import "XMPPBaseOnlineDelegate.h"
 #import "XMPPBaseNewMessageDelegate.h"
 #import "DataPoint.h"
-#import "APPChildViewController.h"
+
 
 @interface RootViewController : UIViewController<XMPPBaseOnlineDelegate,XMPPBaseNewMessageDelegate,UIPageViewControllerDataSource> {
     
     __weak IBOutlet UIBarButtonItem *statusBarButton;
+    NSArray *all_visualizations;
 
 }
 
