@@ -19,7 +19,14 @@
 
 @implementation RootViewController
 
-
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    if(self = [super initWithCoder:aDecoder])
+    {
+        self.appDelegate.xmppBaseOnlineDelegate = self;
+        self.appDelegate.xmppBaseNewMessageDelegate = self;
+    }
+    return self;
+}
 - (AppDelegate *)appDelegate
 {
 	return (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -29,8 +36,6 @@
 {
     [super viewDidLoad];
     
-    self.appDelegate.xmppBaseOnlineDelegate = self;
-    self.appDelegate.xmppBaseNewMessageDelegate = self;
    
     
     _pageController = [self.storyboard instantiateViewControllerWithIdentifier:@"page_controller"];
@@ -49,7 +54,7 @@
     [[self view] addSubview:[self.pageController view]];
     [self.pageController didMoveToParentViewController:self];
 	// Do any additional setup after loading the view, typically from a nib.
-    self.title = [NSString stringWithFormat:@"Viz",0];
+    //self.title = [NSString stringWithFormat:@"Viz",0];
 }
 
 -(void)setupVizViewControllers {
@@ -148,6 +153,7 @@
 
 - (void)newMessageReceived:(NSDictionary *)messageContent {
 
+    NSLog(@"NEW MESSAGE RECIEVED");
 }
 
 - (void)replyMessageTo:(NSString *)from {

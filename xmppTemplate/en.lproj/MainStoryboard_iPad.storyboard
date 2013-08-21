@@ -8,6 +8,7 @@
         <scene sceneID="jBw-OB-UFs">
             <objects>
                 <navigationController title="XMPP Base" definesPresentationContext="YES" id="DCK-A1-vkk" sceneMemberID="viewController">
+                    <nil key="simulatedStatusBarMetrics"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="DTE-EW-pGl">
@@ -15,52 +16,14 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="Urz-0s-BeD" kind="relationship" relationship="rootViewController" id="cn7-Jz-Le4"/>
+                        <segue destination="tLA-hn-cHY" kind="relationship" relationship="rootViewController" id="vi2-LO-MyL"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="og5-NY-vkt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1312" y="-884"/>
         </scene>
-        <!--Root View Controller - Hunger Games-->
-        <scene sceneID="OyB-98-NGg">
-            <objects>
-                <tableViewController storyboardIdentifier="rootview_controller" useStoryboardIdentifierAsRestorationIdentifier="YES" clearsSelectionOnViewWillAppear="NO" id="Urz-0s-BeD" customClass="RootViewController" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Hunger Games" id="hpX-Pv-9Uk">
-                        <barButtonItem key="leftBarButtonItem" title="Item" image="red_light" id="fuP-tt-U4T">
-                            <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            <connections>
-                                <segue destination="Uwm-4r-tn3" kind="modal" modalPresentationStyle="formSheet" modalTransitionStyle="coverVertical" id="vHA-rb-Cr8"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Airplay" id="Lwv-Rd-idK"/>
-                    </navigationItem>
-                    <nil key="simulatedStatusBarMetrics"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                    <nil key="simulatedBottomBarMetrics"/>
-                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-                    <connections>
-                        <outlet property="statusBarButton" destination="fuP-tt-U4T" id="CT5-Sz-mwO"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="TxC-yV-7WD" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="53" y="-205"/>
-        </scene>
-        <!--Page View Controller - Page View Controller-->
-        <scene sceneID="gRd-lQ-dTt">
-            <objects>
-                <pageViewController storyboardIdentifier="page_controller" autoresizesArchivedViewToFullSize="NO" title="Page View Controller" useStoryboardIdentifierAsRestorationIdentifier="YES" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="HN6-rz-31p" sceneMemberID="viewController">
-                    <nil key="simulatedStatusBarMetrics"/>
-                    <nil key="simulatedBottomBarMetrics"/>
-                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-                </pageViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="USX-o0-Vuz" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="224" y="-1539"/>
-        </scene>
-        <!--Viz One View Controller-->
+        <!--Viz One View Controller - Item-->
         <scene sceneID="MyN-7Z-qM1">
             <objects>
                 <viewController storyboardIdentifier="viz_1" useStoryboardIdentifierAsRestorationIdentifier="YES" id="zhw-SS-yZ4" customClass="VizOneViewController" sceneMemberID="viewController">
@@ -71,15 +34,10 @@
                     <view key="view" contentMode="scaleToFill" id="kNX-0f-3PH">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="screen 1.png" translatesAutoresizingMaskIntoConstraints="NO" id="z8e-FX-cw7">
-                                <rect key="frame" x="0.0" y="43" width="1024" height="673"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            </imageView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="Uss-ig-Tu6"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
@@ -87,12 +45,169 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d9y-W0-JEs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2298" y="-1539"/>
+            <point key="canvasLocation" x="1490" y="2797"/>
         </scene>
-        <!--Login View Controller-->
+        <!--Wizard Class Page View Controller - Class Chooser-->
+        <scene sceneID="qdm-Fw-ilg">
+            <objects>
+                <tableViewController title="Class Chooser" modalPresentationStyle="pageSheet" id="wzZ-Et-LzK" customClass="WizardClassPageViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" id="mGa-jY-l1q">
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="708"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="wizcell_class" textLabel="c1I-MR-jUd" imageView="4mH-du-MZD" style="IBUITableViewCellStyleDefault" id="O2r-Ei-HGF">
+                                <rect key="frame" x="0.0" y="66" width="300" height="60"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="O2r-Ei-HGF" id="7a9-TF-SRS">
+                                    <rect key="frame" x="0.0" y="0.0" width="267" height="59"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" ambiguous="YES" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="c1I-MR-jUd">
+                                            <rect key="frame" x="60" y="0.0" width="205" height="59"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" image="brown_dot" id="4mH-du-MZD">
+                                            <rect key="frame" x="15" y="14" width="30" height="30"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </imageView>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="B93-el-CwP" kind="push" identifier="student_segue" id="eLo-Wd-G1j"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                    </tableView>
+                    <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="ihF-sa-g38"/>
+                        <barButtonItem title="Cancel" id="qLs-bX-3SO"/>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" title="Choose Your Class" id="43C-1K-LvC">
+                        <barButtonItem key="backBarButtonItem" title="Class" id="FAu-ti-Usi"/>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aEZ-7g-7q0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1407" y="-163"/>
+        </scene>
+        <!--Wizard Student Page View Controller - Student Page-->
+        <scene sceneID="iej-cC-o77">
+            <objects>
+                <collectionViewController autoresizesArchivedViewToFullSize="NO" title="Student Page" id="B93-el-CwP" customClass="WizardStudentPageViewController" sceneMemberID="viewController">
+                    <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="Ejr-No-Nvx">
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="620"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="3e0-UR-4wQ">
+                            <size key="itemSize" width="255" height="70"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="student_cell" id="lpg-g4-2dR" customClass="WizardStudentCell">
+                                <rect key="frame" x="25" y="54" width="250" height="70"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="250" height="70"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dcb-QL-4fr">
+                                            <rect key="frame" x="0.0" y="0.0" width="250" height="70"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <state key="normal" title="firstNameButton">
+                                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <segue destination="nCa-9d-6wf" kind="push" id="6D2-tg-W8W"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <color key="backgroundColor" red="0.090196080505847931" green="0.53333336114883423" blue="0.89019614458084106" alpha="1" colorSpace="deviceRGB"/>
+                                <size key="customSize" width="250" height="70"/>
+                                <connections>
+                                    <outlet property="nameButton" destination="Dcb-QL-4fr" id="Ggi-4S-dEb"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="B93-el-CwP" id="foY-Mq-Y5f"/>
+                            <outlet property="delegate" destination="B93-el-CwP" id="lmi-UB-Yrg"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" title="Choose Your Name" id="WL7-OI-7tl">
+                        <barButtonItem key="backBarButtonItem" title="Student" id="Fcq-0u-QOO"/>
+                    </navigationItem>
+                    <nil key="simulatedStatusBarMetrics"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="05x-Lx-c3p" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1814" y="-163"/>
+        </scene>
+        <!--View Controller - Submit-->
+        <scene sceneID="5fm-xv-0r9">
+            <objects>
+                <viewController id="nCa-9d-6wf" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="rJk-YH-dMG"/>
+                        <viewControllerLayoutGuide type="bottom" id="U6E-Pi-qht"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="CR1-C1-sWK">
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="740"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="ljb-lE-83G"/>
+                        <barButtonItem title="Login" id="MTG-3d-NP3"/>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" title="Submit" id="ddw-vs-wqj">
+                        <barButtonItem key="backBarButtonItem" title="Name" id="zWq-dD-3Xe"/>
+                    </navigationItem>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zIK-FZ-qeu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2172" y="-141"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="bVn-c5-o8X">
+            <objects>
+                <navigationController definesPresentationContext="YES" modalPresentationStyle="pageSheet" toolbarHidden="NO" id="PkN-LD-oC1" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="YKQ-2l-DJy">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" id="d1i-uX-UH7">
+                        <rect key="frame" x="0.0" y="724" width="1024" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
+                    <connections>
+                        <segue destination="wzZ-Et-LzK" kind="relationship" relationship="rootViewController" id="Pfo-5h-d7u"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BCi-cx-Bjh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-17" y="-287"/>
+        </scene>
+        <!--Login View Controller - Login-->
         <scene sceneID="hho-8T-d0E">
             <objects>
-                <viewController storyboardIdentifier="loginController" modalPresentationStyle="formSheet" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Uwm-4r-tn3" customClass="LoginViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loginController" title="Login" modalPresentationStyle="formSheet" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Uwm-4r-tn3" customClass="LoginViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ezY-4K-oDO"/>
                         <viewControllerLayoutGuide type="bottom" id="pPS-Da-8XH"/>
@@ -129,7 +244,8 @@
                                 <rect key="frame" x="0.0" y="0.0" width="540" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
-                                    <navigationItem title="XMPP Login" id="Yka-gO-GqB">
+                                    <navigationItem title="Login" id="Yka-gO-GqB">
+                                        <barButtonItem key="leftBarButtonItem" title="Item" id="CeM-07-FQG"/>
                                         <barButtonItem key="rightBarButtonItem" id="d1q-Og-5Wr">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ko5-ld-oZW">
                                                 <rect key="frame" x="475" y="7" width="49" height="30"/>
@@ -148,7 +264,6 @@
                             </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <nil key="simulatedStatusBarMetrics"/>
@@ -161,18 +276,40 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qni-hL-r1c" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="red_light" id="qfJ-hh-3lS">
-                    <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="green_light" id="oAu-ZR-iWK">
-                    <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </imageView>
             </objects>
-            <point key="canvasLocation" x="1662" y="-177"/>
+            <point key="canvasLocation" x="754" y="-1375"/>
         </scene>
-        <!--Viz Two View Controller-->
+        <!--Tab Bar Controller - Hunger Games-->
+        <scene sceneID="GQS-CV-BpL">
+            <objects>
+                <tabBarController title="Hunger Games" definesPresentationContext="YES" id="tLA-hn-cHY" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="vtu-jX-6X6">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="red_light" id="fuP-tt-U4T" userLabel="login">
+                            <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <segue destination="PkN-LD-oC1" kind="modal" modalPresentationStyle="formSheet" id="bNE-RZ-MbT"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Airplay" id="Lwv-Rd-idK"/>
+                    </navigationItem>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="RKa-ln-mo3">
+                        <rect key="frame" x="129" y="330" width="163" height="49"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="Vcg-2g-g0V" kind="relationship" relationship="viewControllers" id="HEA-bf-XYQ"/>
+                        <segue destination="3ye-IC-i7N" kind="relationship" relationship="viewControllers" id="0QR-Ns-ifK"/>
+                        <segue destination="zhw-SS-yZ4" kind="relationship" relationship="viewControllers" id="V4u-Gu-QYz"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="t8Y-dT-8FK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="35" y="1286"/>
+        </scene>
+        <!--Viz Two View Controller - Item-->
         <scene sceneID="ySq-lO-K4J">
             <objects>
                 <viewController storyboardIdentifier="viz_2" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3ye-IC-i7N" customClass="VizTwoViewController" sceneMemberID="viewController">
@@ -183,15 +320,10 @@
                     <view key="view" contentMode="scaleToFill" id="3pk-rr-CvG">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="screen 2.png" translatesAutoresizingMaskIntoConstraints="NO" id="Kjc-kG-CUZ">
-                                <rect key="frame" x="0.0" y="43" width="1024" height="673"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            </imageView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="HcL-oJ-XqM"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
@@ -199,9 +331,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d05-zF-Q7g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2298" y="-620"/>
+            <point key="canvasLocation" x="1490" y="1880"/>
         </scene>
-        <!--Viz Three View Controller-->
+        <!--Viz Three View Controller - Item-->
         <scene sceneID="AwA-2e-ekJ">
             <objects>
                 <viewController storyboardIdentifier="viz_3" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Vcg-2g-g0V" customClass="VizThreeViewController" sceneMemberID="viewController">
@@ -212,15 +344,10 @@
                     <view key="view" contentMode="scaleToFill" id="Fri-7K-1LS">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="screen 3.png" translatesAutoresizingMaskIntoConstraints="NO" id="tbe-4b-e4s">
-                                <rect key="frame" x="0.0" y="43" width="1024" height="673"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            </imageView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="cQb-a5-iyS"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
@@ -228,15 +355,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DgL-ah-08g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2298" y="326"/>
+            <point key="canvasLocation" x="1498" y="918"/>
         </scene>
     </scenes>
     <resources>
-        <image name="green_light" width="20" height="20"/>
+        <image name="brown_dot" width="30" height="30"/>
         <image name="red_light" width="20" height="20"/>
-        <image name="screen 1.png" width="436" height="253"/>
-        <image name="screen 2.png" width="453" height="234"/>
-        <image name="screen 3.png" width="436" height="253"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackOpaque"/>

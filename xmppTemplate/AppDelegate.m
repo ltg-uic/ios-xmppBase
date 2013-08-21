@@ -524,7 +524,7 @@ BOOL isMUC = YES;
                                                                delegate:nil
                                                       cancelButtonTitle:@"Ok"
                                                       otherButtonTitles:nil];
-			[alertView show];
+			//[alertView show];
 		}
 		else
 		{
@@ -574,7 +574,7 @@ BOOL isMUC = YES;
                                                                delegate:nil
                                                       cancelButtonTitle:@"Ok"
                                                       otherButtonTitles:nil];
-			[alertView show];
+			//[alertView show];
 		}
 		else
 		{

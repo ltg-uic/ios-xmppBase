@@ -23,10 +23,14 @@
 		700C3A9E16042944005A9E34 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 700C3A9D16042944005A9E34 /* CFNetwork.framework */; };
 		700C3B2E16042BBD005A9E34 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 700C3B2D16042BBD005A9E34 /* Security.framework */; };
 		700C3B3A160430DA005A9E34 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 700C3B39160430DA005A9E34 /* SystemConfiguration.framework */; };
+		7025949817C3E370006E596B /* RosterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7025949717C3E370006E596B /* RosterModel.m */; };
+		7025949B17C3FFE7006E596B /* WizardStudentPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7025949A17C3FFE7006E596B /* WizardStudentPageViewController.m */; };
+		7025949E17C40065006E596B /* WizardStudentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7025949D17C40065006E596B /* WizardStudentCell.m */; };
 		704B138B17BB2D7C0097FDF1 /* VizViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 704B138817BB2D7C0097FDF1 /* VizViewController.m */; };
 		706DD1D817BBF42D0075E87B /* VizPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 706DD1D717BBF42D0075E87B /* VizPageViewController.m */; };
 		707C2C3916080C6A00A09AB8 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 707C2C3816080C6A00A09AB8 /* LoginViewController.m */; };
 		70879019160BB0A50099DD5D /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70879018160BB0A50099DD5D /* CoreData.framework */; };
+		70AAC26A17C325460018A84B /* WizardClassPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AAC26917C325460018A84B /* WizardClassPageViewController.m */; };
 		70B4119017B4600900F61347 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 70B44C1C17B35B4B00C47B61 /* libxml2.2.dylib */; };
 		70B44B6317B2F9A000C47B61 /* XMPPAnonymousAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 70B44AB217B2F9A000C47B61 /* XMPPAnonymousAuthentication.m */; };
 		70B44B6417B2F9A000C47B61 /* XMPPDeprecatedDigestAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 70B44AB517B2F9A000C47B61 /* XMPPDeprecatedDigestAuthentication.m */; };
@@ -89,8 +93,8 @@
 		70B44C1117B2FDDF00C47B61 /* XMPPCapsResourceCoreDataStorageObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 70B44C0B17B2FDDF00C47B61 /* XMPPCapsResourceCoreDataStorageObject.m */; };
 		70B44C1217B2FDDF00C47B61 /* XMPPCapabilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 70B44C0D17B2FDDF00C47B61 /* XMPPCapabilities.m */; };
 		70B44C1717B2FE1700C47B61 /* XMPPCoreDataStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 70B44C1517B2FE1700C47B61 /* XMPPCoreDataStorage.m */; };
-		70B44C1B17B3478300C47B61 /* awareness_icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70B44C1A17B3478300C47B61 /* awareness_icons.xcassets */; };
 		70B44C2917B40D2000C47B61 /* libidn.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 70B44B6117B2F9A000C47B61 /* libidn.a */; };
+		70BBBECE17C46CD0003C6D07 /* awareness_icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70BBBECD17C46CD0003C6D07 /* awareness_icons.xcassets */; };
 		70CAF27217BC35730038CC47 /* VizOneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70CAF27117BC35730038CC47 /* VizOneViewController.m */; };
 		70CAF27517BC35A40038CC47 /* VizTwoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70CAF27417BC35A40038CC47 /* VizTwoViewController.m */; };
 		70CAF27817BC35B00038CC47 /* VizThreeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70CAF27717BC35B00038CC47 /* VizThreeViewController.m */; };
@@ -125,6 +129,12 @@
 		700C3A9D16042944005A9E34 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		700C3B2D16042BBD005A9E34 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		700C3B39160430DA005A9E34 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		7025949617C3E370006E596B /* RosterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RosterModel.h; sourceTree = "<group>"; };
+		7025949717C3E370006E596B /* RosterModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RosterModel.m; sourceTree = "<group>"; };
+		7025949917C3FFE7006E596B /* WizardStudentPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizardStudentPageViewController.h; sourceTree = "<group>"; };
+		7025949A17C3FFE7006E596B /* WizardStudentPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WizardStudentPageViewController.m; sourceTree = "<group>"; };
+		7025949C17C40065006E596B /* WizardStudentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizardStudentCell.h; sourceTree = "<group>"; };
+		7025949D17C40065006E596B /* WizardStudentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WizardStudentCell.m; sourceTree = "<group>"; };
 		7042A38016320B3C001B44B5 /* XMPPBaseOnlineDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = XMPPBaseOnlineDelegate.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		704B138817BB2D7C0097FDF1 /* VizViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VizViewController.m; sourceTree = "<group>"; };
 		704B138917BB2D7C0097FDF1 /* VizViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VizViewController.h; sourceTree = "<group>"; };
@@ -134,6 +144,9 @@
 		707C2C3816080C6A00A09AB8 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		70879018160BB0A50099DD5D /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		70A97B6E1618E73900148530 /* XMPPBaseNewMessageDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPBaseNewMessageDelegate.h; sourceTree = "<group>"; };
+		70AAC26517C31AE90018A84B /* wizard.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = wizard.xcassets; sourceTree = "<group>"; };
+		70AAC26817C325460018A84B /* WizardClassPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizardClassPageViewController.h; sourceTree = "<group>"; };
+		70AAC26917C325460018A84B /* WizardClassPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WizardClassPageViewController.m; sourceTree = "<group>"; };
 		70B44AB117B2F9A000C47B61 /* XMPPAnonymousAuthentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPAnonymousAuthentication.h; sourceTree = "<group>"; };
 		70B44AB217B2F9A000C47B61 /* XMPPAnonymousAuthentication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPPAnonymousAuthentication.m; sourceTree = "<group>"; };
 		70B44AB417B2F9A000C47B61 /* XMPPDeprecatedDigestAuthentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPDeprecatedDigestAuthentication.h; sourceTree = "<group>"; };
@@ -267,9 +280,9 @@
 		70B44C1517B2FE1700C47B61 /* XMPPCoreDataStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPPCoreDataStorage.m; sourceTree = "<group>"; };
 		70B44C1617B2FE1700C47B61 /* XMPPCoreDataStorageProtected.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPCoreDataStorageProtected.h; sourceTree = "<group>"; };
 		70B44C1817B31E8D00C47B61 /* libresolv.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libresolv.9.dylib; path = usr/lib/libresolv.9.dylib; sourceTree = SDKROOT; };
-		70B44C1A17B3478300C47B61 /* awareness_icons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = awareness_icons.xcassets; sourceTree = "<group>"; };
 		70B44C1C17B35B4B00C47B61 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
 		70B44C1F17B3607A00C47B61 /* libiconv.2.4.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.2.4.0.dylib; path = usr/lib/libiconv.2.4.0.dylib; sourceTree = SDKROOT; };
+		70BBBECD17C46CD0003C6D07 /* awareness_icons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = awareness_icons.xcassets; sourceTree = "<group>"; };
 		70CAF27017BC35730038CC47 /* VizOneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VizOneViewController.h; sourceTree = "<group>"; };
 		70CAF27117BC35730038CC47 /* VizOneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VizOneViewController.m; sourceTree = "<group>"; };
 		70CAF27317BC35A40038CC47 /* VizTwoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VizTwoViewController.h; sourceTree = "<group>"; };
@@ -308,6 +321,8 @@
 		7004510317B5CA4E000A83F1 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				7025949617C3E370006E596B /* RosterModel.h */,
+				7025949717C3E370006E596B /* RosterModel.m */,
 				7004510A17B92392000A83F1 /* DataPoint.h */,
 				7004510B17B92392000A83F1 /* DataPoint.m */,
 			);
@@ -353,6 +368,7 @@
 		700C3A57160427DA005A9E34 /* Display */ = {
 			isa = PBXGroup;
 			children = (
+				70AAC26417C319030018A84B /* Wizard */,
 				70CAF27917BC35BE0038CC47 /* Viz */,
 				700C3A6F160427DA005A9E34 /* RootViewController.h */,
 				700C3A70160427DA005A9E34 /* RootViewController.m */,
@@ -375,7 +391,8 @@
 		700C3A58160427DA005A9E34 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				70B44C1A17B3478300C47B61 /* awareness_icons.xcassets */,
+				70BBBECD17C46CD0003C6D07 /* awareness_icons.xcassets */,
+				70AAC26517C31AE90018A84B /* wizard.xcassets */,
 				70CD9B3517B49BF2008625BF /* logon_sound.aif */,
 				700C3A59160427DA005A9E34 /* hg-ios-class-display-Info.plist */,
 				700C3A5A160427DA005A9E34 /* InfoPlist.strings */,
@@ -389,6 +406,19 @@
 				700C3A67160427DA005A9E34 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		70AAC26417C319030018A84B /* Wizard */ = {
+			isa = PBXGroup;
+			children = (
+				7025949917C3FFE7006E596B /* WizardStudentPageViewController.h */,
+				7025949A17C3FFE7006E596B /* WizardStudentPageViewController.m */,
+				70AAC26817C325460018A84B /* WizardClassPageViewController.h */,
+				70AAC26917C325460018A84B /* WizardClassPageViewController.m */,
+				7025949C17C40065006E596B /* WizardStudentCell.h */,
+				7025949D17C40065006E596B /* WizardStudentCell.m */,
+			);
+			name = Wizard;
 			sourceTree = "<group>";
 		};
 		70B44AAE17B2F97B00C47B61 /* XMPP */ = {
@@ -858,8 +888,8 @@
 				70B44BAC17B2F9A000C47B61 /* build-libidn.sh in Resources */,
 				700C3A66160427DA005A9E34 /* Default@2x.png in Resources */,
 				70CD9B3617B49BF2008625BF /* logon_sound.aif in Resources */,
+				70BBBECE17C46CD0003C6D07 /* awareness_icons.xcassets in Resources */,
 				700C3A68160427DA005A9E34 /* Default-568h@2x.png in Resources */,
-				70B44C1B17B3478300C47B61 /* awareness_icons.xcassets in Resources */,
 				70B44B8217B2F9A000C47B61 /* README.txt in Resources */,
 				700C3A6E160427DA005A9E34 /* MainStoryboard_iPad.storyboard in Resources */,
 			);
@@ -872,6 +902,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				70AAC26A17C325460018A84B /* WizardClassPageViewController.m in Sources */,
 				70B44C0217B2FD7800C47B61 /* XMPPDateTimeProfiles.m in Sources */,
 				70B44BFB17B2FC4F00C47B61 /* XMPPReconnect.m in Sources */,
 				7004510C17B92392000A83F1 /* DataPoint.m in Sources */,
@@ -888,6 +919,7 @@
 				70CAF27817BC35B00038CC47 /* VizThreeViewController.m in Sources */,
 				70B44BE917B2F9F700C47B61 /* XMPPRoomHybridStorage.m in Sources */,
 				70B44B7517B2F9A000C47B61 /* GCDMulticastDelegate.m in Sources */,
+				7025949817C3E370006E596B /* RosterModel.m in Sources */,
 				70B44C0E17B2FDDF00C47B61 /* XMPPCapabilities.xcdatamodel in Sources */,
 				70B44BEE17B2F9F700C47B61 /* XMPPRoomOccupantMemoryStorageObject.m in Sources */,
 				70B44B6917B2F9A000C47B61 /* NSData+XMPP.m in Sources */,
@@ -918,6 +950,7 @@
 				70B44B7D17B2F9A000C47B61 /* DDFileLogger.m in Sources */,
 				700450FF17B5C99E000A83F1 /* DataPointModel.xcdatamodeld in Sources */,
 				70B44C0117B2FD7800C47B61 /* NSDate+XMPPDateTimeProfiles.m in Sources */,
+				7025949B17C3FFE7006E596B /* WizardStudentPageViewController.m in Sources */,
 				70B44BE417B2F9F700C47B61 /* XMPPRoom.xcdatamodeld in Sources */,
 				70B44B7317B2F9A000C47B61 /* XMPPStream.m in Sources */,
 				70B44B6817B2F9A000C47B61 /* XMPPXFacebookPlatformAuthentication.m in Sources */,
@@ -925,6 +958,7 @@
 				70B44B7417B2F9A000C47B61 /* DDList.m in Sources */,
 				70B44BF417B2F9F700C47B61 /* NSXMLElement+XEP_0203.m in Sources */,
 				704B138B17BB2D7C0097FDF1 /* VizViewController.m in Sources */,
+				7025949E17C40065006E596B /* WizardStudentCell.m in Sources */,
 				70B44BF117B2F9F700C47B61 /* XMPPRoom.m in Sources */,
 				70B44B6717B2F9A000C47B61 /* XMPPPlainAuthentication.m in Sources */,
 				70B44C1117B2FDDF00C47B61 /* XMPPCapsResourceCoreDataStorageObject.m in Sources */,
