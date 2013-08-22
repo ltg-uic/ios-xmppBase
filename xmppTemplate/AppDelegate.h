@@ -14,10 +14,7 @@
 #import "DataPoint.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, XMPPRoomStorage> {
-    XMPPStream *xmppStream;
-	XMPPReconnect *xmppReconnect;
-    XMPPRoom *xmppRoom;
-    
+      
     
     NSString *password;
     NSMutableDictionary *lastMessageDict;
@@ -26,6 +23,7 @@
 	BOOL allowSelfSignedCertificates;
 	BOOL allowSSLHostNameMismatch;
 	BOOL isXmppConnected;
+    BOOL isMultiUserChat;
     
 @private
     NSManagedObjectContext *managedObjectContext;
@@ -36,8 +34,10 @@
 }
 
 @property (strong, nonatomic) UIWindow *window;
-@property (nonatomic, strong, readonly) XMPPStream *xmppStream;
-@property (nonatomic, strong, readonly) XMPPReconnect *xmppReconnect;
+@property (nonatomic, strong) XMPPStream *xmppStream;
+@property (nonatomic, strong) XMPPReconnect *xmppReconnect;
+@property (nonatomic, strong) XMPPRoom *xmppRoom;
+
 
 @property (nonatomic, weak) id <XMPPBaseNewMessageDelegate> xmppBaseNewMessageDelegate;
 @property (nonatomic, weak) id <XMPPBaseOnlineDelegate>     xmppBaseOnlineDelegate;

@@ -13,6 +13,8 @@
 }
 
 @property (nonatomic, retain) NSString *class_period;
+@property (nonatomic, retain) NSString *choosen_student;
+- (IBAction)chooseStudent:(id)sender;
 
 @end
 

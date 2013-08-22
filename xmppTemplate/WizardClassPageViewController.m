@@ -8,6 +8,9 @@
 
 #import "WizardClassPageViewController.h"
 #import "WizardStudentPageViewController.h"
+#import "WizardClassCell.h"
+#import "AFNetworking.h"
+
 
 @interface WizardClassPageViewController ()
 
@@ -25,32 +28,58 @@
     return self;
 }
 
+- (id)initWithCoder:(NSCoder*)aDecoder
+{
+    if(self = [super initWithCoder:aDecoder])
+    {
+        [self retrieveClassDataRequest];
+
+    }
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
-    [RosterModel addStudent:@"tony" toClass:@"Period 1"];
-    [RosterModel addStudent:@"gugo" toClass:@"Period 1"];
-    [RosterModel addStudent:@"bob" toClass:@"Period 1"];
-    [RosterModel addStudent:@"joe" toClass:@"Period 1"];
-    
-    [RosterModel addStudent:@"mike" toClass:@"Period 2"];
-    [RosterModel addStudent:@"obama" toClass:@"Period 2"];
-    
-    [RosterModel addStudent:@"biden" toClass:@"Period 3"];
-    [RosterModel addStudent:@"alessandro" toClass:@"Period 3"];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    //self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - JSON Requests
+
+
+-(void)retrieveClassDataRequest
+{
+    NSURL *url = [NSURL URLWithString:@"http://ltg.evl.uic.edu:9000/runs"];
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    //AFNetworking asynchronous url request
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation
+                                         JSONRequestOperationWithRequest:request
+                                         success:^(NSURLRequest *request, NSHTTPURLResponse *response, id responseObject)
+                                         {
+                                             NSLog(@"JSON RESULT %@", responseObject);
+                                             NSDictionary *data = [responseObject objectForKey:@"data"];
+                                             NSArray *runs = [data objectForKey:@"runs"];
+                                             for (NSDictionary *someRun in runs) {
+                                                 NSString *runName = [someRun objectForKey:@"_id"];
+                                                 [RosterModel addClass:runName];
+                                             }
+                                             [self.tableView reloadData];
+                                             
+                                         }
+                                         failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id responseObject)
+                                         {
+                                             NSLog(@"Request Failed: %@, %@", error, error.userInfo);
+                                         }];
+    
+    [operation start];
+    
 }
 
 #pragma mark - Table view data source
@@ -70,18 +99,18 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"wizcell_class";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    WizardClassCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     
     
     
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[WizardClassCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
     NSArray *clazzez = [[[RosterModel sharedInstance] classes ] allKeys ];
     // Configure the cell.
-    cell.textLabel.text = [clazzez objectAtIndex:indexPath.row];
+    cell.classNameLabel.text = [[clazzez objectAtIndex:indexPath.row] capitalizedString];
     
     return cell;
 }
@@ -96,56 +125,9 @@
 }
 
 
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a story board-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (IBAction)cancelLogin:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
- */
 
 @end

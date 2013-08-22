@@ -50,33 +50,31 @@
         <!--Wizard Class Page View Controller - Class Chooser-->
         <scene sceneID="qdm-Fw-ilg">
             <objects>
-                <tableViewController title="Class Chooser" modalPresentationStyle="pageSheet" id="wzZ-Et-LzK" customClass="WizardClassPageViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" id="mGa-jY-l1q">
-                        <rect key="frame" x="0.0" y="0.0" width="300" height="708"/>
+                <tableViewController storyboardIdentifier="WizardClassPageViewController" autoresizesArchivedViewToFullSize="NO" title="Class Chooser" modalPresentationStyle="currentContext" id="wzZ-Et-LzK" customClass="WizardClassPageViewController" sceneMemberID="viewController">
+                    <tableView key="view" autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleAspectFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" id="mGa-jY-l1q">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="724"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="wizcell_class" textLabel="c1I-MR-jUd" imageView="4mH-du-MZD" style="IBUITableViewCellStyleDefault" id="O2r-Ei-HGF">
-                                <rect key="frame" x="0.0" y="66" width="300" height="60"/>
+                            <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" reuseIdentifier="wizcell_class" rowHeight="60" id="O2r-Ei-HGF" customClass="WizardClassCell">
+                                <rect key="frame" x="0.0" y="66" width="1024" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="O2r-Ei-HGF" id="7a9-TF-SRS">
-                                    <rect key="frame" x="0.0" y="0.0" width="267" height="59"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="991" height="59"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" ambiguous="YES" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="c1I-MR-jUd">
-                                            <rect key="frame" x="60" y="0.0" width="205" height="59"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Class Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qOL-fy-g7T">
+                                            <rect key="frame" x="15" y="18" width="200" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" image="brown_dot" id="4mH-du-MZD">
-                                            <rect key="frame" x="15" y="14" width="30" height="30"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="classNameLabel" destination="qOL-fy-g7T" id="n71-vF-BTk"/>
                                     <segue destination="B93-el-CwP" kind="push" identifier="student_segue" id="eLo-Wd-G1j"/>
                                 </connections>
                             </tableViewCell>
@@ -84,27 +82,30 @@
                     </tableView>
                     <toolbarItems>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="ihF-sa-g38"/>
-                        <barButtonItem title="Cancel" id="qLs-bX-3SO"/>
+                        <barButtonItem title="Cancel" id="qLs-bX-3SO">
+                            <connections>
+                                <action selector="cancelLogin:" destination="wzZ-Et-LzK" id="je1-z0-gf4"/>
+                            </connections>
+                        </barButtonItem>
                     </toolbarItems>
-                    <navigationItem key="navigationItem" title="Choose Your Class" id="43C-1K-LvC">
+                    <navigationItem key="navigationItem" title="Step 1: Choose Your Class" id="43C-1K-LvC">
                         <barButtonItem key="backBarButtonItem" title="Class" id="FAu-ti-Usi"/>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
-                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aEZ-7g-7q0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1407" y="-163"/>
+            <point key="canvasLocation" x="1161" y="-287"/>
         </scene>
-        <!--Wizard Student Page View Controller - Student Page-->
+        <!--Wizard Student Page View Controller - WizardStudentPageViewController-->
         <scene sceneID="iej-cC-o77">
             <objects>
-                <collectionViewController autoresizesArchivedViewToFullSize="NO" title="Student Page" id="B93-el-CwP" customClass="WizardStudentPageViewController" sceneMemberID="viewController">
+                <collectionViewController autoresizesArchivedViewToFullSize="NO" title="WizardStudentPageViewController" id="B93-el-CwP" customClass="WizardStudentPageViewController" sceneMemberID="viewController">
                     <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="Ejr-No-Nvx">
-                        <rect key="frame" x="0.0" y="0.0" width="300" height="620"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="724"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="3e0-UR-4wQ">
                             <size key="itemSize" width="255" height="70"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -113,7 +114,7 @@
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="student_cell" id="lpg-g4-2dR" customClass="WizardStudentCell">
-                                <rect key="frame" x="25" y="54" width="250" height="70"/>
+                                <rect key="frame" x="10" y="54" width="250" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="250" height="70"/>
@@ -128,7 +129,8 @@
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                             <connections>
-                                                <segue destination="nCa-9d-6wf" kind="push" id="6D2-tg-W8W"/>
+                                                <action selector="chooseStudent:" destination="B93-el-CwP" eventType="touchUpInside" id="xfC-eG-9A5"/>
+                                                <segue destination="nCa-9d-6wf" kind="push" identifier="review_segue" id="6D2-tg-W8W"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -146,46 +148,107 @@
                             <outlet property="delegate" destination="B93-el-CwP" id="lmi-UB-Yrg"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" title="Choose Your Name" id="WL7-OI-7tl">
+                    <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="lD9-bN-k0x"/>
+                        <barButtonItem title="Cancel" id="SZ3-bx-UdW">
+                            <connections>
+                                <action selector="cancelLogin:" destination="B93-el-CwP" id="9CB-gF-yAj"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" title="Step 2: Choose Your Name" id="WL7-OI-7tl">
                         <barButtonItem key="backBarButtonItem" title="Student" id="Fcq-0u-QOO"/>
                     </navigationItem>
                     <nil key="simulatedStatusBarMetrics"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="05x-Lx-c3p" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1814" y="-163"/>
+            <point key="canvasLocation" x="2300" y="-280"/>
         </scene>
-        <!--View Controller - Submit-->
+        <!--Wizard Review Page View Controller - WizardReviewPageViewController-->
         <scene sceneID="5fm-xv-0r9">
             <objects>
-                <viewController id="nCa-9d-6wf" sceneMemberID="viewController">
+                <viewController title="WizardReviewPageViewController" id="nCa-9d-6wf" customClass="WizardReviewPageViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="rJk-YH-dMG"/>
                         <viewControllerLayoutGuide type="bottom" id="U6E-Pi-qht"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="CR1-C1-sWK">
-                        <rect key="frame" x="0.0" y="0.0" width="300" height="740"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="724"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <userGuides>
+                            <userLayoutGuide location="250" affinity="minY"/>
+                        </userGuides>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="student_name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i0x-AD-MVq">
+                                <rect key="frame" x="229" y="70" width="492" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="29" id="AW5-hX-wL2"/>
+                                    <constraint firstAttribute="width" constant="492" id="MF9-6T-2tM"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Would you like to login as:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6yL-VQ-eJz">
+                                <rect key="frame" x="20" y="74" width="201" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4gI-7t-aAE">
+                                <rect key="frame" x="330" y="141" width="365" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.80000001190000003" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="365" id="Jct-jd-UF8"/>
+                                    <constraint firstAttribute="height" constant="128" id="ov6-In-l6X"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="44"/>
+                                <state key="normal" title="YES!">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="doLoginWithStudentName:" destination="nCa-9d-6wf" eventType="touchUpInside" id="ftv-60-hII"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="4gI-7t-aAE" secondAttribute="centerX" id="1He-Lw-Ovz"/>
+                            <constraint firstItem="i0x-AD-MVq" firstAttribute="top" secondItem="rJk-YH-dMG" secondAttribute="bottom" constant="26" id="Can-Pk-n2t"/>
+                            <constraint firstItem="6yL-VQ-eJz" firstAttribute="leading" secondItem="CR1-C1-sWK" secondAttribute="leading" constant="20" id="G1r-0I-S0K"/>
+                            <constraint firstItem="i0x-AD-MVq" firstAttribute="leading" secondItem="6yL-VQ-eJz" secondAttribute="trailing" constant="8" id="YrB-5Z-6PM"/>
+                            <constraint firstItem="4gI-7t-aAE" firstAttribute="top" secondItem="i0x-AD-MVq" secondAttribute="bottom" constant="42" id="gEE-Qr-kS1"/>
+                            <constraint firstItem="6yL-VQ-eJz" firstAttribute="top" secondItem="rJk-YH-dMG" secondAttribute="bottom" constant="30" id="lfR-wi-4oD"/>
+                        </constraints>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <toolbarItems>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="ljb-lE-83G"/>
-                        <barButtonItem title="Login" id="MTG-3d-NP3"/>
+                        <barButtonItem title="Cancel" id="lAi-0y-c6t">
+                            <connections>
+                                <action selector="cancelLogin:" destination="nCa-9d-6wf" id="UYr-B2-3eM"/>
+                            </connections>
+                        </barButtonItem>
                     </toolbarItems>
-                    <navigationItem key="navigationItem" title="Submit" id="ddw-vs-wqj">
+                    <navigationItem key="navigationItem" title="Step 3: Confirm" id="ddw-vs-wqj">
                         <barButtonItem key="backBarButtonItem" title="Name" id="zWq-dD-3Xe"/>
                     </navigationItem>
                     <nil key="simulatedStatusBarMetrics"/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="studentNameLabel" destination="i0x-AD-MVq" id="SwH-He-cxg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zIK-FZ-qeu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2172" y="-141"/>
+            <point key="canvasLocation" x="3453" y="-301"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="bVn-c5-o8X">
             <objects>
-                <navigationController definesPresentationContext="YES" modalPresentationStyle="pageSheet" toolbarHidden="NO" id="PkN-LD-oC1" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="WizardNavController" definesPresentationContext="YES" modalPresentationStyle="pageSheet" toolbarHidden="NO" id="PkN-LD-oC1" sceneMemberID="viewController">
                     <toolbarItems/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -204,10 +267,10 @@
             </objects>
             <point key="canvasLocation" x="-17" y="-287"/>
         </scene>
-        <!--Login View Controller - Login-->
+        <!--Login View Controller - LoginViewController-->
         <scene sceneID="hho-8T-d0E">
             <objects>
-                <viewController storyboardIdentifier="loginController" title="Login" modalPresentationStyle="formSheet" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Uwm-4r-tn3" customClass="LoginViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loginController" title="LoginViewController" modalPresentationStyle="formSheet" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Uwm-4r-tn3" customClass="LoginViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ezY-4K-oDO"/>
                         <viewControllerLayoutGuide type="bottom" id="pPS-Da-8XH"/>
@@ -279,12 +342,12 @@
             </objects>
             <point key="canvasLocation" x="754" y="-1375"/>
         </scene>
-        <!--Tab Bar Controller - Hunger Games-->
+        <!--Root View Controller - Hunger Games-->
         <scene sceneID="GQS-CV-BpL">
             <objects>
-                <tabBarController title="Hunger Games" definesPresentationContext="YES" id="tLA-hn-cHY" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="RootViewController" title="Hunger Games" definesPresentationContext="YES" id="tLA-hn-cHY" customClass="RootViewController" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="vtu-jX-6X6">
-                        <barButtonItem key="leftBarButtonItem" title="Item" image="red_light" id="fuP-tt-U4T" userLabel="login">
+                        <barButtonItem key="leftBarButtonItem" title="Login" id="fuP-tt-U4T" userLabel="login">
                             <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="PkN-LD-oC1" kind="modal" modalPresentationStyle="formSheet" id="bNE-RZ-MbT"/>
@@ -300,6 +363,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
+                        <outlet property="statusBarButton" destination="fuP-tt-U4T" id="i3v-Lo-oiZ"/>
                         <segue destination="Vcg-2g-g0V" kind="relationship" relationship="viewControllers" id="HEA-bf-XYQ"/>
                         <segue destination="3ye-IC-i7N" kind="relationship" relationship="viewControllers" id="0QR-Ns-ifK"/>
                         <segue destination="zhw-SS-yZ4" kind="relationship" relationship="viewControllers" id="V4u-Gu-QYz"/>
@@ -355,13 +419,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DgL-ah-08g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1498" y="918"/>
+            <point key="canvasLocation" x="1533" y="1092"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="brown_dot" width="30" height="30"/>
-        <image name="red_light" width="20" height="20"/>
-    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackOpaque"/>
         <simulatedOrientationMetrics key="orientation"/>

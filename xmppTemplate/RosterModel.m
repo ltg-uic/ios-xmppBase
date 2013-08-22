@@ -23,10 +23,19 @@ static RosterModel *rosterModel;
 
 
 -(void)initModel {
-    _classes = [NSMutableDictionary dictionary];
+    _classes = [[NSMutableDictionary dictionary] init];
 }
 
 #pragma mark Shared Public Methods
+
++(void)addClass: (NSString*)clazz {
+    RosterModel *rosterModel = [RosterModel sharedInstance];
+    
+    NSArray *allKeys = [[rosterModel classes ] allKeys];
+    if (![allKeys containsObject:clazz]){
+        [[rosterModel classes ] setObject:[[NSMutableArray array] init] forKey:clazz];
+    }
+}
 
 +(void)addStudent: (NSString*)student toClass: (NSString*)clazz {
     
@@ -34,9 +43,11 @@ static RosterModel *rosterModel;
     NSMutableArray *students = [[rosterModel classes] objectForKey:clazz];
     
     if( students == nil ) {
-        students = [NSMutableArray array];
+        students = [[NSMutableArray array] init];
     }
-    [students addObject:student];
+    
+    if (![students containsObject:student])
+        [students addObject:student];
     
     [[rosterModel classes] setObject:students forKey:clazz];
 

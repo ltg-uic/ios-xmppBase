@@ -12,17 +12,14 @@
 #import "DataPoint.h"
 
 
-@interface RootViewController : UIViewController<XMPPBaseOnlineDelegate,XMPPBaseNewMessageDelegate,UIPageViewControllerDataSource> {
+@interface RootViewController : UITabBarController<XMPPBaseOnlineDelegate,XMPPBaseNewMessageDelegate> {
     
     __weak IBOutlet UIBarButtonItem *statusBarButton;
-    NSArray *all_visualizations;
 
 }
 
 @property (weak, nonatomic) IBOutlet UIImageView *red_awareness;
 @property (weak, nonatomic) IBOutlet UIImageView *green_awareness;
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
-
-@property (strong, nonatomic) UIPageViewController *pageController;
 
 @end

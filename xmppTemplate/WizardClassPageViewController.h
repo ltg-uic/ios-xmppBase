@@ -13,5 +13,6 @@
 }
 
 @property (nonatomic, retain) NSArray *classes;
+- (IBAction)cancelLogin:(id)sender;
 
 @end

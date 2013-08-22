@@ -27,8 +27,17 @@
 		7025949B17C3FFE7006E596B /* WizardStudentPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7025949A17C3FFE7006E596B /* WizardStudentPageViewController.m */; };
 		7025949E17C40065006E596B /* WizardStudentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7025949D17C40065006E596B /* WizardStudentCell.m */; };
 		704B138B17BB2D7C0097FDF1 /* VizViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 704B138817BB2D7C0097FDF1 /* VizViewController.m */; };
+		706857E017C51A2600BF8AAF /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 706857CE17C51A2600BF8AAF /* AFHTTPClient.m */; };
+		706857E117C51A2600BF8AAF /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 706857D017C51A2600BF8AAF /* AFHTTPRequestOperation.m */; };
+		706857E217C51A2600BF8AAF /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 706857D217C51A2600BF8AAF /* AFImageRequestOperation.m */; };
+		706857E317C51A2600BF8AAF /* AFJSONRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 706857D417C51A2600BF8AAF /* AFJSONRequestOperation.m */; };
+		706857E417C51A2600BF8AAF /* AFNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 706857D617C51A2600BF8AAF /* AFNetworkActivityIndicatorManager.m */; };
+		706857E517C51A2600BF8AAF /* AFPropertyListRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 706857D917C51A2600BF8AAF /* AFPropertyListRequestOperation.m */; };
+		706857E617C51A2600BF8AAF /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 706857DB17C51A2600BF8AAF /* AFURLConnectionOperation.m */; };
+		706857E717C51A2600BF8AAF /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 706857DD17C51A2600BF8AAF /* AFXMLRequestOperation.m */; };
+		706857E817C51A2600BF8AAF /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 706857DF17C51A2600BF8AAF /* UIImageView+AFNetworking.m */; };
+		706857EA17C51A7400BF8AAF /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 706857E917C51A7400BF8AAF /* MobileCoreServices.framework */; };
 		706DD1D817BBF42D0075E87B /* VizPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 706DD1D717BBF42D0075E87B /* VizPageViewController.m */; };
-		707C2C3916080C6A00A09AB8 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 707C2C3816080C6A00A09AB8 /* LoginViewController.m */; };
 		70879019160BB0A50099DD5D /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70879018160BB0A50099DD5D /* CoreData.framework */; };
 		70AAC26A17C325460018A84B /* WizardClassPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AAC26917C325460018A84B /* WizardClassPageViewController.m */; };
 		70B4119017B4600900F61347 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 70B44C1C17B35B4B00C47B61 /* libxml2.2.dylib */; };
@@ -100,6 +109,11 @@
 		70CAF27817BC35B00038CC47 /* VizThreeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70CAF27717BC35B00038CC47 /* VizThreeViewController.m */; };
 		70CD9B3417B4988E008625BF /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70CD9B3317B4988E008625BF /* AudioToolbox.framework */; };
 		70CD9B3617B49BF2008625BF /* logon_sound.aif in Resources */ = {isa = PBXBuildFile; fileRef = 70CD9B3517B49BF2008625BF /* logon_sound.aif */; };
+		70CF3D6A17C550D5006F363C /* brown_dot.png in Resources */ = {isa = PBXBuildFile; fileRef = 70CF3D6917C550D5006F363C /* brown_dot.png */; };
+		70CF3D6D17C55296006F363C /* WizardClassCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 70CF3D6C17C55296006F363C /* WizardClassCell.m */; };
+		70CF3D7017C5570D006F363C /* WizardReviewPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70CF3D6F17C5570D006F363C /* WizardReviewPageViewController.m */; };
+		70E866F217C66E76003C5BD2 /* fishhook.c in Sources */ = {isa = PBXBuildFile; fileRef = 70E866F017C66E76003C5BD2 /* fishhook.c */; };
+		70E866F417C66E8F003C5BD2 /* QuietAssertMacros.c in Sources */ = {isa = PBXBuildFile; fileRef = 70E866F317C66E8F003C5BD2 /* QuietAssertMacros.c */; };
 		70EDB4D017B475960005E144 /* libresolv.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 70B44C1817B31E8D00C47B61 /* libresolv.9.dylib */; };
 		70F98FA117BC931C00A691EB /* screen 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 70F98F9E17BC931B00A691EB /* screen 3.png */; };
 		70F98FA217BC931C00A691EB /* screen 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 70F98F9F17BC931C00A691EB /* screen 2.png */; };
@@ -138,10 +152,28 @@
 		7042A38016320B3C001B44B5 /* XMPPBaseOnlineDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = XMPPBaseOnlineDelegate.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		704B138817BB2D7C0097FDF1 /* VizViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VizViewController.m; sourceTree = "<group>"; };
 		704B138917BB2D7C0097FDF1 /* VizViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VizViewController.h; sourceTree = "<group>"; };
+		706857CD17C51A2600BF8AAF /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
+		706857CE17C51A2600BF8AAF /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPClient.m; sourceTree = "<group>"; };
+		706857CF17C51A2600BF8AAF /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
+		706857D017C51A2600BF8AAF /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
+		706857D117C51A2600BF8AAF /* AFImageRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFImageRequestOperation.h; sourceTree = "<group>"; };
+		706857D217C51A2600BF8AAF /* AFImageRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFImageRequestOperation.m; sourceTree = "<group>"; };
+		706857D317C51A2600BF8AAF /* AFJSONRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFJSONRequestOperation.h; sourceTree = "<group>"; };
+		706857D417C51A2600BF8AAF /* AFJSONRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFJSONRequestOperation.m; sourceTree = "<group>"; };
+		706857D517C51A2600BF8AAF /* AFNetworkActivityIndicatorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkActivityIndicatorManager.h; sourceTree = "<group>"; };
+		706857D617C51A2600BF8AAF /* AFNetworkActivityIndicatorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkActivityIndicatorManager.m; sourceTree = "<group>"; };
+		706857D717C51A2600BF8AAF /* AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworking.h; sourceTree = "<group>"; };
+		706857D817C51A2600BF8AAF /* AFPropertyListRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFPropertyListRequestOperation.h; sourceTree = "<group>"; };
+		706857D917C51A2600BF8AAF /* AFPropertyListRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFPropertyListRequestOperation.m; sourceTree = "<group>"; };
+		706857DA17C51A2600BF8AAF /* AFURLConnectionOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLConnectionOperation.h; sourceTree = "<group>"; };
+		706857DB17C51A2600BF8AAF /* AFURLConnectionOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLConnectionOperation.m; sourceTree = "<group>"; };
+		706857DC17C51A2600BF8AAF /* AFXMLRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFXMLRequestOperation.h; sourceTree = "<group>"; };
+		706857DD17C51A2600BF8AAF /* AFXMLRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFXMLRequestOperation.m; sourceTree = "<group>"; };
+		706857DE17C51A2600BF8AAF /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
+		706857DF17C51A2600BF8AAF /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
+		706857E917C51A7400BF8AAF /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		706DD1D617BBF42D0075E87B /* VizPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VizPageViewController.h; sourceTree = "<group>"; };
 		706DD1D717BBF42D0075E87B /* VizPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VizPageViewController.m; sourceTree = "<group>"; };
-		707C2C3716080C6A00A09AB8 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
-		707C2C3816080C6A00A09AB8 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		70879018160BB0A50099DD5D /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		70A97B6E1618E73900148530 /* XMPPBaseNewMessageDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPBaseNewMessageDelegate.h; sourceTree = "<group>"; };
 		70AAC26517C31AE90018A84B /* wizard.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = wizard.xcassets; sourceTree = "<group>"; };
@@ -291,6 +323,15 @@
 		70CAF27717BC35B00038CC47 /* VizThreeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VizThreeViewController.m; sourceTree = "<group>"; };
 		70CD9B3317B4988E008625BF /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		70CD9B3517B49BF2008625BF /* logon_sound.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = logon_sound.aif; sourceTree = "<group>"; };
+		70CF3D6917C550D5006F363C /* brown_dot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brown_dot.png; sourceTree = "<group>"; };
+		70CF3D6B17C55296006F363C /* WizardClassCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizardClassCell.h; sourceTree = "<group>"; };
+		70CF3D6C17C55296006F363C /* WizardClassCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WizardClassCell.m; sourceTree = "<group>"; };
+		70CF3D6E17C5570D006F363C /* WizardReviewPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizardReviewPageViewController.h; sourceTree = "<group>"; };
+		70CF3D6F17C5570D006F363C /* WizardReviewPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WizardReviewPageViewController.m; sourceTree = "<group>"; };
+		70E866EF17C66279003C5BD2 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = ../Constants.h; sourceTree = "<group>"; };
+		70E866F017C66E76003C5BD2 /* fishhook.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fishhook.c; sourceTree = "<group>"; };
+		70E866F117C66E76003C5BD2 /* fishhook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fishhook.h; sourceTree = "<group>"; };
+		70E866F317C66E8F003C5BD2 /* QuietAssertMacros.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = QuietAssertMacros.c; sourceTree = "<group>"; };
 		70F98F9E17BC931B00A691EB /* screen 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screen 3.png"; sourceTree = "<group>"; };
 		70F98F9F17BC931C00A691EB /* screen 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screen 2.png"; sourceTree = "<group>"; };
 		70F98FA017BC931C00A691EB /* screen 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screen 1.png"; sourceTree = "<group>"; };
@@ -301,6 +342,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				706857EA17C51A7400BF8AAF /* MobileCoreServices.framework in Frameworks */,
 				70EDB4D017B475960005E144 /* libresolv.9.dylib in Frameworks */,
 				70B4119017B4600900F61347 /* libxml2.2.dylib in Frameworks */,
 				70B44C2917B40D2000C47B61 /* libidn.a in Frameworks */,
@@ -332,6 +374,7 @@
 		700C3A42160427DA005A9E34 = {
 			isa = PBXGroup;
 			children = (
+				706857CC17C51A2600BF8AAF /* AFNetworking */,
 				70B44AAE17B2F97B00C47B61 /* XMPP */,
 				700C3A57160427DA005A9E34 /* Display */,
 				700C3A50160427DA005A9E34 /* Frameworks */,
@@ -350,6 +393,7 @@
 		700C3A50160427DA005A9E34 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				706857E917C51A7400BF8AAF /* MobileCoreServices.framework */,
 				70CD9B3317B4988E008625BF /* AudioToolbox.framework */,
 				70B44C1F17B3607A00C47B61 /* libiconv.2.4.0.dylib */,
 				70B44C1C17B35B4B00C47B61 /* libxml2.2.dylib */,
@@ -372,8 +416,6 @@
 				70CAF27917BC35BE0038CC47 /* Viz */,
 				700C3A6F160427DA005A9E34 /* RootViewController.h */,
 				700C3A70160427DA005A9E34 /* RootViewController.m */,
-				707C2C3716080C6A00A09AB8 /* LoginViewController.h */,
-				707C2C3816080C6A00A09AB8 /* LoginViewController.m */,
 				700C3A60160427DA005A9E34 /* AppDelegate.h */,
 				700C3A61160427DA005A9E34 /* AppDelegate.m */,
 				700C3A6C160427DA005A9E34 /* MainStoryboard_iPad.storyboard */,
@@ -391,8 +433,13 @@
 		700C3A58160427DA005A9E34 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				70E866F017C66E76003C5BD2 /* fishhook.c */,
+				70E866F317C66E8F003C5BD2 /* QuietAssertMacros.c */,
+				70E866F117C66E76003C5BD2 /* fishhook.h */,
 				70BBBECD17C46CD0003C6D07 /* awareness_icons.xcassets */,
 				70AAC26517C31AE90018A84B /* wizard.xcassets */,
+				70E866EF17C66279003C5BD2 /* Constants.h */,
+				70CF3D6917C550D5006F363C /* brown_dot.png */,
 				70CD9B3517B49BF2008625BF /* logon_sound.aif */,
 				700C3A59160427DA005A9E34 /* hg-ios-class-display-Info.plist */,
 				700C3A5A160427DA005A9E34 /* InfoPlist.strings */,
@@ -408,15 +455,45 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		706857CC17C51A2600BF8AAF /* AFNetworking */ = {
+			isa = PBXGroup;
+			children = (
+				706857CD17C51A2600BF8AAF /* AFHTTPClient.h */,
+				706857CE17C51A2600BF8AAF /* AFHTTPClient.m */,
+				706857CF17C51A2600BF8AAF /* AFHTTPRequestOperation.h */,
+				706857D017C51A2600BF8AAF /* AFHTTPRequestOperation.m */,
+				706857D117C51A2600BF8AAF /* AFImageRequestOperation.h */,
+				706857D217C51A2600BF8AAF /* AFImageRequestOperation.m */,
+				706857D317C51A2600BF8AAF /* AFJSONRequestOperation.h */,
+				706857D417C51A2600BF8AAF /* AFJSONRequestOperation.m */,
+				706857D517C51A2600BF8AAF /* AFNetworkActivityIndicatorManager.h */,
+				706857D617C51A2600BF8AAF /* AFNetworkActivityIndicatorManager.m */,
+				706857D717C51A2600BF8AAF /* AFNetworking.h */,
+				706857D817C51A2600BF8AAF /* AFPropertyListRequestOperation.h */,
+				706857D917C51A2600BF8AAF /* AFPropertyListRequestOperation.m */,
+				706857DA17C51A2600BF8AAF /* AFURLConnectionOperation.h */,
+				706857DB17C51A2600BF8AAF /* AFURLConnectionOperation.m */,
+				706857DC17C51A2600BF8AAF /* AFXMLRequestOperation.h */,
+				706857DD17C51A2600BF8AAF /* AFXMLRequestOperation.m */,
+				706857DE17C51A2600BF8AAF /* UIImageView+AFNetworking.h */,
+				706857DF17C51A2600BF8AAF /* UIImageView+AFNetworking.m */,
+			);
+			path = AFNetworking;
+			sourceTree = "<group>";
+		};
 		70AAC26417C319030018A84B /* Wizard */ = {
 			isa = PBXGroup;
 			children = (
+				70CF3D6E17C5570D006F363C /* WizardReviewPageViewController.h */,
+				70CF3D6F17C5570D006F363C /* WizardReviewPageViewController.m */,
 				7025949917C3FFE7006E596B /* WizardStudentPageViewController.h */,
 				7025949A17C3FFE7006E596B /* WizardStudentPageViewController.m */,
 				70AAC26817C325460018A84B /* WizardClassPageViewController.h */,
 				70AAC26917C325460018A84B /* WizardClassPageViewController.m */,
-				7025949C17C40065006E596B /* WizardStudentCell.h */,
+				70CF3D6B17C55296006F363C /* WizardClassCell.h */,
+				70CF3D6C17C55296006F363C /* WizardClassCell.m */,
 				7025949D17C40065006E596B /* WizardStudentCell.m */,
+				7025949C17C40065006E596B /* WizardStudentCell.h */,
 			);
 			name = Wizard;
 			sourceTree = "<group>";
@@ -891,6 +968,7 @@
 				70BBBECE17C46CD0003C6D07 /* awareness_icons.xcassets in Resources */,
 				700C3A68160427DA005A9E34 /* Default-568h@2x.png in Resources */,
 				70B44B8217B2F9A000C47B61 /* README.txt in Resources */,
+				70CF3D6A17C550D5006F363C /* brown_dot.png in Resources */,
 				700C3A6E160427DA005A9E34 /* MainStoryboard_iPad.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -907,6 +985,7 @@
 				70B44BFB17B2FC4F00C47B61 /* XMPPReconnect.m in Sources */,
 				7004510C17B92392000A83F1 /* DataPoint.m in Sources */,
 				70B44BE817B2F9F700C47B61 /* XMPPRoomHybrid.xcdatamodeld in Sources */,
+				706857E017C51A2600BF8AAF /* AFHTTPClient.m in Sources */,
 				70B44B7617B2F9A000C47B61 /* RFImageToDataTransformer.m in Sources */,
 				70CAF27517BC35A40038CC47 /* VizTwoViewController.m in Sources */,
 				70B44B7917B2F9A000C47B61 /* XMPPStringPrep.m in Sources */,
@@ -915,6 +994,7 @@
 				70B44B6A17B2F9A000C47B61 /* NSNumber+XMPP.m in Sources */,
 				70B44B7817B2F9A000C47B61 /* XMPPSRVResolver.m in Sources */,
 				70B44BE717B2F9F700C47B61 /* XMPPRoomOccupantCoreDataStorageObject.m in Sources */,
+				706857E217C51A2600BF8AAF /* AFImageRequestOperation.m in Sources */,
 				70B44BE617B2F9F700C47B61 /* XMPPRoomMessageCoreDataStorageObject.m in Sources */,
 				70CAF27817BC35B00038CC47 /* VizThreeViewController.m in Sources */,
 				70B44BE917B2F9F700C47B61 /* XMPPRoomHybridStorage.m in Sources */,
@@ -927,6 +1007,7 @@
 				700C3A62160427DA005A9E34 /* AppDelegate.m in Sources */,
 				70B44BEC17B2F9F700C47B61 /* XMPPRoomMemoryStorage.m in Sources */,
 				70B44B7B17B2F9A000C47B61 /* DDAbstractDatabaseLogger.m in Sources */,
+				70CF3D7017C5570D006F363C /* WizardReviewPageViewController.m in Sources */,
 				70B44B6317B2F9A000C47B61 /* XMPPAnonymousAuthentication.m in Sources */,
 				70B44B7E17B2F9A000C47B61 /* DDLog.m in Sources */,
 				70B44BA917B2F9A000C47B61 /* DDXMLDocument.m in Sources */,
@@ -935,26 +1016,33 @@
 				70B44B7A17B2F9A000C47B61 /* GCDAsyncSocket.m in Sources */,
 				70B44C1717B2FE1700C47B61 /* XMPPCoreDataStorage.m in Sources */,
 				70B44BEF17B2F9F700C47B61 /* XMPPMessage+XEP0045.m in Sources */,
+				70E866F217C66E76003C5BD2 /* fishhook.c in Sources */,
+				706857E417C51A2600BF8AAF /* AFNetworkActivityIndicatorManager.m in Sources */,
 				70B44BAA17B2F9A000C47B61 /* DDXMLElement.m in Sources */,
 				70B44B7F17B2F9A000C47B61 /* DDTTYLogger.m in Sources */,
 				70B44B7C17B2F9A000C47B61 /* DDASLLogger.m in Sources */,
 				70B44BEA17B2F9F700C47B61 /* XMPPRoomMessageHybridCoreDataStorageObject.m in Sources */,
 				70B44C1017B2FDDF00C47B61 /* XMPPCapsCoreDataStorageObject.m in Sources */,
 				70CAF27217BC35730038CC47 /* VizOneViewController.m in Sources */,
+				706857E117C51A2600BF8AAF /* AFHTTPRequestOperation.m in Sources */,
 				70B44B6C17B2F9A000C47B61 /* XMPPElement.m in Sources */,
 				70B44B6617B2F9A000C47B61 /* XMPPDigestMD5Authentication.m in Sources */,
 				700C3A71160427DA005A9E34 /* RootViewController.m in Sources */,
 				70B44BE517B2F9F700C47B61 /* XMPPRoomCoreDataStorage.m in Sources */,
-				707C2C3916080C6A00A09AB8 /* LoginViewController.m in Sources */,
 				70B44B7117B2F9A000C47B61 /* XMPPParser.m in Sources */,
 				70B44B7D17B2F9A000C47B61 /* DDFileLogger.m in Sources */,
 				700450FF17B5C99E000A83F1 /* DataPointModel.xcdatamodeld in Sources */,
 				70B44C0117B2FD7800C47B61 /* NSDate+XMPPDateTimeProfiles.m in Sources */,
 				7025949B17C3FFE7006E596B /* WizardStudentPageViewController.m in Sources */,
+				706857E817C51A2600BF8AAF /* UIImageView+AFNetworking.m in Sources */,
 				70B44BE417B2F9F700C47B61 /* XMPPRoom.xcdatamodeld in Sources */,
 				70B44B7317B2F9A000C47B61 /* XMPPStream.m in Sources */,
 				70B44B6817B2F9A000C47B61 /* XMPPXFacebookPlatformAuthentication.m in Sources */,
 				70B44B8117B2F9A000C47B61 /* DispatchQueueLogFormatter.m in Sources */,
+				706857E317C51A2600BF8AAF /* AFJSONRequestOperation.m in Sources */,
+				706857E617C51A2600BF8AAF /* AFURLConnectionOperation.m in Sources */,
+				70E866F417C66E8F003C5BD2 /* QuietAssertMacros.c in Sources */,
+				706857E517C51A2600BF8AAF /* AFPropertyListRequestOperation.m in Sources */,
 				70B44B7417B2F9A000C47B61 /* DDList.m in Sources */,
 				70B44BF417B2F9F700C47B61 /* NSXMLElement+XEP_0203.m in Sources */,
 				704B138B17BB2D7C0097FDF1 /* VizViewController.m in Sources */,
@@ -967,11 +1055,13 @@
 				70B44B8017B2F9A000C47B61 /* ContextFilterLogFormatter.m in Sources */,
 				70B44B6B17B2F9A000C47B61 /* NSXMLElement+XMPP.m in Sources */,
 				70B44BF017B2F9F700C47B61 /* XMPPMUC.m in Sources */,
+				706857E717C51A2600BF8AAF /* AFXMLRequestOperation.m in Sources */,
 				70B44BEB17B2F9F700C47B61 /* XMPPRoomOccupantHybridMemoryStorageObject.m in Sources */,
 				70B44B6D17B2F9A000C47B61 /* XMPPIQ.m in Sources */,
 				70B44B6517B2F9A000C47B61 /* XMPPDeprecatedPlainAuthentication.m in Sources */,
 				70B44BED17B2F9F700C47B61 /* XMPPRoomMessageMemoryStorageObject.m in Sources */,
 				70B44C1217B2FDDF00C47B61 /* XMPPCapabilities.m in Sources */,
+				70CF3D6D17C55296006F363C /* WizardClassCell.m in Sources */,
 				70B44B6417B2F9A000C47B61 /* XMPPDeprecatedDigestAuthentication.m in Sources */,
 				70B44B7217B2F9A000C47B61 /* XMPPPresence.m in Sources */,
 				706DD1D817BBF42D0075E87B /* VizPageViewController.m in Sources */,

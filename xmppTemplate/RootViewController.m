@@ -36,101 +36,10 @@
 {
     [super viewDidLoad];
     
-   
-    
-    _pageController = [self.storyboard instantiateViewControllerWithIdentifier:@"page_controller"];
 
-    //config the datasource
-    self.pageController.dataSource = self;
-    //[[self.pageController view] setFrame:[[self view] bounds]];
-    
-    //setup all the vizes
-    [self setupVizViewControllers];
-    
-    [self.pageController setViewControllers:@[[all_visualizations objectAtIndex:0]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
-
-    //add the subviews
-    [self addChildViewController:self.pageController];
-    [[self view] addSubview:[self.pageController view]];
-    [self.pageController didMoveToParentViewController:self];
 	// Do any additional setup after loading the view, typically from a nib.
     //self.title = [NSString stringWithFormat:@"Viz",0];
 }
-
--(void)setupVizViewControllers {
-    
-    VizViewController *viz1 = [self.storyboard instantiateViewControllerWithIdentifier:@"viz_1"];
-    VizViewController *viz2 = [self.storyboard instantiateViewControllerWithIdentifier:@"viz_2"];
-    VizViewController *viz3 = [self.storyboard instantiateViewControllerWithIdentifier:@"viz_3"];
-
-    viz1.index = 0;
-    viz2.index = 1;
-    viz3.index = 2;
-    
-    all_visualizations = @[viz1,viz2,viz3];
-}
-
-
-#pragma mark - page controller
-
-- (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed {
-    
-    if( completed ) {
-        
-    }
-}
-
-
-- (UIViewController *)viewControllerAtIndex:(NSUInteger)index {
-    
-    //self.title = [NSString stringWithFormat:@"Viz #%d",index];
-    
-   // VizViewController *viz = [all_visualizations objectAtIndex:index];
-    //viz.index = index;
-    
-    return [all_visualizations objectAtIndex:index];
-    
-}
-
-- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController {
-    
-    NSUInteger index = [(VizViewController *)viewController index];
-    
-    if (index == 0) {
-        return nil;
-    }
-    
-    // Decrease the index by 1 to return
-    index--;
-    
-    return [self viewControllerAtIndex:index];
-    
-}
-
-- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
-    
-    NSUInteger index = ((VizViewController *)viewController).index;
-    
-    index++;
-    
-    if (index == 3) {
-        return nil;
-    }
-    
-    return [self viewControllerAtIndex:index];
-    
-}
-
-- (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController {
-    // The number of items reflected in the page indicator.
-    return 3;
-}
-
-- (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController {
-    // The selected item reflected in the page indicator.
-    return 0;
-}
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -142,6 +51,10 @@
 - (void)isAvailable:(BOOL)available {
     
     if( available ) {
+        NSString *userName = [[NSUserDefaults standardUserDefaults] objectForKey:kXMPPmyJID ];
+        
+        
+        statusBarButton.title = [[[XMPPJID jidWithString:userName] user ] capitalizedString ];
         statusBarButton.tintColor = [UIColor greenColor];
     } else {
         statusBarButton.tintColor = [UIColor redColor];

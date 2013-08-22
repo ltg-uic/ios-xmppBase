@@ -10,7 +10,6 @@
 
 @interface RosterModel : NSObject {
     
-    NSMutableDictionary *classes;
     NSMutableArray *students;
 }
 
@@ -23,5 +22,6 @@
 +(NSArray *)getStudentsForClass: (NSString*)clazz;
 +(int)classCount;
 +(int)studentCountForClass: (NSString *)clazz;
++(void)addClass: (NSString*)clazz;
 
 @end

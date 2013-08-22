@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import "DDLog.h"
 #import "DDTTYLogger.h"
-#import "LoginViewController.h"
+#import "WizardClassPageViewController.h"
 #import <AudioToolbox/AudioToolbox.h>
 
 // Log levels: off, error, warn, info, verbose
@@ -21,54 +21,19 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 
 @implementation AppDelegate
 
-@synthesize xmppStream;
-@synthesize xmppReconnect;
-
-NSString *const kXMPPmyJID = @"kXMPPmyJID";
-NSString *const kXMPPmyPassword = @"kXMPPmyPassword";
-
-BOOL isMUC = YES;
-
-#define ROOM_JID       @"hg-test@conference.ltg.evl.uic.edu"
-#define XMPP_HOSTNAME  @"ltg.evl.uic.edu"
-#define XMPP_JID       @"tester@ltg.evl.uic.edu"
-
-
-
-- (void)insertDataPointWith:(NSString *)from To:(NSString *)to WithMessage:(NSString *)message
-{
-    
-    DataPoint *dp = [NSEntityDescription insertNewObjectForEntityForName:@"DataPoint"
-                                               inManagedObjectContext:self.managedObjectContext];
-    
-    dp.from = from;
-    dp.to = to;
-    dp.message = message;
-    dp.timestamp = [NSDate date];
-    
-    [self.managedObjectContext save:nil];
-    
-}
-
-- (void)importTestData {
-    NSLog(@"Importing Core Data Default Values for DataPoints...");
-    [self insertDataPointWith:@"Obama" To:@"Biden" WithMessage:@"Don't fuck up"];
-    [self insertDataPointWith:@"TEster" To:@"Biden" WithMessage:@"Don't fuck up asshole"];
-    NSLog(@"Importing Core Data Default Values for DataPoints Completed!");
-}
+#pragma mark APPDELEGATE METHODS
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    isMultiUserChat = YES;
+    //setup test data
+    //[self importTestData];
     
-   // [self importTestData];
+    //setup test user
+    //[self setupTestUser];
     
-    //only have this we are hardcoding the username
+    [self clearUserDefaults];
     
-    [[NSUserDefaults standardUserDefaults] setObject:@"tester@ltg.evl.uic.edu" forKey:kXMPPmyJID];
-    [[NSUserDefaults standardUserDefaults] setObject:@"tester" forKey:kXMPPmyPassword];
-    
-    //[[NSUserDefaults standardUserDefaults] setObject:nil forKey:kXMPPmyJID];
-    //[[NSUserDefaults standardUserDefaults] setObject:nil forKey:kXMPPmyPassword];
     // Configure logging framework
 	
 	[DDLog addLogger:[DDTTYLogger sharedInstance]];
@@ -76,8 +41,6 @@ BOOL isMUC = YES;
     // Setup the XMPP stream
     
 	[self setupStream];
-    
-	
     
 	if (![self connect])
 	{
@@ -87,8 +50,8 @@ BOOL isMUC = YES;
             UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPad"
                                                                      bundle: nil];
         
-            LoginViewController *controller = (LoginViewController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"loginController"];
-            
+            UIViewController *controller = (UIViewController *)[mainStoryboard instantiateViewControllerWithIdentifier: @"WizardNavController"];
+            controller.modalPresentationStyle = UIModalPresentationFormSheet;
           
             
 			[self.window.rootViewController presentViewController:controller animated:YES completion:nil];
@@ -145,20 +108,18 @@ BOOL isMUC = YES;
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark Private
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark XMPP SETUP STREAM
 
 - (void)setupStream
 {
-	NSAssert(xmppStream == nil, @"Method setupStream invoked multiple times");
+	NSAssert(_xmppStream == nil, @"Method setupStream invoked multiple times");
 	
 	// Setup xmpp stream
 	//
-	// The XMPPStream is the base class for all activity.
-	// Everything else plugs into the xmppStream, such as modules/extensions and delegates.
+	// The xmppStream is the base class for all activity.
+	// Everything else plugs into the __xmppStream, such as modules/extensions and delegates.
     
-	xmppStream = [[XMPPStream alloc] init];
+	_xmppStream = [[XMPPStream alloc] init];
 	
 #if !TARGET_IPHONE_SIMULATOR
 	{
@@ -172,7 +133,7 @@ BOOL isMUC = YES;
 		//        If you do enableBackgroundingOnSocket on the simulator,
 		//        you will simply see an error message from the xmpp stack when it fails to set the property.
 		
-		xmppStream.enableBackgroundingOnSocket = YES;
+		_xmppStream.enableBackgroundingOnSocket = YES;
 	}
 #endif
 	
@@ -182,119 +143,40 @@ BOOL isMUC = YES;
 	// automatically reconnects the stream for you.
 	// There's a bunch more information in the XMPPReconnect header file.
 	
-	xmppReconnect = [[XMPPReconnect alloc] init];
+	_xmppReconnect = [[XMPPReconnect alloc] init];
 	
-	// Setup roster
-	//
-	// The XMPPRoster handles the xmpp protocol stuff related to the roster.
-	// The storage for the roster is abstracted.
-	// So you can use any storage mechanism you want.
-	// You can store it all in memory, or use core data and store it on disk, or use core data with an in-memory store,
-	// or setup your own using raw SQLite, or create your own storage mechanism.
-	// You can do it however you like! It's your application.
-	// But you do need to provide the roster with some storage facility.
-	
-	//xmppRosterStorage = [[XMPPRosterCoreDataStorage alloc] init];
-    //	xmppRosterStorage = [[XMPPRosterCoreDataStorage alloc] initWithInMemoryStore];
-	
-	//xmppRoster = [[XMPPRoster alloc] initWithRosterStorage:xmppRosterStorage];
-	
-	//xmppRoster.autoFetchRoster = YES;
-	//xmppRoster.autoAcceptKnownPresenceSubscriptionRequests = YES;
-	
-	// Setup vCard support
-	//
-	// The vCard Avatar module works in conjuction with the standard vCard Temp module to download user avatars.
-	// The XMPPRoster will automatically integrate with XMPPvCardAvatarModule to cache roster photos in the roster.
-	
-	//xmppvCardStorage = [XMPPvCardCoreDataStorage sharedInstance];
-	//xmppvCardTempModule = [[XMPPvCardTempModule alloc] initWithvCardStorage:xmppvCardStorage];
-	
-	//xmppvCardAvatarModule = [[XMPPvCardAvatarModule alloc] initWithvCardTempModule:xmppvCardTempModule];
-	
-	// Setup capabilities
-	//
-	// The XMPPCapabilities module handles all the complex hashing of the caps protocol (XEP-0115).
-	// Basically, when other clients broadcast their presence on the network
-	// they include information about what capabilities their client supports (audio, video, file transfer, etc).
-	// But as you can imagine, this list starts to get pretty big.
-	// This is where the hashing stuff comes into play.
-	// Most people running the same version of the same client are going to have the same list of capabilities.
-	// So the protocol defines a standardized way to hash the list of capabilities.
-	// Clients then broadcast the tiny hash instead of the big list.
-	// The XMPPCapabilities protocol automatically handles figuring out what these hashes mean,
-	// and also persistently storing the hashes so lookups aren't needed in the future.
-	//
-	// Similarly to the roster, the storage of the module is abstracted.
-	// You are strongly encouraged to persist caps information across sessions.
-	//
-	// The XMPPCapabilitiesCoreDataStorage is an ideal solution.
-	// It can also be shared amongst multiple streams to further reduce hash lookups.
-	
-	//xmppCapabilitiesStorage = [XMPPCapabilitiesCoreDataStorage sharedInstance];
-    //xmppCapabilities = [[XMPPCapabilities alloc] initWithCapabilitiesStorage:xmppCapabilitiesStorage];
-    
-    //xmppCapabilities.autoFetchHashedCapabilities = YES;
-    //xmppCapabilities.autoFetchNonHashedCapabilities = NO;
-    
 	// Activate xmpp modules
     
-    //xmppStream.hostName = XMPP_HOSTNAME;
+    //_xmppStream.hostName = XMPP_HOSTNAME;
     
-    if( isMUC ) {
+    if( isMultiUserChat ) {
     //setup of room
         XMPPJID *roomJID = [XMPPJID jidWithString:ROOM_JID];
     
-        xmppRoom = [[XMPPRoom alloc] initWithRoomStorage:self jid:roomJID];
-        [xmppRoom              activate:xmppStream];
-        [xmppStream addDelegate:self delegateQueue:dispatch_get_main_queue()];
+        _xmppRoom = [[XMPPRoom alloc] initWithRoomStorage:self jid:roomJID];
+        [_xmppRoom  activate:_xmppStream];
+        [_xmppStream addDelegate:self delegateQueue:dispatch_get_main_queue()];
     }
         
-  	[xmppReconnect         activate:xmppStream];
+  	[_xmppReconnect activate:_xmppStream];
     
-//	[xmppRoster            activate:xmppStream];
-//	[xmppvCardTempModule   activate:xmppStream];
-//	[xmppvCardAvatarModule activate:xmppStream];
-//	[xmppCapabilities      activate:xmppStream];
-//    
 	// Add ourself as a delegate to anything we may be interested in
     
-     [xmppRoom addDelegate:self delegateQueue:dispatch_get_main_queue()];
-   
-    
-    
-    
-	//[xmppRoster addDelegate:self delegateQueue:dispatch_get_main_queue()];
-    
-	// Optional:
-	//
-	// Replace me with the proper domain and port.
-	// The example below is setup for a typical google talk account.
-	//
-	// If you don't supply a hostName, then it will be automatically resolved using the JID (below).
-	// For example, if you supply a JID like 'user@quack.com/rsrc'
-	// then the xmpp framework will follow the xmpp specification, and do a SRV lookup for quack.com.
-	//
-	// If you don't specify a hostPort, then the default (5222) will be used.
-	
-    //	[xmppStream setHostName:@"talk.google.com"];
-    //	[xmppStream setHostPort:5222];
-	
+    [_xmppRoom addDelegate:self delegateQueue:dispatch_get_main_queue()];
     
 	// You may need to alter these settings depending on the server you're connecting to
 	allowSelfSignedCertificates = NO;
 	allowSSLHostNameMismatch = NO;
 }
 
-
 - (void)teardownStream
 {
-	[xmppStream removeDelegate:self];
-	[xmppReconnect deactivate];
-	[xmppStream disconnect];
+	[_xmppStream removeDelegate:self];
+	[_xmppReconnect deactivate];
+	[_xmppStream disconnect];
 	
-	xmppStream = nil;
-	xmppReconnect = nil;
+	_xmppStream = nil;
+	_xmppReconnect = nil;
     
 }
 
@@ -309,11 +191,13 @@ BOOL isMUC = YES;
 // For more information on working with XML elements, see the Wiki article:
 // http://code.google.com/p/xmppframework/wiki/WorkingWithElements
 
+#pragma mark XMPP ONLINE OFFLINE
+
 - (void)goOnline
 {
 	XMPPPresence *presence = [XMPPPresence presence]; // type="available" is implicit
 	
-	[[self xmppStream] sendElement:presence];
+	[_xmppStream sendElement:presence];
     
     [_xmppBaseOnlineDelegate isAvailable:YES];
 }
@@ -322,16 +206,14 @@ BOOL isMUC = YES;
 {
 	XMPPPresence *presence = [XMPPPresence presenceWithType:@"unavailable"];
 	
-	[[self xmppStream] sendElement:presence];
+	[_xmppStream sendElement:presence];
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark Connect/disconnect
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark CONNECT/DISCONNECT
 
 - (BOOL)connect
 {
-	if (![xmppStream isDisconnected]) {
+	if (![_xmppStream isDisconnected]) {
 		return YES;
 	}
     
@@ -351,14 +233,14 @@ BOOL isMUC = YES;
     
 
     
-	[xmppStream setMyJID:[XMPPJID jidWithString:myJID]];
-    [xmppStream setHostName:[[XMPPJID jidWithString:myJID] domain ] ];
+	[_xmppStream setMyJID:[XMPPJID jidWithString:myJID]];
+    [_xmppStream setHostName:[[XMPPJID jidWithString:myJID] domain ] ];
     
 	password = myPassword;
     
     
 	NSError *error = nil;
-	if (![xmppStream connectWithTimeout:XMPPStreamTimeoutNone error:&error])
+	if (![_xmppStream connectWithTimeout:XMPPStreamTimeoutNone error:&error])
 	{
 		UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error connecting"
 		                                                    message:@"See console for error details."
@@ -367,7 +249,7 @@ BOOL isMUC = YES;
 		                                          otherButtonTitles:nil];
 		[alertView show];
         
-		DDLogError(@"Error connecting: %@", error);
+		DDLogError(@"ERROR CONNECTING\n: %@", error);
         
 		return NO;
 	}
@@ -378,13 +260,10 @@ BOOL isMUC = YES;
 - (void)disconnect
 {
 	[self goOffline];
-	[xmppStream disconnect];
+	[_xmppStream disconnect];
 }
 
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark XMPPStream Delegate
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark XMPPStream DELEGATE
 
 - (void)xmppStream:(XMPPStream *)sender socketDidConnect:(GCDAsyncSocket *)socket
 {
@@ -413,8 +292,8 @@ BOOL isMUC = YES;
 		
 		NSString *expectedCertName = nil;
 		
-		NSString *serverDomain = xmppStream.hostName;
-		NSString *virtualDomain = [xmppStream.myJID domain];
+		NSString *serverDomain = _xmppStream.hostName;
+		NSString *virtualDomain = [_xmppStream.myJID domain];
 		
 		if ([serverDomain isEqualToString:@"talk.google.com"])
 		{
@@ -456,7 +335,7 @@ BOOL isMUC = YES;
 	
 	NSError *error = nil;
 	
-	if (![[self xmppStream] authenticateWithPassword:password error:&error])
+	if (![_xmppStream authenticateWithPassword:password error:&error])
 	{
 		DDLogError(@"Error authenticating: %@", error);
 	} else {
@@ -482,9 +361,9 @@ BOOL isMUC = YES;
 {
 	DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
     
-    if( isMUC) {
+    if( isMultiUserChat ) {
         NSString *myJID = [[NSUserDefaults standardUserDefaults] stringForKey:kXMPPmyJID];
-        [xmppRoom joinRoomUsingNickname:myJID history:nil];
+        [_xmppRoom joinRoomUsingNickname:myJID history:nil];
     }
     
 	[self goOnline];
@@ -519,12 +398,12 @@ BOOL isMUC = YES;
         
         if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive)
 		{
-			UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"test"
+			UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Message"
                                                                 message:msg
                                                                delegate:nil
                                                       cancelButtonTitle:@"Ok"
                                                       otherButtonTitles:nil];
-			//[alertView show];
+			[alertView show];
 		}
 		else
 		{
@@ -540,7 +419,7 @@ BOOL isMUC = YES;
 
 	} else if ([message isChatMessageWithBody]) {
 		//XMPPUserCoreDataStorageObject *user = [xmppRosterStorage userForJID:[message from]
-		//                                                         xmppStream:xmppStream
+		//                                                         _xmppStream:_xmppStream
 		 //                                              managedObjectContext:[self managedObjectContext_roster]];
 		
 		//NSString *body = [[message elementForName:@"body"] stringValue];
@@ -574,7 +453,7 @@ BOOL isMUC = YES;
                                                                delegate:nil
                                                       cancelButtonTitle:@"Ok"
                                                       otherButtonTitles:nil];
-			//[alertView show];
+			[alertView show];
 		}
 		else
 		{
@@ -590,12 +469,10 @@ BOOL isMUC = YES;
 	}
 }
 
-
-
 - (void)xmppStream:(XMPPStream *)sender didReceivePresence:(XMPPPresence *)presence {
 	DDLogVerbose(@"%@: %@ - %@", THIS_FILE, THIS_METHOD, [presence fromStr]);
     
-  NSString *presenceType = [presence type]; // online/offline
+    NSString *presenceType = [presence type]; // online/offline
 	NSString *myUsername = [[sender myJID] user];
 	NSString *presenceFromUser = [[presence from] user];
 	
@@ -633,15 +510,11 @@ BOOL isMUC = YES;
 	
 	if (!isXmppConnected)
 	{
-		DDLogError(@"Unable to connect to server. Check xmppStream.hostName");
+		DDLogError(@"Unable to connect to server. Check _xmppStream.hostName");
 	}
 }
 
-#pragma mark - XMPP Room Delegate
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark XMPPRoom Delegate
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - XMPP ROOM DELEGATE
 
 - (void)xmppRoomDidCreate:(XMPPRoom *)sender
 {
@@ -652,10 +525,10 @@ BOOL isMUC = YES;
 {
 	DDLogInfo(@"%@: %@", THIS_FILE, THIS_METHOD);
 	
-	[xmppRoom fetchConfigurationForm];
-	[xmppRoom fetchBanList];
-	[xmppRoom fetchMembersList];
-	[xmppRoom fetchModeratorsList];
+	[_xmppRoom fetchConfigurationForm];
+	[_xmppRoom fetchBanList];
+	[_xmppRoom fetchMembersList];
+	[_xmppRoom fetchModeratorsList];
 }
 
 - (void)xmppRoom:(XMPPRoom *)sender didFetchConfigurationForm:(NSXMLElement *)configForm
@@ -705,9 +578,8 @@ BOOL isMUC = YES;
     [_xmppBaseOnlineDelegate isAvailable:NO];
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark XMPPRoomStorage Protocol
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark XMPPRoomStorage PROTOCOL
+
 
 - (void)handlePresence:(XMPPPresence *)presence room:(XMPPRoom *)room
 {
@@ -729,7 +601,7 @@ BOOL isMUC = YES;
 	return YES;
 }
 
-#pragma mark CoreDataManagement Protocol
+#pragma mark CoreDataManagement PROTOCOL
 
 /**
  Returns the URL to the application's Documents directory.
@@ -814,6 +686,39 @@ BOOL isMUC = YES;
     }
     
     return persistentStoreCoordinator;
+}
+
+#pragma mark TESTING
+
+- (void)insertDataPointWith:(NSString *)from To:(NSString *)to WithMessage:(NSString *)message
+{
+    
+    DataPoint *dp = [NSEntityDescription insertNewObjectForEntityForName:@"DataPoint"
+                                                  inManagedObjectContext:self.managedObjectContext];
+    
+    dp.from = from;
+    dp.to = to;
+    dp.message = message;
+    dp.timestamp = [NSDate date];
+    
+    [self.managedObjectContext save:nil];
+    
+}
+- (void)importTestData {
+    NSLog(@"Importing Core Data Default Values for DataPoints...");
+    [self insertDataPointWith:@"Obama" To:@"Biden" WithMessage:@"Don't fuck up"];
+    [self insertDataPointWith:@"TEster" To:@"Biden" WithMessage:@"Don't fuck up asshole"];
+    NSLog(@"Importing Core Data Default Values for DataPoints Completed!");
+}
+
+-(void)setupTestUser {
+    [[NSUserDefaults standardUserDefaults] setObject:@"tester@ltg.evl.uic.edu" forKey:kXMPPmyJID];
+    [[NSUserDefaults standardUserDefaults] setObject:@"tester" forKey:kXMPPmyPassword];
+}
+
+-(void)clearUserDefaults {
+    [[NSUserDefaults standardUserDefaults] setObject:nil forKey:kXMPPmyJID];
+    [[NSUserDefaults standardUserDefaults] setObject:nil forKey:kXMPPmyPassword];
 }
 
 @end
