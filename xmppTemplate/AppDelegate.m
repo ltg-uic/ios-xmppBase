@@ -30,7 +30,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     //[self importTestData];
     
     //setup test user
-    //[self setupTestUser];
+    [self setupTestUser];
     
     [self clearUserDefaults];
     
@@ -54,7 +54,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
             controller.modalPresentationStyle = UIModalPresentationFormSheet;
           
             
-			[self.window.rootViewController presentViewController:controller animated:YES completion:nil];
+			//[self.window.rootViewController presentViewController:controller animated:YES completion:nil];
 		});
 	}
     return YES;

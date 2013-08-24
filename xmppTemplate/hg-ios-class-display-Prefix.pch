@@ -15,5 +15,6 @@
     #import <MobileCoreServices/MobileCoreServices.h>
     #import <coredata/coredata.h>
     #import "Constants.h"
+    #import "SWRevealViewController.h"
 #endif
 

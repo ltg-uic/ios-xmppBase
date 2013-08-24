@@ -8,9 +8,10 @@
 
 #import "VizViewController.h"
 
-@interface VizOneViewController : VizViewController {
+@interface MapVisualizationViewController : VizViewController<UICollisionBehaviorDelegate> {
 }
-
+@property (weak, nonatomic) IBOutlet UIView *patchView;
+@property (nonatomic) UIDynamicAnimator* animator;
 @property (assign, nonatomic,readwrite) NSInteger index;
 
 @end

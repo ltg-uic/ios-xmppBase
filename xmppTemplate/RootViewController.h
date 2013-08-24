@@ -12,7 +12,7 @@
 #import "DataPoint.h"
 
 
-@interface RootViewController : UITabBarController<XMPPBaseOnlineDelegate,XMPPBaseNewMessageDelegate> {
+@interface RootViewController : UIViewController<XMPPBaseOnlineDelegate,XMPPBaseNewMessageDelegate> {
     
     __weak IBOutlet UIBarButtonItem *statusBarButton;
 
