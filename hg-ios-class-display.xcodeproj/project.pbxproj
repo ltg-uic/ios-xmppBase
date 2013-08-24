@@ -112,6 +112,7 @@
 		70CAF27817BC35B00038CC47 /* VizThreeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70CAF27717BC35B00038CC47 /* VizThreeViewController.m */; };
 		70CD9B3417B4988E008625BF /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70CD9B3317B4988E008625BF /* AudioToolbox.framework */; };
 		70CD9B3617B49BF2008625BF /* logon_sound.aif in Resources */ = {isa = PBXBuildFile; fileRef = 70CD9B3517B49BF2008625BF /* logon_sound.aif */; };
+		70CEF76417C8443A00ED0CBE /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 70CEF76317C8443A00ED0CBE /* Default-568h@2x.png */; };
 		70CF3D6D17C55296006F363C /* WizardClassCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 70CF3D6C17C55296006F363C /* WizardClassCell.m */; };
 		70CF3D7017C5570D006F363C /* WizardReviewPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70CF3D6F17C5570D006F363C /* WizardReviewPageViewController.m */; };
 		70E866F217C66E76003C5BD2 /* fishhook.c in Sources */ = {isa = PBXBuildFile; fileRef = 70E866F017C66E76003C5BD2 /* fishhook.c */; };
@@ -330,6 +331,7 @@
 		70CAF27717BC35B00038CC47 /* VizThreeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VizThreeViewController.m; sourceTree = "<group>"; };
 		70CD9B3317B4988E008625BF /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		70CD9B3517B49BF2008625BF /* logon_sound.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = logon_sound.aif; sourceTree = "<group>"; };
+		70CEF76317C8443A00ED0CBE /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		70CF3D6B17C55296006F363C /* WizardClassCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizardClassCell.h; sourceTree = "<group>"; };
 		70CF3D6C17C55296006F363C /* WizardClassCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WizardClassCell.m; sourceTree = "<group>"; };
 		70CF3D6E17C5570D006F363C /* WizardReviewPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizardReviewPageViewController.h; sourceTree = "<group>"; };
@@ -378,6 +380,7 @@
 		700C3A42160427DA005A9E34 = {
 			isa = PBXGroup;
 			children = (
+				70CEF76317C8443A00ED0CBE /* Default-568h@2x.png */,
 				706857CC17C51A2600BF8AAF /* AFNetworking */,
 				70B44AAE17B2F97B00C47B61 /* XMPP */,
 				700C3A57160427DA005A9E34 /* Display */,
@@ -1009,6 +1012,7 @@
 				70CD9B3617B49BF2008625BF /* logon_sound.aif in Resources */,
 				70BBBECE17C46CD0003C6D07 /* awareness_icons.xcassets in Resources */,
 				70B44B8217B2F9A000C47B61 /* README.txt in Resources */,
+				70CEF76417C8443A00ED0CBE /* Default-568h@2x.png in Resources */,
 				700C3A6E160427DA005A9E34 /* MainStoryboard_iPad.storyboard in Resources */,
 				70AFBDD417C7E9DF00868211 /* sidebar_icons.xcassets in Resources */,
 			);
