@@ -7,19 +7,14 @@
 
 #import <UIKit/UIKit.h>
 #import "XMPPFramework.h"
-#import "XMPPBaseNewMessageDelegate.h"
-#import "XMPPBaseOnlineDelegate.h"
 #import "XMPPRoom.h"
 #import "XMPPMessage+XEP0045.h"
 #import "DataPoint.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, XMPPRoomStorage> {
-      
-    
     NSString *password;
     NSMutableDictionary *lastMessageDict;
 
-    
 	BOOL allowSelfSignedCertificates;
 	BOOL allowSSLHostNameMismatch;
 	BOOL isXmppConnected;

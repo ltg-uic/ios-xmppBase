@@ -1,6 +1,7 @@
 
 #import "SidebarViewController.h"
 #import "SWRevealViewController.h"
+#import "SideBarCell.h"
 
 @interface SidebarViewController ()
 
@@ -18,12 +19,21 @@
     return self;
 }
 
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    if(self = [super initWithCoder:aDecoder])
+    {
+        self.appDelegate.xmppBaseOnlineDelegate = self;
+        //self.appDelegate.xmppBaseNewMessageDelegate = self;
+    }
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    _menuItems = @[@"viz_item", @"map_item", @"graph_item", @"yield_item",  @"settings_title_item",@"settings_item", @"login_item", @"blank_item", @"blank_item"];
-
+    _menuItems = @[@"viz_item", @"graph_item",@"map_item",  @"yield_item",  @"settings_title_item",@"settings_item", @"login_item", @"blank_item", @"blank_item"];
+    self.clearsSelectionOnViewWillAppear = NO;
 }
 
 - (void) prepareForSegue: (UIStoryboardSegue *) segue sender: (id) sender
@@ -62,6 +72,37 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - XMPP Online Delegate
+
+- (void)isAvailable:(BOOL)available {
+    
+    int index = [_menuItems indexOfObject:@"login_item"];
+    
+    NSIndexPath* indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+    SideBarCell *loginCell = (SideBarCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+
+    
+    if( available ) {
+        NSString *userName = [[NSUserDefaults standardUserDefaults] objectForKey:kXMPPmyJID ];
+        
+        loginCell.label.text = [[[XMPPJID jidWithString:userName] user ] capitalizedString ];
+        loginCell.imageView.image = [UIImage imageNamed:@"on.png"];
+
+    } else {
+        loginCell.label.text = @"login needed";
+        loginCell.imageView.image = [UIImage imageNamed:@"off.png"];
+    }
+ 
+    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+}
+
+#pragma mark - XMPP New Message Delegate
+
+- (void)newMessageReceived:(NSDictionary *)messageContent {
+    
+    NSLog(@"NEW MESSAGE RECIEVED");
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -87,6 +128,11 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     
     return cell;
+}
+
+- (AppDelegate *)appDelegate
+{
+	return (AppDelegate *)[[UIApplication sharedApplication] delegate];
 }
 
 @end

@@ -6,7 +6,6 @@
 //  Copyright (c) 2012 Learning Technologies Group. All rights reserved.
 //
 
-#import "AppDelegate.h"
 #import "DDLog.h"
 #import "DDTTYLogger.h"
 #import "WizardClassPageViewController.h"

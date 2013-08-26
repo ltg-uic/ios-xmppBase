@@ -9,7 +9,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="WizardClassPageViewController" autoresizesArchivedViewToFullSize="NO" title="Class Chooser" modalPresentationStyle="currentContext" id="wzZ-Et-LzK" customClass="WizardClassPageViewController" sceneMemberID="viewController">
                     <tableView key="view" autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleAspectFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" id="mGa-jY-l1q">
-                        <rect key="frame" x="0.0" y="0.0" width="500" height="644"/>
+                        <rect key="frame" x="0.0" y="0.0" width="500" height="1392"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -59,7 +59,7 @@
             <objects>
                 <collectionViewController autoresizesArchivedViewToFullSize="NO" title="WizardStudentPageViewController" id="B93-el-CwP" customClass="WizardStudentPageViewController" sceneMemberID="viewController">
                     <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="Ejr-No-Nvx">
-                        <rect key="frame" x="0.0" y="0.0" width="500" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="500" height="1304"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="3e0-UR-4wQ">
@@ -130,7 +130,7 @@
                         <viewControllerLayoutGuide type="bottom" id="88c-On-rVh"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="CR1-C1-sWK">
-                        <rect key="frame" x="0.0" y="0.0" width="500" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="500" height="1304"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <userGuides>
                             <userLayoutGuide location="250" affinity="minY"/>
@@ -233,8 +233,31 @@
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="map_item" id="3Fj-Bc-api">
+                            <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="graph_item" id="W1n-4M-SBc">
                                 <rect key="frame" x="0.0" y="82" width="768" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="W1n-4M-SBc" id="5Ed-vh-5Yj">
+                                    <rect key="frame" x="0.0" y="0.0" width="768" height="59"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="viz_icon" highlightedImage="viz_icon" translatesAutoresizingMaskIntoConstraints="NO" id="mbz-Py-g23">
+                                            <rect key="frame" x="26" y="15" width="29" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        </imageView>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Harvest Graph" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0qw-FU-kIk">
+                                            <rect key="frame" x="65" y="17" width="200" height="25"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="ifl-4T-Tjx" kind="custom" customClass="SWRevealViewControllerSegue" id="q5o-eP-omx"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="map_item" id="3Fj-Bc-api">
+                                <rect key="frame" x="0.0" y="142" width="768" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="3Fj-Bc-api" id="J58-RY-lbM">
                                     <rect key="frame" x="0.0" y="0.0" width="768" height="59"/>
@@ -253,30 +276,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="ifl-4T-Tjx" kind="custom" customClass="SWRevealViewControllerSegue" id="jyn-6m-1UD"/>
-                                </connections>
-                            </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="graph_item" id="W1n-4M-SBc">
-                                <rect key="frame" x="0.0" y="142" width="768" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="W1n-4M-SBc" id="5Ed-vh-5Yj">
-                                    <rect key="frame" x="0.0" y="0.0" width="768" height="59"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="viz_icon" highlightedImage="viz_icon" translatesAutoresizingMaskIntoConstraints="NO" id="mbz-Py-g23">
-                                            <rect key="frame" x="26" y="15" width="29" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        </imageView>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Graph" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0qw-FU-kIk">
-                                            <rect key="frame" x="65" y="17" width="200" height="25"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="k2h-ak-l4V" kind="custom" customClass="SWRevealViewControllerSegue" id="oV2-j4-dBU"/>
+                                    <segue destination="k2h-ak-l4V" kind="custom" customClass="SWRevealViewControllerSegue" id="Wjp-D4-yEo"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="yield_item" id="E2y-dp-cgK">
@@ -336,14 +336,14 @@
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="login_item" id="xlO-Fs-dqi">
+                            <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="login_item" id="xlO-Fs-dqi" customClass="SideBarCell">
                                 <rect key="frame" x="0.0" y="382" width="768" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="xlO-Fs-dqi" id="DJ4-ZE-074">
                                     <rect key="frame" x="0.0" y="0.0" width="768" height="59"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="login" translatesAutoresizingMaskIntoConstraints="NO" id="kFk-dd-n0Z">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="off" translatesAutoresizingMaskIntoConstraints="NO" id="kFk-dd-n0Z">
                                             <rect key="frame" x="25" y="15" width="30" height="30"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </imageView>
@@ -356,6 +356,8 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="label" destination="Vjl-lc-Mxp" id="Kv3-Cl-itm"/>
+                                    <outlet property="leftImageView" destination="kFk-dd-n0Z" id="30k-to-Zw8"/>
                                     <segue destination="PkN-LD-oC1" kind="modal" modalPresentationStyle="formSheet" id="lh0-Cm-K3W"/>
                                 </connections>
                             </tableViewCell>
@@ -383,6 +385,7 @@
         <scene sceneID="8ef-gc-vVf">
             <objects>
                 <navigationController definesPresentationContext="YES" id="Pdj-Qa-WSf" sceneMemberID="viewController">
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="fM6-QB-hDp">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -394,31 +397,33 @@
             </objects>
             <point key="canvasLocation" x="363" y="2393"/>
         </scene>
-        <!--Main View Controller - Graph-->
+        <!--Map View Controller - Map-->
         <scene sceneID="UXG-m4-02P">
             <objects>
-                <viewController id="k2h-ak-l4V" customClass="MainViewController" sceneMemberID="viewController">
+                <viewController id="k2h-ak-l4V" customClass="MapViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="kJL-LV-jcc"/>
                         <viewControllerLayoutGuide type="bottom" id="Z8N-LY-DjD"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="S7o-vr-8db">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="graph" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NNo-0f-F19">
-                                <rect key="frame" x="372" y="823" width="45" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="map" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NNo-0f-F19">
+                                <rect key="frame" x="372" y="823" width="34" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Graph" id="UeO-4X-gtt">
+                    <navigationItem key="navigationItem" title="Map" id="UeO-4X-gtt">
                         <barButtonItem key="leftBarButtonItem" image="reveal-icon.png" id="88A-lT-JdK"/>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
                         <outlet property="sidebarButton" destination="88A-lT-JdK" id="ugv-ry-QpR"/>
                     </connections>
@@ -427,38 +432,40 @@
             </objects>
             <point key="canvasLocation" x="1411" y="1204"/>
         </scene>
-        <!--Map View Controller - Map-->
+        <!--Graph View Controller - Harvest-->
         <scene sceneID="TjX-eJ-JbX">
             <objects>
-                <viewController id="ifl-4T-Tjx" customClass="MapViewController" sceneMemberID="viewController">
+                <viewController id="ifl-4T-Tjx" customClass="GraphViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="iou-0t-o2r"/>
                         <viewControllerLayoutGuide type="bottom" id="kD2-Q7-0rk"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="hz0-ZB-lde">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="maps" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uoQ-xV-g5t">
-                                <rect key="frame" x="381" y="289" width="43" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ucR-3D-s3D" userLabel="graphView" customClass="CPTGraphHostingView">
+                                <rect key="frame" x="0.0" y="45" width="1024" height="723"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Map" id="dLH-Vb-EI1">
+                    <navigationItem key="navigationItem" title="Harvest" id="dLH-Vb-EI1">
                         <barButtonItem key="leftBarButtonItem" image="reveal-icon.png" id="aBO-ca-Khc"/>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
+                        <outlet property="graphView" destination="ucR-3D-s3D" id="G3Y-dE-7ft"/>
                         <outlet property="sidebarButton" destination="aBO-ca-Khc" id="He7-vZ-B6s"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pWX-Vv-xGC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1326" y="2461"/>
+            <point key="canvasLocation" x="1596" y="2571"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="bVn-c5-o8X">
@@ -485,8 +492,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="login" width="108" height="110"/>
         <image name="map" width="108" height="98"/>
+        <image name="off" width="30" height="30"/>
         <image name="reveal-icon.png" width="22" height="17"/>
         <image name="settings" width="104" height="93"/>
         <image name="viz_icon" width="100" height="102"/>
@@ -497,6 +504,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="jyn-6m-1UD"/>
+        <segue reference="q5o-eP-omx"/>
     </inferredMetricsTieBreakers>
 </document>

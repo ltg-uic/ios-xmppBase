@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SidebarViewController : UITableViewController
+@interface SidebarViewController : UITableViewController<XMPPBaseOnlineDelegate> {
+
+}
 
 @end

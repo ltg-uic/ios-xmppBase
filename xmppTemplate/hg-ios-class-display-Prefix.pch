@@ -16,5 +16,8 @@
     #import <coredata/coredata.h>
     #import "Constants.h"
     #import "SWRevealViewController.h"
+    #import "XMPPBaseNewMessageDelegate.h"
+    #import "XMPPBaseOnlineDelegate.h"
+    #import "AppDelegate.h"
 #endif
 

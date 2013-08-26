@@ -6,7 +6,17 @@
         <attribute name="timestamp" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="to" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="PlayerDataPoint" representedClassName="PlayerDataPoint" syncable="YES">
+        <attribute name="cluster" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="color" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="patch" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rfid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="score" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="timestamp" optional="YES" attributeType="Date" syncable="YES"/>
+    </entity>
     <elements>
-        <element name="DataPoint" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="DataPoint" positionX="0" positionY="0" width="128" height="105"/>
+        <element name="PlayerDataPoint" positionX="-227" positionY="-126" width="128" height="148"/>
     </elements>
 </model>

@@ -7,7 +7,6 @@
 //
 
 #import "RootViewController.h"
-#import "AppDelegate.h"
 #import "VizViewController.h"
 #import "MapVisualizationViewController.h"
 #import "VizTwoViewController.h"
