@@ -18,6 +18,9 @@
     NSDate *startDate;
     NSMutableArray *currentRFIDS;
     NSNumber *feedRatio;
+    
+    NSManagedObjectContext *managedObjectContext;
+    NSArray *playerDataPoints;
 }
 
 

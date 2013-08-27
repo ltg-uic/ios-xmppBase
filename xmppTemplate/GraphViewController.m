@@ -7,7 +7,7 @@
 //
 
 #import "GraphViewController.h"
-#import "DataStore.h"
+#import "PlayerDataPoint.h"
 #import "UIColor-Expanded.h"
 
 @implementation GraphViewController
@@ -21,6 +21,54 @@ NSString *  const newFoodDynamicPlot = @"newFoodDynamicPlot";
 NSString *  const trianglePlot = @"triangle";
 NSString *  const calorieStr = @"Each animal is getting";
 NSString *  const caloriePerMinuteStr = @"Calories per Minute";
+
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    if(self = [super initWithCoder:aDecoder])
+    {
+        
+        [self performDataFetch];
+    }
+    return self;
+}
+
+
+#pragma mark - Fetching
+
+- (void)performDataFetch
+{
+    managedObjectContext = [[self appDelegate] managedObjectContext];
+    // 1 - Decide what Entity you want
+    NSString *entityName = @"PlayerDataPoint"; // Put your entity name here
+    NSLog(@"Setting up a Fetched Results Controller for the Entity named %@", entityName);
+    
+    NSEntityDescription *entityDescription = [NSEntityDescription
+                                              entityForName:entityName inManagedObjectContext:managedObjectContext];
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:entityDescription];
+    
+    
+    NSError *error;
+    playerDataPoints = [managedObjectContext executeFetchRequest:request error:&error];
+    if (playerDataPoints == nil)
+    {
+         NSLog(@"ERRORRRR FETCHING: %@", [error localizedDescription]);
+    } else {
+        for (PlayerDataPoint  *pdp in playerDataPoints) {
+            NSLog(@"PDP !!!!! %@", pdp.name);
+        }
+    }
+    
+    
+    // 4 - Sort it if you want
+    request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"name"
+                                                                                     ascending:YES
+                                                                                      selector:@selector(localizedCaseInsensitiveCompare:)]];
+                
+}
+
+
+
+
 
 
 - (void)viewDidLoad
@@ -40,7 +88,6 @@ NSString *  const caloriePerMinuteStr = @"Calories per Minute";
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     
     
-    [[DataStore sharedInstance] init];
     [self initPlot];
     
 }
@@ -89,7 +136,11 @@ NSString *  const caloriePerMinuteStr = @"Calories per Minute";
     CGFloat xMin = 0.0f;
     
     //CGFloat xMax = 25;
-    CGFloat xMax = [[DataStore sharedInstance] playerCount];
+    //CGFloat xMax = [[DataStore sharedInstance] playerCount];
+    
+    CGFloat xMax = [playerDataPoints count];
+    
+    
     CGFloat yMin = 0.0f;
     CGFloat yMax = 4000.0f;  // should determine dynamically based on max price
     plotSpace = (CPTXYPlotSpace *) graph.defaultPlotSpace;
@@ -153,36 +204,37 @@ NSString *  const caloriePerMinuteStr = @"Calories per Minute";
     x.tickDirection = CPTSignNegative;
     
     
-    CGFloat clusterCount = [[[DataStore sharedInstance] clusterLabels] count ];
+//    CGFloat clusterCount = [[[DataStore sharedInstance] clusterLabels] count ];
+    CGFloat clusterCount = [playerDataPoints count];
     NSMutableSet *xLabels = [NSMutableSet setWithCapacity:clusterCount];
     NSMutableSet *xLocations = [NSMutableSet setWithCapacity:clusterCount];
     
     float i = 0.0f;
     float previousCount = 0.0f;
-    
-    for (NSString *label in [[DataStore sharedInstance] clusterLabels]) {
-        
-        float count = [[DataStore sharedInstance] clusterCountWith:label];
-        
-        CPTAxisLabel *clusterLabel = [[CPTAxisLabel alloc] initWithText:[label uppercaseString]  textStyle:x.labelTextStyle];
-        
-        float b = CPTDecimalFloatValue(_trianglePlot.barWidth);
-        
-        if( i == 0 )
-            i = ( ( b * count) )/2.0f;
-        else
-            i = i + (previousCount/2.0f) + b + ( ( b * count)/2.0f );
-        
-        previousCount = count;
-        
-        CGFloat location = i;
-        clusterLabel.tickLocation = CPTDecimalFromCGFloat(location);
-        clusterLabel.offset = x.majorTickLength;
-        if (clusterLabel) {
-            [xLabels addObject:clusterLabel];
-            [xLocations addObject:[NSNumber numberWithFloat:location]];
-        }
-    }
+//    
+//    for (NSString *label in [[DataStore sharedInstance] clusterLabels]) {
+//        
+//        float count = [[DataStore sharedInstance] clusterCountWith:label];
+//        
+//        CPTAxisLabel *clusterLabel = [[CPTAxisLabel alloc] initWithText:[label uppercaseString]  textStyle:x.labelTextStyle];
+//        
+//        float b = CPTDecimalFloatValue(_trianglePlot.barWidth);
+//        
+//        if( i == 0 )
+//            i = ( ( b * count) )/2.0f;
+//        else
+//            i = i + (previousCount/2.0f) + b + ( ( b * count)/2.0f );
+//        
+//        previousCount = count;
+//        
+//        CGFloat location = i;
+//        clusterLabel.tickLocation = CPTDecimalFromCGFloat(location);
+//        clusterLabel.offset = x.majorTickLength;
+//        if (clusterLabel) {
+//            [xLabels addObject:clusterLabel];
+//            [xLocations addObject:[NSNumber numberWithFloat:location]];
+//        }
+//    }
     x.axisLabels = xLabels;
     x.labelRotation = (M_PI/2);
     x.majorTickLocations = xLocations;
@@ -232,13 +284,16 @@ NSString *  const caloriePerMinuteStr = @"Calories per Minute";
 #pragma mark - CPTPlotDataSource methods
 
 -(NSUInteger)numberOfRecordsForPlot:(CPTPlot *)plot {
-    return [[DataStore sharedInstance] playerCount];
+    return [playerDataPoints count];
 }
 
 -(NSNumber *)numberForPlot:(CPTPlot *)plot field:(NSUInteger)fieldEnum recordIndex:(NSUInteger)index {
-	if ((fieldEnum == CPTBarPlotFieldBarTip) && (index < [[DataStore sharedInstance] playerCount])) {
+	if ((fieldEnum == CPTBarPlotFieldBarTip) && (index < [playerDataPoints count])) {
 		if ([plot.identifier isEqual:trianglePlot]) {
-            return [[DataStore sharedInstance] scoreForKey:index];
+            
+            
+            PlayerDataPoint *pdp = [playerDataPoints objectAtIndex:index];
+            return pdp.score;
         }
 	}
 	return [NSDecimalNumber numberWithUnsignedInteger:index];
@@ -263,7 +318,7 @@ NSString *  const caloriePerMinuteStr = @"Calories per Minute";
 	}
     
     
-    Player *player = [[DataStore sharedInstance] playerAt:index];
+    PlayerDataPoint *player = [playerDataPoints objectAtIndex:index];
     
     
 	// 3 - Create annotation, if necessary
@@ -281,7 +336,7 @@ NSString *  const caloriePerMinuteStr = @"Calories per Minute";
 		[formatter setMaximumFractionDigits:2];
 	}
 	// 5 - Create text layer for annotation
-	NSString *playerString = [formatter stringFromNumber:playerScore];
+	NSString *playerString = [formatter stringFromNumber:player.score];
     
 	//CPTTextLayer *textLayer = [[CPTTextLayer alloc] initWithText:[playerString stringByAppendingFormat:@"- %@", player.rfid] style:style];
     CPTTextLayer *textLayer = [[CPTTextLayer alloc] initWithText:player.rfid style:style];
@@ -322,7 +377,10 @@ NSString *  const caloriePerMinuteStr = @"Calories per Minute";
     
     if ( [barPlot.identifier isEqual:trianglePlot] ) {
         
-        NSString *color = [[DataStore sharedInstance] colorForKey:index];
+        
+        PlayerDataPoint *pdp = [playerDataPoints objectAtIndex:index];
+        
+        NSString *color = pdp.color;
         
         if( [color isEqualToString:@"blank"] )
             return [CPTFill fillWithColor:[CPTColor clearColor]];
@@ -369,7 +427,7 @@ NSString *  const caloriePerMinuteStr = @"Calories per Minute";
                 
                 [updatedArray addObject:randNum];
                 
-                [[DataStore sharedInstance] addScore:@( scoreIncrease ) withRFID:[currentRFIDS objectAtIndex:[randNum intValue]]];
+                //[[DataStore sharedInstance] addScore:@( scoreIncrease ) withRFID:[currentRFIDS objectAtIndex:[randNum intValue]]];
                 
                 [graph reloadData];
             }
@@ -389,7 +447,7 @@ NSString *  const caloriePerMinuteStr = @"Calories per Minute";
 }
 
 - (void)resetScoreByRFID:(NSString *)rfid {
-    [[DataStore sharedInstance] resetScoreWithRFID:rfid];
+    //[[DataStore sharedInstance] resetScoreWithRFID:rfid];
     [graph reloadData];
 }
 
@@ -409,4 +467,10 @@ NSString *  const caloriePerMinuteStr = @"Calories per Minute";
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (AppDelegate *)appDelegate
+{
+	return (AppDelegate *)[[UIApplication sharedApplication] delegate];
+}
+
 @end

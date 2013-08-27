@@ -8,6 +8,7 @@
 
 #import "DDLog.h"
 #import "DDTTYLogger.h"
+#import "PlayerDataPoint.h"
 #import "WizardClassPageViewController.h"
 #import <AudioToolbox/AudioToolbox.h>
 
@@ -26,7 +27,10 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 {
     isMultiUserChat = YES;
     //setup test data
-    //[self importTestData];
+    
+    [self deleteAllObjects:@"PlayerDataPoint"];
+    
+    [self importTestData];
     
     //setup test user
     [self setupTestUser];
@@ -687,6 +691,25 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     return persistentStoreCoordinator;
 }
 
+- (void) deleteAllObjects: (NSString *) entityDescription  {
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:entityDescription inManagedObjectContext: [self managedObjectContext]];
+    [fetchRequest setEntity:entity];
+    
+    NSError *error;
+    NSArray *items = [[self managedObjectContext ] executeFetchRequest:fetchRequest error:&error];
+    
+    
+    for (NSManagedObject *managedObject in items) {
+    	[[self managedObjectContext ] deleteObject:managedObject];
+    	NSLog(@"%@ object deleted",entityDescription);
+    }
+    if (![[self managedObjectContext ] save:&error]) {
+    	NSLog(@"Error deleting %@ - error:%@",entityDescription,error);
+    }
+    
+}
+
 #pragma mark TESTING
 
 - (void)insertDataPointWith:(NSString *)from To:(NSString *)to WithMessage:(NSString *)message
@@ -703,10 +726,47 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     [self.managedObjectContext save:nil];
     
 }
+
+
+- (void)insertPlayerDataPointWithCluster:(NSString *)cluster WithColor:(NSString *)color WithName:(NSString *)name WithPatch:(NSString *)patch WithRfid:(NSString *)rfid WithScore:(NSNumber *)score {
+    PlayerDataPoint *pdp = [NSEntityDescription insertNewObjectForEntityForName:@"PlayerDataPoint"
+                                               inManagedObjectContext:self.managedObjectContext];
+    
+    
+    
+    pdp.cluster = cluster;
+    pdp.color = color;
+    pdp.name = name;
+    pdp.patch = patch;
+    pdp.rfid = rfid;
+    pdp.score = score;
+    pdp.timestamp = [NSDate date];
+
+    
+    [self.managedObjectContext save:nil];
+}
+
+- (void)importCoreDataDefaultGraph {
+    
+    NSLog(@"Importing Core Data Default Values for Graph.......");
+    
+
+    [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#99896f" WithName:@"NPE" WithPatch:@"3" WithRfid:@"1623365" WithScore:[NSNumber numberWithInt:10000]];
+    [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#89369e" WithName:@"NPR" WithPatch:@"3" WithRfid:@"1623641" WithScore:[NSNumber numberWithInt:1000]];
+    NSLog(@"Importing Core Data Default Values for Graph Completed!");
+}
+
+
+
 - (void)importTestData {
     NSLog(@"Importing Core Data Default Values for DataPoints...");
-    [self insertDataPointWith:@"Obama" To:@"Biden" WithMessage:@"Don't fuck up"];
-    [self insertDataPointWith:@"TEster" To:@"Biden" WithMessage:@"Don't fuck up asshole"];
+    
+    [self importCoreDataDefaultGraph];
+    
+    
+    
+//    [self insertDataPointWith:@"Obama" To:@"Biden" WithMessage:@"Don't fuck up"];
+//    [self insertDataPointWith:@"TEster" To:@"Biden" WithMessage:@"Don't fuck up asshole"];
     NSLog(@"Importing Core Data Default Values for DataPoints Completed!");
 }
 

@@ -29,6 +29,7 @@
 		704B138B17BB2D7C0097FDF1 /* VizViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 704B138817BB2D7C0097FDF1 /* VizViewController.m */; };
 		7056212417C9DBB3007D117B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7056212117C9D9C3007D117B /* QuartzCore.framework */; };
 		705FC26317CC156D009D42B6 /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7056211F17C9D914007D117B /* libCorePlot-CocoaTouch.a */; };
+		705FC2B517CC1895009D42B6 /* PlayerDataPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 705FC2B417CC1895009D42B6 /* PlayerDataPoint.m */; };
 		706857E017C51A2600BF8AAF /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 706857CE17C51A2600BF8AAF /* AFHTTPClient.m */; };
 		706857E117C51A2600BF8AAF /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 706857D017C51A2600BF8AAF /* AFHTTPRequestOperation.m */; };
 		706857E217C51A2600BF8AAF /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 706857D217C51A2600BF8AAF /* AFImageRequestOperation.m */; };
@@ -239,6 +240,8 @@
 		705FC2AF17CC1626009D42B6 /* NSCoderExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSCoderExtensions.h; sourceTree = "<group>"; };
 		705FC2B017CC1626009D42B6 /* NSDecimalNumberExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDecimalNumberExtensions.h; sourceTree = "<group>"; };
 		705FC2B117CC1626009D42B6 /* NSNumberExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSNumberExtensions.h; sourceTree = "<group>"; };
+		705FC2B317CC1895009D42B6 /* PlayerDataPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlayerDataPoint.h; path = entity/PlayerDataPoint.h; sourceTree = "<group>"; };
+		705FC2B417CC1895009D42B6 /* PlayerDataPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlayerDataPoint.m; path = entity/PlayerDataPoint.m; sourceTree = "<group>"; };
 		706857CD17C51A2600BF8AAF /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
 		706857CE17C51A2600BF8AAF /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPClient.m; sourceTree = "<group>"; };
 		706857CF17C51A2600BF8AAF /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -470,6 +473,8 @@
 				703047E517C9E0040043FD7B /* DataStore.h */,
 				703047E617C9E0040043FD7B /* DataStore.m */,
 				700450FD17B5C99E000A83F1 /* DataPointModel.xcdatamodeld */,
+				705FC2B317CC1895009D42B6 /* PlayerDataPoint.h */,
+				705FC2B417CC1895009D42B6 /* PlayerDataPoint.m */,
 				7025949617C3E370006E596B /* RosterModel.h */,
 				7025949717C3E370006E596B /* RosterModel.m */,
 				7004510A17B92392000A83F1 /* DataPoint.h */,
@@ -530,6 +535,7 @@
 				700C3A61160427DA005A9E34 /* AppDelegate.m */,
 				700C3A6C160427DA005A9E34 /* MainStoryboard_iPad.storyboard */,
 				7004510317B5CA4E000A83F1 /* Entity */,
+				705FC2B617CC22DB009D42B6 /* SideBar */,
 				70AFBDCA17C7E1BA00868211 /* Delegates */,
 				70AFBDAE17C7B4B800868211 /* Library */,
 				70CEF76217C840BF00ED0CBE /* Header */,
@@ -542,8 +548,6 @@
 		700C3A58160427DA005A9E34 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				705620AF17C9D70A007D117B /* Core-plot */,
-				70CEF76117C8407B00ED0CBE /* Output */,
 				70AFBDD317C7E9DF00868211 /* sidebar_icons.xcassets */,
 				70BBBECD17C46CD0003C6D07 /* awareness_icons.xcassets */,
 				70AAC26517C31AE90018A84B /* wizard.xcassets */,
@@ -659,6 +663,23 @@
 			path = CorePlotHeaders;
 			sourceTree = "<group>";
 		};
+		705FC2B617CC22DB009D42B6 /* SideBar */ = {
+			isa = PBXGroup;
+			children = (
+				70AFBDCE17C7E4B700868211 /* SidebarViewController.h */,
+				70AFBDCF17C7E4B700868211 /* SidebarViewController.m */,
+				70AFBDCB17C7E1FA00868211 /* MainViewController.h */,
+				70AFBDCC17C7E1FA00868211 /* MainViewController.m */,
+				70AFBDC717C7D96200868211 /* MapViewController.h */,
+				70AFBDC817C7D96200868211 /* MapViewController.m */,
+				70AFBDAF17C7B52400868211 /* SWRevealViewController.h */,
+				70AFBDB017C7B52400868211 /* SWRevealViewController.m */,
+				70CEF76517C8474E00ED0CBE /* SideBarCell.h */,
+				70CEF76617C8474E00ED0CBE /* SideBarCell.m */,
+			);
+			name = SideBar;
+			sourceTree = "<group>";
+		};
 		706857CC17C51A2600BF8AAF /* AFNetworking */ = {
 			isa = PBXGroup;
 			children = (
@@ -705,18 +726,10 @@
 		70AFBDAE17C7B4B800868211 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				70CEF76117C8407B00ED0CBE /* Output */,
+				705620AF17C9D70A007D117B /* Core-plot */,
 				70BC894B17CBB35300DC0AD1 /* UIColor-Expanded.h */,
 				70BC894C17CBB35300DC0AD1 /* UIColor-Expanded.m */,
-				70AFBDCE17C7E4B700868211 /* SidebarViewController.h */,
-				70AFBDCF17C7E4B700868211 /* SidebarViewController.m */,
-				70AFBDCB17C7E1FA00868211 /* MainViewController.h */,
-				70AFBDCC17C7E1FA00868211 /* MainViewController.m */,
-				70AFBDC717C7D96200868211 /* MapViewController.h */,
-				70AFBDC817C7D96200868211 /* MapViewController.m */,
-				70AFBDAF17C7B52400868211 /* SWRevealViewController.h */,
-				70AFBDB017C7B52400868211 /* SWRevealViewController.m */,
-				70CEF76517C8474E00ED0CBE /* SideBarCell.h */,
-				70CEF76617C8474E00ED0CBE /* SideBarCell.m */,
 			);
 			name = Library;
 			sourceTree = "<group>";
@@ -1294,6 +1307,7 @@
 				700450FF17B5C99E000A83F1 /* DataPointModel.xcdatamodeld in Sources */,
 				703047E717C9E0040043FD7B /* Player.m in Sources */,
 				70B44C0117B2FD7800C47B61 /* NSDate+XMPPDateTimeProfiles.m in Sources */,
+				705FC2B517CC1895009D42B6 /* PlayerDataPoint.m in Sources */,
 				7025949B17C3FFE7006E596B /* WizardStudentPageViewController.m in Sources */,
 				706857E817C51A2600BF8AAF /* UIImageView+AFNetworking.m in Sources */,
 				70B44BE417B2F9F700C47B61 /* XMPPRoom.xcdatamodeld in Sources */,
