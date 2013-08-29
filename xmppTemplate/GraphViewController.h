@@ -5,8 +5,7 @@
 
 @interface GraphViewController : UIViewController <CPTBarPlotDataSource, CPTBarPlotDelegate> {
     
-    CPTGraph *graph;
-    CPTXYPlotSpace *plotSpace;
+
     
     bool isRUNNING;
     bool isGAME_STOPPED;
@@ -21,18 +20,19 @@
     
     NSManagedObjectContext *managedObjectContext;
     NSArray *playerDataPoints;
+    
+
+    
 }
 
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
 @property (nonatomic, strong) IBOutlet CPTGraphHostingView *graphView;
-@property (nonatomic, strong) CPTBarPlot *trianglePlot;
 @property (nonatomic, strong) CPTPlotSpaceAnnotation *scoreAnnotation;
 
 //ploting methods
 -(void)initPlot;
--(void)configureGraph;
--(void)configurePlots;
--(void)configureAxes;
+-(void)setupGraph;
+-(void)setupAxes;
 
 @end

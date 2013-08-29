@@ -538,7 +538,6 @@
 				705FC2B617CC22DB009D42B6 /* SideBar */,
 				70AFBDCA17C7E1BA00868211 /* Delegates */,
 				70AFBDAE17C7B4B800868211 /* Library */,
-				70CEF76217C840BF00ED0CBE /* Header */,
 				700C3A58160427DA005A9E34 /* Supporting Files */,
 			);
 			name = Display;
@@ -730,6 +729,8 @@
 				705620AF17C9D70A007D117B /* Core-plot */,
 				70BC894B17CBB35300DC0AD1 /* UIColor-Expanded.h */,
 				70BC894C17CBB35300DC0AD1 /* UIColor-Expanded.m */,
+				70B44BF717B2FBCB00C47B61 /* XMPPFramework.h */,
+				70E866EF17C66279003C5BD2 /* Constants.h */,
 			);
 			name = Library;
 			sourceTree = "<group>";
@@ -1156,15 +1157,6 @@
 				70E866F117C66E76003C5BD2 /* fishhook.h */,
 			);
 			name = Output;
-			sourceTree = "<group>";
-		};
-		70CEF76217C840BF00ED0CBE /* Header */ = {
-			isa = PBXGroup;
-			children = (
-				70B44BF717B2FBCB00C47B61 /* XMPPFramework.h */,
-				70E866EF17C66279003C5BD2 /* Constants.h */,
-			);
-			name = Header;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

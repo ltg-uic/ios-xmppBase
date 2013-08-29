@@ -32,7 +32,7 @@
 {
     if(self = [super initWithCoder:aDecoder])
     {
-        [self retrieveClassDataRequest];
+       // [self retrieveClassDataRequest];
 
     }
     return self;

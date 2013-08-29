@@ -10,13 +10,17 @@
 #define hg_ios_class_display_Constants_h
 
 
-#define ROOM_JID        @"hg-test@conference.ltg.evl.uic.edu"
-#define XMPP_HOSTNAME   @"ltg.evl.uic.edu"
-#define XMPP_JID        @"tester@ltg.evl.uic.edu"
-#define XMPP_TAIL       @"@ltg.evl.uic.edu"
+#define ROOM_JID            @"hg-test@conference.ltg.evl.uic.edu"
+#define XMPP_HOSTNAME       @"ltg.evl.uic.edu"
+#define XMPP_JID            @"tester@ltg.evl.uic.edu"
+#define XMPP_TAIL           @"@ltg.evl.uic.edu"
 
-#define kXMPPmyJID      @"kXMPPmyJID"
-#define kXMPPmyPassword @"kXMPPmyPassword"
+#define kXMPPmyJID          @"kXMPPmyJID"
+#define kXMPPmyPassword     @"kXMPPmyPassword"
+#define harvestPlotId       @"harvest_plot"
+#define graphViewTitle      @"Harvest Graph"
+#define helveticaNeueMedium @"HelveticaNeue-Medium"
+#define helveticaBold       @"Helvetica-Bold"
 
 
 #endif

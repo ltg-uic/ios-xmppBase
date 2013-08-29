@@ -23,8 +23,19 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 
 #pragma mark APPDELEGATE METHODS
 
+-(void)customizeGlobalAppearance {
+    //[[UINavigationBar appearance] setValue:helveticaNeueMedium forKey:UITextAttributeFont];
+   // [[UINavigationBar appearance] setValue:[UIColor blackColor] forKey:NSForegroundColorAttributeName];
+
+}
+
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+    [self customizeGlobalAppearance];
+    
+    
     isMultiUserChat = YES;
     //setup test data
     
@@ -750,9 +761,31 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     
     NSLog(@"Importing Core Data Default Values for Graph.......");
     
+    
+//    [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#89369e" WithName:@"NPR" WithPatch:@"3" WithRfid:@"1623641" WithScore:[NSNumber numberWithInt:1000]];
+//    [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#89369e" WithName:@"NPR" WithPatch:@"3" WithRfid:@"1623641" WithScore:[NSNumber numberWithInt:500]];
 
-    [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#99896f" WithName:@"NPE" WithPatch:@"3" WithRfid:@"1623365" WithScore:[NSNumber numberWithInt:10000]];
-    [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#89369e" WithName:@"NPR" WithPatch:@"3" WithRfid:@"1623641" WithScore:[NSNumber numberWithInt:1000]];
+//    
+    [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#89369e" WithName:@"NPR" WithPatch:@"3" WithRfid:@"1623641" WithScore:[NSNumber numberWithInt:(arc4random() %(10000)-100)]];
+    [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#89369e" WithName:@"NOI" WithPatch:@"3" WithRfid:@"1623641" WithScore:[NSNumber numberWithInt:(arc4random() %(10000)-100)]];
+    [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#89369e" WithName:@"NLO" WithPatch:@"3" WithRfid:@"1623641" WithScore:[NSNumber numberWithInt:(arc4random() %(10000)-100)]];
+    [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#89369e" WithName:@"NUI" WithPatch:@"3" WithRfid:@"1623641" WithScore:[NSNumber numberWithInt:(arc4random() %(10000)-100)]];
+    [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#89369e" WithName:@"NER" WithPatch:@"3" WithRfid:@"1623641" WithScore:[NSNumber numberWithInt:(arc4random() %(10000)-100)]];
+    [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#89369e" WithName:@"NWE" WithPatch:@"3" WithRfid:@"1623641" WithScore:[NSNumber numberWithInt:(arc4random() %(10000)-100)]];
+    [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#89369e" WithName:@"NQW" WithPatch:@"3" WithRfid:@"1623641" WithScore:[NSNumber numberWithInt:(arc4random() %(10000)-100)]];
+    [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#89369e" WithName:@"NSE" WithPatch:@"3" WithRfid:@"1623641" WithScore:[NSNumber numberWithInt:(arc4random() %(10000)-100)]];
+    [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#89369e" WithName:@"NXS" WithPatch:@"3" WithRfid:@"1623641" WithScore:[NSNumber numberWithInt:(arc4random() %(10000)-100)]];
+    [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#89369e" WithName:@"NLP" WithPatch:@"3" WithRfid:@"1623641" WithScore:[NSNumber numberWithInt:(arc4random() %(10000)-100)]];
+//    [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#89369e" WithName:@"NPR" WithPatch:@"3" WithRfid:@"1623641" WithScore:[NSNumber numberWithInt:(arc4random() %(10000)-100)]];
+//    [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#89369e" WithName:@"NPR" WithPatch:@"3" WithRfid:@"1623641" WithScore:[NSNumber numberWithInt:(arc4random() %(10000)-100)]];
+//    [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#89369e" WithName:@"NPR" WithPatch:@"3" WithRfid:@"1623641" WithScore:[NSNumber numberWithInt:(arc4random() %(10000)-100)]];
+//    [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#89369e" WithName:@"NPR" WithPatch:@"3" WithRfid:@"1623641" WithScore:[NSNumber numberWithInt:(arc4random() %(10000)-100)]];
+//    [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#89369e" WithName:@"NPR" WithPatch:@"3" WithRfid:@"1623641" WithScore:[NSNumber numberWithInt:(arc4random() %(10000)-100)]];
+//    [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#89369e" WithName:@"NPR" WithPatch:@"3" WithRfid:@"1623641" WithScore:[NSNumber numberWithInt:(arc4random() %(10000)-100)]];
+//    [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#89369e" WithName:@"NPR" WithPatch:@"3" WithRfid:@"1623641" WithScore:[NSNumber numberWithInt:(arc4random() %(10000)-100)]];
+//    [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#89369e" WithName:@"NPR" WithPatch:@"3" WithRfid:@"1623641" WithScore:[NSNumber numberWithInt:(arc4random() %(10000)-100)]];
+//    [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#89369e" WithName:@"NPR" WithPatch:@"3" WithRfid:@"1623641" WithScore:[NSNumber numberWithInt:(arc4random() %(10000)-100)]];
+//    [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#89369e" WithName:@"NPR" WithPatch:@"3" WithRfid:@"1623641" WithScore:[NSNumber numberWithInt:(arc4random() %(10000)-100)]];
     NSLog(@"Importing Core Data Default Values for Graph Completed!");
 }
 
