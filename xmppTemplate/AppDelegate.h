@@ -6,10 +6,6 @@
 //  Copyright (c) 2012 Learning Technologies Group. All rights reserved.
 
 #import <UIKit/UIKit.h>
-#import "XMPPFramework.h"
-#import "XMPPRoom.h"
-#import "XMPPMessage+XEP0045.h"
-#import "DataPoint.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, XMPPRoomStorage> {
     NSString *password;
@@ -32,6 +28,8 @@
 @property (nonatomic, strong) XMPPStream *xmppStream;
 @property (nonatomic, strong) XMPPReconnect *xmppReconnect;
 @property (nonatomic, strong) XMPPRoom *xmppRoom;
+@property (nonatomic, retain) NSMutableArray *patchInfo;
+
 
 
 @property (nonatomic, weak) id <XMPPBaseNewMessageDelegate> xmppBaseNewMessageDelegate;
@@ -52,5 +50,8 @@
 
 - (void)goOnline;
 - (void)goOffline;
+
+-(NSArray *)getAllPlayerDataPoints;
+-(void)updateScores;
 
 @end

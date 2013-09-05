@@ -3,26 +3,15 @@
 #import "CorePlot-CocoaTouch.h"
 
 
-@interface GraphViewController : UIViewController <CPTBarPlotDataSource, CPTBarPlotDelegate> {
-    
-
-    
-    bool isRUNNING;
-    bool isGAME_STOPPED;
-    bool hasGraph;
-    
+@interface GraphViewController : UIViewController <CPTBarPlotDataSource, CPTBarPlotDelegate, XMPPBaseNewMessageDelegate> {
     
     UILabel *feedRatioLabel;
-    NSTimer *intervalTimer;
+
     NSDate *startDate;
     NSMutableArray *currentRFIDS;
     NSNumber *feedRatio;
-    
-    NSManagedObjectContext *managedObjectContext;
-    NSArray *playerDataPoints;
-    
 
-    
+
 }
 
 
@@ -34,5 +23,6 @@
 -(void)initPlot;
 -(void)setupGraph;
 -(void)setupAxes;
+- (IBAction)fireTimer:(id)sender;
 
 @end

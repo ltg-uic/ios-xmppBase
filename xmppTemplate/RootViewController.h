@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "XMPPBaseOnlineDelegate.h"
 #import "XMPPBaseNewMessageDelegate.h"
-#import "DataPoint.h"
 
 
 @interface RootViewController : UIViewController<XMPPBaseOnlineDelegate,XMPPBaseNewMessageDelegate> {
@@ -21,5 +20,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *red_awareness;
 @property (weak, nonatomic) IBOutlet UIImageView *green_awareness;
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
+
 
 @end

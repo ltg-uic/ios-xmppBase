@@ -8,16 +8,34 @@
 
 #import "GraphViewController.h"
 #import "PlayerDataPoint.h"
+#import "PatchInfo.h"
+#import "PatchPlayerInfo.h"
 #import "UIColor-Expanded.h"
 
 @interface GraphViewController() {
 
+    //core data
+    NSArray *playerDataPoints;
+    NSArray *patchInfos;
+    
+    NSTimer *intervalTimer;
+    
     //corePlot
     CPTColor *blueColor;
     CPTColor *redColor;
     CPTXYGraph *graph;
     CPTBarPlot *harvestBarPlot;
     CPTXYPlotSpace *plotSpace;
+    
+    CGFloat minNumPlayers;
+    CGFloat maxNumPlayers;
+    
+    CGFloat minYield;
+    CGFloat maxYield;
+    
+    bool isRUNNING;
+    bool isGAME_STOPPED;
+    bool graphNeedsReload;
 }
 
 @end
@@ -29,51 +47,54 @@
 - (id)initWithCoder:(NSCoder *)aDecoder {
     if(self = [super initWithCoder:aDecoder])
     {
-        [self performDataFetch];
+        playerDataPoints = [self.appDelegate getAllPlayerDataPoints];
+        [self setupDelegates];
+      //  [self performPlayerDataFetch];
+       
         
     }
     return self;
 }
 
-
-#pragma mark - Fetching
-
-- (void)performDataFetch
-{
-    managedObjectContext = [[self appDelegate] managedObjectContext];
-    // 1 - Decide what Entity you want
-    NSString *entityName = @"PlayerDataPoint"; // Put your entity name here
-    NSLog(@"Setting up a Fetched Results Controller for the Entity named %@", entityName);
-    
-    NSEntityDescription *entityDescription = [NSEntityDescription
-                                              entityForName:entityName inManagedObjectContext:managedObjectContext];
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    [request setEntity:entityDescription];
-    
-    
-    NSError *error;
-    playerDataPoints = [managedObjectContext executeFetchRequest:request error:&error];
-    if (playerDataPoints == nil)
-    {
-         NSLog(@"ERRORRRR FETCHING: %@", [error localizedDescription]);
-    } else {
-        for (PlayerDataPoint  *pdp in playerDataPoints) {
-            NSLog(@"PDP !!!!! %@", pdp.name);
-        }
-    }
-    
-    
-    // 4 - Sort it if you want
-    request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"name"
-                                                                                     ascending:YES
-                                                                                      selector:@selector(localizedCaseInsensitiveCompare:)]];
-                
+-(void)setupDelegates {
+    self.appDelegate.xmppBaseNewMessageDelegate = self;
 }
 
+#pragma mark - XMPP New Message Delegate
 
+- (void)newMessageReceived:(NSDictionary *)messageContent {
+    NSLog(@"NEW MESSAGE RECIEVED");
+}
 
+- (void)replyMessageTo:(NSString *)from {
+    
+}
 
+#pragma mark - TIMER
 
+-(void)startTimer {
+    if( intervalTimer == nil)
+        intervalTimer = [NSTimer scheduledTimerWithTimeInterval:.2
+                                                         target:self
+                                                       selector:@selector(updateGraph)
+                                                       userInfo:nil
+                                                        repeats:YES];
+
+}
+
+-(void)stopTimer {
+    if( intervalTimer != nil)
+        [intervalTimer invalidate];
+    intervalTimer = nil;
+
+}
+
+#pragma mark - VIEWS
+
+-(void)viewDidAppear:(BOOL)animated {
+    [self initPlot];
+
+}
 
 - (void)viewDidLoad
 {
@@ -94,8 +115,9 @@
     //[self.graphView.];
     
     //[graph reloadData];
-    [self initPlot];
+    
 }
+
 
 #pragma mark - Chart behavior
 
@@ -105,6 +127,13 @@
     
     blueColor = [CPTColor colorWithComponentRed:67.0f/255.0f green:155.0f/255.0f blue:255.0f/255.0f alpha:1.0];
     redColor = [CPTColor colorWithComponentRed:198.0f/255.0f green:42.0f/255.0f blue:0.0f/255.0f alpha:1.0];
+    
+    minNumPlayers = -0.5f;
+    maxNumPlayers = [playerDataPoints count];
+    
+    minYield = 0.0f;
+    maxYield = 30000.0f;
+    
     
     [self setupGraph];
     [self setupAxes];
@@ -135,12 +164,7 @@
     graph.plotAreaFrame.paddingBottom = 0.0;
     
     plotSpace = (CPTXYPlotSpace *) graph.defaultPlotSpace;
-    
-    CGFloat minNumPlayers = -0.5f;
-    CGFloat maxNumPlayers = [playerDataPoints count];
-    
-    CGFloat minYield = 0.0f;
-    CGFloat maxYield = 10000.0f;
+
     
     plotSpace.xRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(minYield) length:CPTDecimalFromFloat(maxYield)];
     plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(minNumPlayers) length:CPTDecimalFromFloat(maxNumPlayers)];
@@ -224,8 +248,39 @@
         [newAxisLabels addObject:newLabel];
     }
     y.axisLabels = newAxisLabels;
-    graph.axisSet.axes = @[y];
+    
+    
+    
+    CPTXYAxis *x = axisSet.xAxis;
+    
+    x.plotSpace                   = graph.defaultPlotSpace;
+    x.labelingPolicy              = CPTAxisLabelingPolicyNone;
+    x.axisLineStyle               = nil;
+    x.majorTickLineStyle          = nil;
+    x.minorTickLineStyle          = nil;
+    x.majorTickLength             = 4.0f;
+    x.minorTickLength             = 2.0f;
+    x.tickDirection               = CPTSignNegative;
 
+    x.majorIntervalLength         = CPTDecimalFromString(@"1");
+    x.orthogonalCoordinateDecimal = CPTDecimalFromString(@"1");
+
+    
+    
+    graph.axisSet.axes = @[x,y];
+
+    
+}
+
+- (IBAction)fireTimer:(id)sender {
+    
+    if( isRUNNING == NO) {
+        isRUNNING = YES;
+        [self startTimer];
+    } else {
+        isRUNNING = NO;
+        [self stopTimer];
+    }
     
 }
 
@@ -239,6 +294,9 @@
 	if ((fieldEnum == CPTBarPlotFieldBarTip) && (index < [playerDataPoints count])) {
 		if ([plot.identifier isEqual:harvestPlotId]) {
             PlayerDataPoint *pdp = [playerDataPoints objectAtIndex:index];
+            
+            NSLog(@"SCORES %f", [pdp.score floatValue]);
+            
             return pdp.score;
         }
 	}
@@ -287,6 +345,25 @@
     }
     return [CPTFill fillWithColor:redColor];
     
+}
+
+
+#pragma update
+
+-(void)updateGraph {
+    
+    if( isRUNNING && playerDataPoints.count > 0 ) {
+        
+        [self.  appDelegate updateScores];
+        
+        for (PlayerDataPoint *pdp in playerDataPoints) {
+            if( [pdp.name isEqual:@"XPR"]) {
+                pdp.score = [NSNumber numberWithFloat:[pdp.score floatValue] + 10];
+            }
+        }
+        
+        [graph reloadData];
+    }
 }
 
 - (void)didReceiveMemoryWarning

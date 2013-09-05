@@ -1,10 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3389" systemVersion="12E55" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="DataPoint" representedClassName="DataPoint" syncable="YES">
-        <attribute name="from" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="message" optional="YES" attributeType="String" syncable="YES"/>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3394" systemVersion="12E55" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="ConfigurationInfo" representedClassName="ConfigurationInfo" syncable="YES">
+        <attribute name="harvest_calculator_bout_length_in_minutes" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="run_id" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="patches" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="PatchInfo" inverseName="configurationInfo" inverseEntity="PatchInfo" syncable="YES"/>
+    </entity>
+    <entity name="EventInfo" representedClassName="EventInfo" syncable="YES">
+        <attribute name="event_type" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rfid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="score" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="timestamp" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="to" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="PatchInfo" representedClassName="PatchInfo" syncable="YES">
+        <attribute name="patch_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="richness" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="richness_per_minute" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="richness_per_second" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="configurationInfo" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="ConfigurationInfo" inverseName="patches" inverseEntity="ConfigurationInfo" syncable="YES"/>
+    </entity>
+    <entity name="PatchPlayerInfo" representedClassName="PatchPlayerInfo" syncable="YES">
+        <attribute name="patch_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rfid" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="PlayerDataPoint" representedClassName="PlayerDataPoint" syncable="YES">
         <attribute name="cluster" optional="YES" attributeType="String" syncable="YES"/>
@@ -15,8 +31,16 @@
         <attribute name="score" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="timestamp" optional="YES" attributeType="Date" syncable="YES"/>
     </entity>
+    <fetchRequest name="allPatchInfos" entity="PatchInfo"/>
+    <fetchRequest name="allPlayerDataPoints" entity="PlayerDataPoint"/>
+    <fetchRequest name="playerDataPointWithRFID" entity="PlayerDataPoint" predicateString="rfid == rfid"/>
+    <fetchRequest name="playerPatchInfosWithPatchName" entity="PatchPlayerInfo" predicateString="patch_name == patch_name"/>
+    <fetchRequest name="playerPatchInfoWithRFID" entity="PatchPlayerInfo" predicateString="rfid == rfid"/>
     <elements>
-        <element name="DataPoint" positionX="0" positionY="0" width="128" height="105"/>
-        <element name="PlayerDataPoint" positionX="-227" positionY="-126" width="128" height="148"/>
+        <element name="EventInfo" positionX="36" positionY="99" width="128" height="105"/>
+        <element name="PatchInfo" positionX="-486" positionY="261" width="128" height="118"/>
+        <element name="PatchPlayerInfo" positionX="-245" positionY="182" width="128" height="73"/>
+        <element name="PlayerDataPoint" positionX="-119" positionY="-27" width="128" height="148"/>
+        <element name="ConfigurationInfo" positionX="-342" positionY="-9" width="128" height="88"/>
     </elements>
 </model>

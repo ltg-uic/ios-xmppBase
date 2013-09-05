@@ -32,7 +32,7 @@
 {
     if(self = [super initWithCoder:aDecoder])
     {
-       // [self retrieveClassDataRequest];
+       
 
     }
     return self;
@@ -41,8 +41,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    
 
 }
+
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self retrieveClassDataRequest];
+}
+
 
 - (void)didReceiveMemoryWarning
 {
