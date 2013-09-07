@@ -49,6 +49,8 @@
     [[NSUserDefaults standardUserDefaults] setObject:_choosen_student forKey:kXMPPmyPassword];
     
     [self dismissViewControllerAnimated:YES completion:^(void){
+        
+        [[self appDelegate] setupConfigurationAndRosterWithRunId:@"period-1"];
         [[self appDelegate] disconnect];
         [[self appDelegate] connect];
     }];

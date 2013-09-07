@@ -1,9 +1,16 @@
 
 #import "SidebarViewController.h"
 #import "SWRevealViewController.h"
+#import "GraphViewController.h"
 #import "SideBarCell.h"
 
-@interface SidebarViewController ()
+@interface SidebarViewController () {
+    
+    BOOL isOnline;
+    UIImage *onlineImage;
+    UIImage *offlineImage;
+    NSString *xmppUsername;
+}
 
 @property (nonatomic, strong) NSArray *menuItems;
 @end
@@ -23,6 +30,10 @@
     if(self = [super initWithCoder:aDecoder])
     {
         self.appDelegate.xmppBaseOnlineDelegate = self;
+        
+        onlineImage  = [UIImage imageNamed:@"on"];
+        offlineImage = [UIImage imageNamed:@"off"];
+        
         //self.appDelegate.xmppBaseNewMessageDelegate = self;
     }
     return self;
@@ -32,7 +43,7 @@
 {
     [super viewDidLoad];
     
-    _menuItems = @[@"viz_item", @"graph_item",@"map_item", @"mike_item", @"yield_item",  @"settings_title_item",@"settings_item", @"login_item", @"blank_item", @"blank_item"];
+    _menuItems = @[@"viz_item", @"graph_item",@"map_item",  @"settings_title_item", @"login_item", @"blank_item"];
     self.clearsSelectionOnViewWillAppear = NO;
 }
 
@@ -43,12 +54,15 @@
     UINavigationController *destViewController = (UINavigationController*)segue.destinationViewController;
     destViewController.title = [[_menuItems objectAtIndex:indexPath.row] capitalizedString];
     
-//    // Set the photo if it navigates to the PhotoView
-//    if ([segue.identifier isEqualToString:@"showPhoto"]) {
-//        PhotoViewController *photoController = (PhotoViewController*)segue.destinationViewController;
+    //Prefetch the data
+    if ([segue.identifier isEqualToString:@"showGraph"]) {
+        GraphViewController *graphViewController = (GraphViewController*)segue.destinationViewController;
+        [graphViewController fetchAllPlayerDataPoints];
+        
+       // graphViewController per
 //        NSString *photoFilename = [NSString stringWithFormat:@"%@_photo.jpg", [_menuItems objectAtIndex:indexPath.row]];
 //        photoController.photoFilename = photoFilename;
-//    }
+    }
     
     if ( [segue isKindOfClass: [SWRevealViewControllerSegue class]] ) {
         SWRevealViewControllerSegue *swSegue = (SWRevealViewControllerSegue*) segue;
@@ -75,25 +89,14 @@
 #pragma mark - XMPP Online Delegate
 
 - (void)isAvailable:(BOOL)available {
+    isOnline = available;
     
-    int index = [_menuItems indexOfObject:@"login_item"];
-    
-    NSIndexPath* indexPath = [NSIndexPath indexPathForRow:index inSection:0];
-    SideBarCell *loginCell = (SideBarCell *)[self.tableView cellForRowAtIndexPath:indexPath];
-
-    
-    if( available ) {
-        NSString *userName = [[NSUserDefaults standardUserDefaults] objectForKey:kXMPPmyJID ];
-        
-        loginCell.label.text = [[[XMPPJID jidWithString:userName] user ] capitalizedString ];
-        loginCell.imageView.image = [UIImage imageNamed:@"on.png"];
-
+    if( isOnline ) {
+        xmppUsername = [[NSUserDefaults standardUserDefaults] objectForKey:kXMPPmyJID ];
+        xmppUsername = [[[XMPPJID jidWithString:xmppUsername] user ] capitalizedString ];
     } else {
-        loginCell.label.text = @"login needed";
-        loginCell.imageView.image = [UIImage imageNamed:@"off.png"];
+        xmppUsername = @"PRESS HERE TO LOGIN";
     }
- 
-    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 #pragma mark - XMPP New Message Delegate
@@ -114,7 +117,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 8;
+    return [_menuItems count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -125,9 +128,23 @@
         cellIdentifier = @"blank_item";
     }
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-    
-    return cell;
+    int loginIndex = [_menuItems indexOfObject:@"login_item"];
+    if( loginIndex == indexPath.row ) {
+        SideBarCell *loginCell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+        if( isOnline ) {            
+            loginCell.label.text = xmppUsername;
+            [loginCell.leftImageView setImage:onlineImage];
+            
+        } else {
+            loginCell.label.text = xmppUsername;
+            [loginCell.leftImageView setImage:offlineImage];
+
+        }
+        return loginCell;
+    } else {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+        return cell;
+    }
 }
 
 - (AppDelegate *)appDelegate

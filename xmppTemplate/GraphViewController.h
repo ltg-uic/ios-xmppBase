@@ -23,6 +23,7 @@
 -(void)initPlot;
 -(void)setupGraph;
 -(void)setupAxes;
-- (IBAction)fireTimer:(id)sender;
+-(IBAction)fireTimer:(id)sender;
+-(void)fetchAllPlayerDataPoints;
 
 @end

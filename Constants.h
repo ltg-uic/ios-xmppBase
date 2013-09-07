@@ -21,6 +21,8 @@
 #define graphViewTitle      @"Harvest Graph"
 #define helveticaNeueMedium @"HelveticaNeue-Medium"
 #define helveticaBold       @"Helvetica-Bold"
+#define ARRIVED             @"ARRIVED"
+#define DEPARTED            @"DEPARTED"
 
 
 #endif

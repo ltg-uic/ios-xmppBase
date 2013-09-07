@@ -9,14 +9,15 @@
 #import "GraphViewController.h"
 #import "PlayerDataPoint.h"
 #import "PatchInfo.h"
-#import "PatchPlayerInfo.h"
 #import "UIColor-Expanded.h"
 
 @interface GraphViewController() {
 
     //core data
     NSArray *playerDataPoints;
-    NSArray *patchInfos;
+    NSMutableDictionary *patchPlayerInfos;
+    
+    NSSet *patchInfos;
     
     NSTimer *intervalTimer;
     
@@ -47,9 +48,26 @@
 - (id)initWithCoder:(NSCoder *)aDecoder {
     if(self = [super initWithCoder:aDecoder])
     {
-        playerDataPoints = [self.appDelegate getAllPlayerDataPoints];
+        
+        playerDataPoints = [[self appDelegate] playerDataPoints];
+        patchInfos = [[[self appDelegate] configurationInfo] patches];
+
+//        PatchInfo *pi = [[PatchInfo alloc] init];
+//        pi.patch_id = @"patch-1";
+//        pi.richness = 400.0f;
+//        pi.richness_per_second = 5.0f;
+//        
+//        [patchInfos addObject:pi];
+//        
+//        pi = [[PatchInfo alloc] init];
+//        
+//        pi.patch_id = @"patch-2";
+//        pi.richness = 600.0f;
+//        pi.richness_per_second = 8.0f;
+//        
+//        [patchInfos addObject:pi];
+        
         [self setupDelegates];
-      //  [self performPlayerDataFetch];
        
         
     }
@@ -58,6 +76,10 @@
 
 -(void)setupDelegates {
     self.appDelegate.xmppBaseNewMessageDelegate = self;
+}
+
+-(void)fetchAllPlayerDataPoints {
+    //playerDataPoints = [self.appDelegate playerDataPoints];
 }
 
 #pragma mark - XMPP New Message Delegate
@@ -354,7 +376,33 @@
     
     if( isRUNNING && playerDataPoints.count > 0 ) {
         
-        [self.  appDelegate updateScores];
+        //get all the current arrivals and departures
+        patchPlayerInfos = [[self appDelegate] patchPlayerInfos];
+        
+        
+        NSArray *rfidKeys = [patchPlayerInfos allKeys];
+        
+        for( NSString *rfid in rfidKeys ) {
+            //find the patch where she is at
+            NSString *patch_id = [patchPlayerInfos objectForKey:rfid];
+            
+            
+            //get the players score
+            NSPredicate * playerPredicate = [NSPredicate predicateWithFormat:@"rfid = %@", rfid];
+            PlayerDataPoint *pdp = [[playerDataPoints filteredArrayUsingPredicate:playerPredicate] objectAtIndex: 0 ];
+
+            
+            //calculate the new score
+            float playerOldScore = [pdp.score floatValue];
+            
+            
+        
+            
+            
+            
+            
+        }
+        
         
         for (PlayerDataPoint *pdp in playerDataPoints) {
             if( [pdp.name isEqual:@"XPR"]) {

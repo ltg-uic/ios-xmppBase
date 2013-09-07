@@ -6,11 +6,14 @@
 //  Copyright (c) 2012 Learning Technologies Group. All rights reserved.
 
 #import <UIKit/UIKit.h>
+#import "ConfigurationInfo.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, XMPPRoomStorage> {
     NSString *password;
     NSMutableDictionary *lastMessageDict;
 
+    
+    
 	BOOL allowSelfSignedCertificates;
 	BOOL allowSSLHostNameMismatch;
 	BOOL isXmppConnected;
@@ -20,7 +23,8 @@
     NSManagedObjectContext *managedObjectContext;
     NSManagedObjectModel *managedObjectModel;
     NSPersistentStoreCoordinator *persistentStoreCoordinator;
-   
+    
+    
 
 }
 
@@ -28,7 +32,7 @@
 @property (nonatomic, strong) XMPPStream *xmppStream;
 @property (nonatomic, strong) XMPPReconnect *xmppReconnect;
 @property (nonatomic, strong) XMPPRoom *xmppRoom;
-@property (nonatomic, retain) NSMutableArray *patchInfo;
+@property (nonatomic, retain) NSMutableDictionary *patchPlayerInfos;
 
 
 
@@ -36,6 +40,9 @@
 @property (nonatomic, weak) id <XMPPBaseOnlineDelegate>     xmppBaseOnlineDelegate;
 @property (nonatomic, strong, readonly) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
+@property (strong, nonatomic) NSArray *playerDataPoints;
+@property (strong, nonatomic) ConfigurationInfo *configurationInfo;
+
 
 
 
@@ -51,7 +58,8 @@
 - (void)goOnline;
 - (void)goOffline;
 
--(NSArray *)getAllPlayerDataPoints;
+-(NSArray *)getAllConfigurationsInfos;
+-(void)setupConfigurationAndRosterWithRunId:(NSString *)run_id;
 -(void)updateScores;
 
 @end
