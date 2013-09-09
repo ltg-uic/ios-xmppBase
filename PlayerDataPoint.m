@@ -7,6 +7,7 @@
 //
 
 #import "PlayerDataPoint.h"
+#import "ConfigurationInfo.h"
 
 
 @implementation PlayerDataPoint
@@ -17,6 +18,6 @@
 @dynamic currentPatch;
 @dynamic rfid;
 @dynamic score;
-@dynamic timestamp;
+@dynamic configurationInfo;
 
 @end

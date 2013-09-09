@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+@class ConfigurationInfo;
 
 @interface PlayerDataPoint : NSManagedObject
 
@@ -18,6 +19,6 @@
 @property (nonatomic, retain) NSString * currentPatch;
 @property (nonatomic, retain) NSString * rfid;
 @property (nonatomic, retain) NSNumber * score;
-@property (nonatomic, retain) NSDate * timestamp;
+@property (nonatomic, retain) ConfigurationInfo *configurationInfo;
 
 @end

@@ -16,6 +16,7 @@
 #import <AudioToolbox/AudioToolbox.h>
 #import "SBJsonParser.h"
 #import "AFNetworking.h"
+#import "UIColor-Expanded.h"
 
 
 // Log levels: off, error, warn, info, verbose
@@ -55,7 +56,6 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     //setup test data
     
     [self deleteAllObjects:@"PlayerDataPoint"];
-    [self deleteAllObjects:@"PatchPlayerInfo"];
     [self deleteAllObjects:@"PatchInfo"];
     [self deleteAllObjects:@"ConfigurationInfo"];
     
@@ -573,26 +573,24 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
                 NSArray *departures = [payload objectForKey:@"departures"];
                 
                 if( arrivals != nil && arrivals.count > 0 ) {
-                
-                    if( _playerDataPoints == nil )
-                        _playerDataPoints = [self getAllPlayerDataPoints];
                     
                     for (NSString *rfid in arrivals) {
-                        PlayerDataPoint *player = [[_playerDataPoints filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"rfid == %@", rfid]] objectAtIndex:0];
+                        PlayerDataPoint *player = [[_playerDataPoints filteredArrayUsingPredicate: [NSPredicate predicateWithFormat:@"rfid == %@", rfid] ] objectAtIndex:0];
                         
                         //set the arrival
-                        [player setValue:destination forKey:@"PlayerDataPoint.currentPatch"];
-                        
+                        //[player setValue:destination forKey:@"PlayerDataPoint.currentPatch"];
+                        player.currentPatch = destination;
 
                     }
                 }
                 
                 if( departures != nil && departures.count > 0 ) {
                     for (NSString *rfid in departures) {
-                        PlayerDataPoint *player = [[_playerDataPoints filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"rfid == %@", rfid]] objectAtIndex:0];
+                        PlayerDataPoint *player = [[_playerDataPoints filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"rfid == %@", rfid] ] objectAtIndex:0];
                         
                         //set the arrival
-                        [player setValue:nil forKey:@"PlayerDataPoint.currentPatch"];
+                        //[player setValue:nil forKey:@"PlayerDataPoint.currentPatch"];
+                        player.currentPatch = nil;
                     }
                 }
             }
@@ -740,7 +738,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 
 #pragma mark CORE DATA INSERTS
 
-- (void)insertPlayerDataPointWithCluster:(NSString *)cluster WithColor:(NSString *)color WithName:(NSString *)name WithPatch:(NSString *)patch WithRfid:(NSString *)rfid WithScore:(NSNumber *)score {
+-(PlayerDataPoint *)insertPlayerDataPointWithCluster:(NSString *)cluster WithColor:(NSString *)color WithName:(NSString *)name WithPatch:(NSString *)patch WithRfid:(NSString *)rfid WithScore:(NSNumber *)score {
     PlayerDataPoint *pdp = [NSEntityDescription insertNewObjectForEntityForName:@"PlayerDataPoint"
                                                inManagedObjectContext:self.managedObjectContext];
     pdp.cluster = cluster;
@@ -749,7 +747,16 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     pdp.currentPatch = patch;
     pdp.rfid = rfid;
     pdp.score = score;
-    pdp.timestamp = [NSDate date];
+    
+    UIColor *hexColor = [UIColor colorWithHexString:color];
+    
+    if( colorMap == nil ) {
+        colorMap = [[NSMutableDictionary alloc] init];
+    }
+    
+    [colorMap setObject:hexColor forKey:color];
+    
+    return pdp;
 }
 
 -(PatchInfo *)createPatchInfoWithPatchId: (NSString *)patch_id withRichness:(float) richness withRichnessPerSecond: (float)richness_per_second withRichnessPerMinute:(float)richness_per_minute {
@@ -763,7 +770,6 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     pi.richness_per_minute = richness_per_minute;
     return pi;
 }
-
 
 -(ConfigurationInfo *)createConfigurationWithRunId: (NSString *)run_id withHarvestCalculatorBoutLengthInMinutes:(float)harvest_calculator_bout_length_in_minutes {
     
@@ -811,12 +817,8 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
                                                  
                                                  
                                                  //load in the roster
-                                                 [self importTestData];
+                                                 [self importCoreDataDefaultGraphWithConfigurationInfo:ci];
                                                  [self.managedObjectContext save:nil];
-                                                 
-                                                 //setup the playerDataPoints for other controllers
-                                                 _playerDataPoints = [self getAllPlayerDataPoints];
-
                                              }
                                              
                                              
@@ -899,92 +901,77 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     return [results objectAtIndex:0];
 }
 
--(void)updateScores {
-    
-//    if( patchInfos == nil || patchInfos.count == 0) {
-//        patchInfos = [self getAllPatchInfos];
-//    }
-//    
-//    for (PatchInfo *pi in patchInfos ) {
-//        
-//        NSArray * playersAtPatch = [self getPatchPlayerInfosWithPatchName:pi.name];
-//        
-//        if( playersAtPatch.count > 0 ) {
-//            
-//            
-//            //.2 sec so you get 2 cal
-//            float adjustedFeedratio = [pi.yield floatValue] / 5.0f;
-//            
-//            float newPatchYield = adjustedFeedratio/playersAtPatch.count;
-//            
-//            
-//            
-//            for(PatchPlayerInfo *pap in playersAtPatch) {
-//                PlayerDataPoint *pdp = [self getPlayerDataPointWithRFID:pap.rfid];
-//                
-//                float newScore = [pdp.score floatValue]+newPatchYield;
-//                NSLog(@"OLD SCORE %f NEW SCORE %f", [pdp.score floatValue], newScore);
-//                
-//                pdp.score = [NSNumber numberWithFloat:newScore];
-//                
-//            }
-//            
-//            [self.managedObjectContext save:nil];
-//            
-//            [_xmppBaseNewMessageDelegate newMessageReceived:nil];
-//        }
-//    }
-    
-    
-    
-}
+
 
 -(void)setupConfigurationAndRosterWithRunId:(NSString *)run_id {
     
     _configurationInfo = [self getConfigurationInfoWithRunId:run_id];
+    _playerDataPoints  = [[_configurationInfo players] allObjects];
     
     
+    [_playerDataDelegate playerDataDidUpdate:_playerDataPoints WithColorMap:colorMap];
 }
 
-- (void)importCoreDataDefaultGraph {
+- (void)importCoreDataDefaultGraphWithConfigurationInfo:(ConfigurationInfo *)configurationInfo {
     
     NSLog(@"Importing Core Data Default Values for Graph.......");
     
     
-    [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#89369e" WithName:@"XPR" WithPatch:@"3" WithRfid:@"1623110" WithScore:[NSNumber numberWithInt:0]];
-    [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#99896f" WithName:@"NOI" WithPatch:@"3" WithRfid:@"1623392" WithScore:[NSNumber numberWithInt:0]];
-    [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#cb5012" WithName:@"NLO" WithPatch:@"3" WithRfid:@"1623115" WithScore:[NSNumber numberWithInt:0]];
-    [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#146d71" WithName:@"NUI" WithPatch:@"3" WithRfid:@"1623373" WithScore:[NSNumber numberWithInt:0]];
-    [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#ffbeb4" WithName:@"NER" WithPatch:@"3" WithRfid:@"1623110" WithScore:[NSNumber numberWithInt:0]];
-    [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#89369e" WithName:@"NWE" WithPatch:@"3" WithRfid:@"1623667" WithScore:[NSNumber numberWithInt:0]];
-    
-    [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#89369e" WithName:@"NQW" WithPatch:@"3" WithRfid:@"1623678" WithScore:[NSNumber numberWithInt:0]];
-    [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#99896f" WithName:@"NSE" WithPatch:@"3" WithRfid:@"1623663" WithScore:[NSNumber numberWithInt:0]];
-    [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#cb5012" WithName:@"NXS" WithPatch:@"3" WithRfid:@"1623302" WithScore:[NSNumber numberWithInt:0]];
-    [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#146d71" WithName:@"NLP" WithPatch:@"3" WithRfid:@"1623303" WithScore:[NSNumber numberWithInt:10000]];
-    [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#ffbeb4" WithName:@"NPR" WithPatch:@"3" WithRfid:@"1623126" WithScore:[NSNumber numberWithInt:0]];
+    PlayerDataPoint *pdp = [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#89369e" WithName:@"XPR" WithPatch:@"3" WithRfid:@"1623110" WithScore:[NSNumber numberWithInt:0]];
+    [configurationInfo addPlayersObject:pdp];
     
     
-    [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#89369e" WithName:@"NIR" WithPatch:@"3" WithRfid:@"1623238" WithScore:[NSNumber numberWithInt:0]];
-    [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#89369e" WithName:@"NWR" WithPatch:@"3" WithRfid:@"1623257" WithScore:[NSNumber numberWithInt:0]];
-    [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#99896f" WithName:@"NWR" WithPatch:@"3" WithRfid:@"1623210" WithScore:[NSNumber numberWithInt:0]];
-    [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#cb5012" WithName:@"NMR" WithPatch:@"3" WithRfid:@"1623305" WithScore:[NSNumber numberWithInt:0]];
-    [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#146d71" WithName:@"EPR" WithPatch:@"3" WithRfid:@"1623386" WithScore:[NSNumber numberWithInt:0]];
+    pdp = [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#99896f" WithName:@"NOI" WithPatch:@"3" WithRfid:@"1623392" WithScore:[NSNumber numberWithInt:0]];
+    [configurationInfo addPlayersObject:pdp];
+    pdp = [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#cb5012" WithName:@"NLO" WithPatch:@"3" WithRfid:@"1623115" WithScore:[NSNumber numberWithInt:0]];
+    [configurationInfo addPlayersObject:pdp];
+    pdp = [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#146d71" WithName:@"NUI" WithPatch:@"3" WithRfid:@"1623373" WithScore:[NSNumber numberWithInt:0]];
+        [configurationInfo addPlayersObject:pdp];
+    pdp = [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#ffbeb4" WithName:@"NER" WithPatch:@"3" WithRfid:@"1623110" WithScore:[NSNumber numberWithInt:0]];
+        [configurationInfo addPlayersObject:pdp];
+    pdp = [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#89369e" WithName:@"NWE" WithPatch:@"3" WithRfid:@"1623667" WithScore:[NSNumber numberWithInt:0]];
+        [configurationInfo addPlayersObject:pdp];
+    pdp = [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#89369e" WithName:@"NQW" WithPatch:@"3" WithRfid:@"1623678" WithScore:[NSNumber numberWithInt:0]];
+        [configurationInfo addPlayersObject:pdp];
+    pdp = [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#99896f" WithName:@"NSE" WithPatch:@"3" WithRfid:@"1623663" WithScore:[NSNumber numberWithInt:0]];
+        [configurationInfo addPlayersObject:pdp];
+    pdp = [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#cb5012" WithName:@"NXS" WithPatch:@"3" WithRfid:@"1623302" WithScore:[NSNumber numberWithInt:0]];
+        [configurationInfo addPlayersObject:pdp];
+    pdp = [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#146d71" WithName:@"NLP" WithPatch:@"3" WithRfid:@"1623303" WithScore:[NSNumber numberWithInt:10000]];
+        [configurationInfo addPlayersObject:pdp];
+    pdp = [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#ffbeb4" WithName:@"NPR" WithPatch:@"3" WithRfid:@"1623126" WithScore:[NSNumber numberWithInt:0]];
+        [configurationInfo addPlayersObject:pdp];
     
     
-    [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#ffbeb4" WithName:@"OPR" WithPatch:@"3" WithRfid:@"1623392" WithScore:[NSNumber numberWithInt:0]];
-    [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#99896f" WithName:@"KPR" WithPatch:@"3" WithRfid:@"1623115" WithScore:[NSNumber numberWithInt:0]];
-    [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#cb5012" WithName:@"MPR" WithPatch:@"3" WithRfid:@"1623373" WithScore:[NSNumber numberWithInt:0]];
-    [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#cb5012" WithName:@"JPR" WithPatch:@"3" WithRfid:@"1623110" WithScore:[NSNumber numberWithInt:0]];
+    pdp = [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#89369e" WithName:@"NIR" WithPatch:@"3" WithRfid:@"1623238" WithScore:[NSNumber numberWithInt:0]];
+        [configurationInfo addPlayersObject:pdp];
+    pdp = [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#89369e" WithName:@"NWR" WithPatch:@"3" WithRfid:@"1623257" WithScore:[NSNumber numberWithInt:0]];
+        [configurationInfo addPlayersObject:pdp];
+    pdp = [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#99896f" WithName:@"NWR" WithPatch:@"3" WithRfid:@"1623210" WithScore:[NSNumber numberWithInt:0]];
+        [configurationInfo addPlayersObject:pdp];
+    pdp = [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#cb5012" WithName:@"NMR" WithPatch:@"3" WithRfid:@"1623305" WithScore:[NSNumber numberWithInt:0]];
+        [configurationInfo addPlayersObject:pdp];
+    pdp = [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#146d71" WithName:@"EPR" WithPatch:@"3" WithRfid:@"1623386" WithScore:[NSNumber numberWithInt:0]];
+        [configurationInfo addPlayersObject:pdp];
+    
+    
+    pdp = [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#ffbeb4" WithName:@"OPR" WithPatch:@"3" WithRfid:@"1623392" WithScore:[NSNumber numberWithInt:0]];
+        [configurationInfo addPlayersObject:pdp];
+    pdp = [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#99896f" WithName:@"KPR" WithPatch:@"3" WithRfid:@"1623115" WithScore:[NSNumber numberWithInt:0]];
+        [configurationInfo addPlayersObject:pdp];
+    pdp = [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#cb5012" WithName:@"MPR" WithPatch:@"3" WithRfid:@"1623373" WithScore:[NSNumber numberWithInt:0]];
+        [configurationInfo addPlayersObject:pdp];
+    pdp = [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#cb5012" WithName:@"JPR" WithPatch:@"3" WithRfid:@"1623110" WithScore:[NSNumber numberWithInt:0]];
+        [configurationInfo addPlayersObject:pdp];
     NSLog(@"Importing Core Data Default Values for Graph Completed!");
 }
 
 
 
-- (void)importTestData {
+-(void)importTestData {
     NSLog(@"Importing Core Data Default Values for DataPoints...");
     
-    [self importCoreDataDefaultGraph];
+    [self importCoreDataDefaultGraphWithConfigurationInfo:nil];
     
     
     

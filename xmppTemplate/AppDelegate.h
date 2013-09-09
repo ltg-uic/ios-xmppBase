@@ -7,11 +7,12 @@
 
 #import <UIKit/UIKit.h>
 #import "ConfigurationInfo.h"
+#import "PlayerDataDelegate.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, XMPPRoomStorage> {
     NSString *password;
     NSMutableDictionary *lastMessageDict;
-
+    NSMutableDictionary *colorMap;
     
     
 	BOOL allowSelfSignedCertificates;
@@ -23,8 +24,6 @@
     NSManagedObjectContext *managedObjectContext;
     NSManagedObjectModel *managedObjectModel;
     NSPersistentStoreCoordinator *persistentStoreCoordinator;
-    
-    
 
 }
 
@@ -32,14 +31,14 @@
 @property (nonatomic, strong) XMPPStream *xmppStream;
 @property (nonatomic, strong) XMPPReconnect *xmppReconnect;
 @property (nonatomic, strong) XMPPRoom *xmppRoom;
-@property (nonatomic, retain) NSMutableDictionary *patchPlayerInfos;
-
 
 
 @property (nonatomic, weak) id <XMPPBaseNewMessageDelegate> xmppBaseNewMessageDelegate;
 @property (nonatomic, weak) id <XMPPBaseOnlineDelegate>     xmppBaseOnlineDelegate;
+@property (nonatomic, weak) id <PlayerDataDelegate>         playerDataDelegate;
 @property (nonatomic, strong, readonly) NSManagedObjectContext *managedObjectContext;
-@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
+
+
 @property (strong, nonatomic) NSArray *playerDataPoints;
 @property (strong, nonatomic) ConfigurationInfo *configurationInfo;
 
@@ -58,8 +57,7 @@
 - (void)goOnline;
 - (void)goOffline;
 
--(NSArray *)getAllConfigurationsInfos;
 -(void)setupConfigurationAndRosterWithRunId:(NSString *)run_id;
--(void)updateScores;
+
 
 @end

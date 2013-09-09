@@ -57,8 +57,7 @@
     //Prefetch the data
     if ([segue.identifier isEqualToString:@"showGraph"]) {
         GraphViewController *graphViewController = (GraphViewController*)segue.destinationViewController;
-        [graphViewController fetchAllPlayerDataPoints];
-        
+       
        // graphViewController per
 //        NSString *photoFilename = [NSString stringWithFormat:@"%@_photo.jpg", [_menuItems objectAtIndex:indexPath.row]];
 //        photoController.photoFilename = photoFilename;

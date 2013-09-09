@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7003ABF217D7F54000839A64 /* ConfigurationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 7003ABF117D7F54000839A64 /* ConfigurationInfo.m */; };
 		700450FF17B5C99E000A83F1 /* DataPointModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 700450FD17B5C99E000A83F1 /* DataPointModel.xcdatamodeld */; };
-		700B8B1617DB7B6C001E1C0A /* PlayerDataPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 700B8B1517DB7B6C001E1C0A /* PlayerDataPoint.m */; };
+		700B8B2817DBC7A1001E1C0A /* PlayerDataPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 700B8B2717DBC7A1001E1C0A /* PlayerDataPoint.m */; };
+		700B8B2B17DBC961001E1C0A /* ConfigurationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 700B8B2A17DBC961001E1C0A /* ConfigurationInfo.m */; };
 		700C3A52160427DA005A9E34 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 700C3A51160427DA005A9E34 /* UIKit.framework */; };
 		700C3A54160427DA005A9E34 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 700C3A53160427DA005A9E34 /* Foundation.framework */; };
 		700C3A56160427DA005A9E34 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 700C3A55160427DA005A9E34 /* CoreGraphics.framework */; };
@@ -135,11 +135,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		7003ABF017D7F54000839A64 /* ConfigurationInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConfigurationInfo.h; path = ../ConfigurationInfo.h; sourceTree = "<group>"; };
-		7003ABF117D7F54000839A64 /* ConfigurationInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConfigurationInfo.m; path = ../ConfigurationInfo.m; sourceTree = "<group>"; };
 		700450FE17B5C99E000A83F1 /* DataPointModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataPointModel.xcdatamodel; sourceTree = "<group>"; };
-		700B8B1417DB7B6C001E1C0A /* PlayerDataPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerDataPoint.h; sourceTree = "<group>"; };
-		700B8B1517DB7B6C001E1C0A /* PlayerDataPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerDataPoint.m; sourceTree = "<group>"; };
+		700B8B2617DBC7A1001E1C0A /* PlayerDataPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlayerDataPoint.h; path = ../PlayerDataPoint.h; sourceTree = "<group>"; };
+		700B8B2717DBC7A1001E1C0A /* PlayerDataPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlayerDataPoint.m; path = ../PlayerDataPoint.m; sourceTree = "<group>"; };
+		700B8B2917DBC961001E1C0A /* ConfigurationInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConfigurationInfo.h; path = entity/ConfigurationInfo.h; sourceTree = "<group>"; };
+		700B8B2A17DBC961001E1C0A /* ConfigurationInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConfigurationInfo.m; path = entity/ConfigurationInfo.m; sourceTree = "<group>"; };
+		700B8B2C17DBD885001E1C0A /* PlayerDataDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerDataDelegate.h; sourceTree = "<group>"; };
 		700C3A4D160427DA005A9E34 /* hg-ios-class-display.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "hg-ios-class-display.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		700C3A51160427DA005A9E34 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		700C3A53160427DA005A9E34 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -487,17 +488,17 @@
 		7004510317B5CA4E000A83F1 /* entity */ = {
 			isa = PBXGroup;
 			children = (
-				7003ABF017D7F54000839A64 /* ConfigurationInfo.h */,
-				7003ABF117D7F54000839A64 /* ConfigurationInfo.m */,
+				700B8B2917DBC961001E1C0A /* ConfigurationInfo.h */,
+				700B8B2A17DBC961001E1C0A /* ConfigurationInfo.m */,
+				700B8B2617DBC7A1001E1C0A /* PlayerDataPoint.h */,
+				700B8B2717DBC7A1001E1C0A /* PlayerDataPoint.m */,
 				705AE0BC17D5949A005F69B7 /* EventInfo.h */,
 				705AE0BD17D5949A005F69B7 /* EventInfo.m */,
 				7025949617C3E370006E596B /* RosterModel.h */,
 				7025949717C3E370006E596B /* RosterModel.m */,
-				700450FD17B5C99E000A83F1 /* DataPointModel.xcdatamodeld */,
-				700B8B1417DB7B6C001E1C0A /* PlayerDataPoint.h */,
-				700B8B1517DB7B6C001E1C0A /* PlayerDataPoint.m */,
 				702FAA7417DAE1DE003A05AE /* PatchInfo.h */,
 				702FAA7517DAE1DE003A05AE /* PatchInfo.m */,
+				700450FD17B5C99E000A83F1 /* DataPointModel.xcdatamodeld */,
 			);
 			name = entity;
 			sourceTree = "<group>";
@@ -797,6 +798,7 @@
 			children = (
 				7042A38016320B3C001B44B5 /* XMPPBaseOnlineDelegate.h */,
 				70A97B6E1618E73900148530 /* XMPPBaseNewMessageDelegate.h */,
+				700B8B2C17DBD885001E1C0A /* PlayerDataDelegate.h */,
 			);
 			name = delegates;
 			sourceTree = "<group>";
@@ -1339,7 +1341,7 @@
 				706857E817C51A2600BF8AAF /* UIImageView+AFNetworking.m in Sources */,
 				70B44BE417B2F9F700C47B61 /* XMPPRoom.xcdatamodeld in Sources */,
 				70B44B7317B2F9A000C47B61 /* XMPPStream.m in Sources */,
-				700B8B1617DB7B6C001E1C0A /* PlayerDataPoint.m in Sources */,
+				700B8B2817DBC7A1001E1C0A /* PlayerDataPoint.m in Sources */,
 				705AE0D617D595CC005F69B7 /* SBJsonStreamParser.m in Sources */,
 				707FE57117D9412B0036DBAB /* PatchMapUIView.m in Sources */,
 				70B44B6817B2F9A000C47B61 /* XMPPXFacebookPlatformAuthentication.m in Sources */,
@@ -1355,8 +1357,8 @@
 				70B44BF117B2F9F700C47B61 /* XMPPRoom.m in Sources */,
 				705AE0DD17D595CC005F69B7 /* SBJsonStreamWriterState.m in Sources */,
 				70B44B6717B2F9A000C47B61 /* XMPPPlainAuthentication.m in Sources */,
+				700B8B2B17DBC961001E1C0A /* ConfigurationInfo.m in Sources */,
 				70B44C1117B2FDDF00C47B61 /* XMPPCapsResourceCoreDataStorageObject.m in Sources */,
-				7003ABF217D7F54000839A64 /* ConfigurationInfo.m in Sources */,
 				70B44C0F17B2FDDF00C47B61 /* XMPPCapabilitiesCoreDataStorage.m in Sources */,
 				70B44BAB17B2F9A000C47B61 /* DDXMLNode.m in Sources */,
 				705AE0D717D595CC005F69B7 /* SBJsonStreamParserAccumulator.m in Sources */,
