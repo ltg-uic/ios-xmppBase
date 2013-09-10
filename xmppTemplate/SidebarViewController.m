@@ -43,7 +43,7 @@
 {
     [super viewDidLoad];
     
-    _menuItems = @[@"viz_item", @"graph_item",@"map_item",  @"settings_title_item", @"login_item", @"blank_item"];
+    _menuItems = @[@"viz_item", @"map_item", @"graph_item",  @"settings_title_item", @"login_item", @"blank_item"];
     self.clearsSelectionOnViewWillAppear = NO;
 }
 

@@ -231,31 +231,8 @@
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="graph_item" id="W1n-4M-SBc">
-                                <rect key="frame" x="0.0" y="82" width="768" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="W1n-4M-SBc" id="5Ed-vh-5Yj">
-                                    <rect key="frame" x="0.0" y="0.0" width="768" height="59"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon_harvest_Graph" highlightedImage="viz_icon" translatesAutoresizingMaskIntoConstraints="NO" id="mbz-Py-g23">
-                                            <rect key="frame" x="26" y="15" width="29" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        </imageView>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Harvest Graph" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0qw-FU-kIk">
-                                            <rect key="frame" x="65" y="17" width="200" height="25"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="ifl-4T-Tjx" kind="custom" identifier="showGraph" customClass="SWRevealViewControllerSegue" id="q5o-eP-omx"/>
-                                </connections>
-                            </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="map_item" id="3Fj-Bc-api">
-                                <rect key="frame" x="0.0" y="142" width="768" height="60"/>
+                                <rect key="frame" x="0.0" y="82" width="768" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3Fj-Bc-api" id="J58-RY-lbM">
                                     <rect key="frame" x="0.0" y="0.0" width="768" height="59"/>
@@ -275,6 +252,29 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <segue destination="k2h-ak-l4V" kind="custom" customClass="SWRevealViewControllerSegue" id="Wjp-D4-yEo"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="graph_item" id="W1n-4M-SBc">
+                                <rect key="frame" x="0.0" y="142" width="768" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="W1n-4M-SBc" id="5Ed-vh-5Yj">
+                                    <rect key="frame" x="0.0" y="0.0" width="768" height="59"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon_harvest_Graph" highlightedImage="viz_icon" translatesAutoresizingMaskIntoConstraints="NO" id="mbz-Py-g23">
+                                            <rect key="frame" x="26" y="15" width="29" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        </imageView>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Harvest Graph" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0qw-FU-kIk">
+                                            <rect key="frame" x="65" y="17" width="200" height="25"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="ifl-4T-Tjx" kind="custom" identifier="showGraph" customClass="SWRevealViewControllerSegue" id="q5o-eP-omx"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="settings_title_item" rowHeight="60" id="AGI-FD-Krm">
@@ -348,7 +348,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="ifl-4T-Tjx" kind="relationship" relationship="rootViewController" id="ezg-gO-bqc"/>
+                        <segue destination="k2h-ak-l4V" kind="relationship" relationship="rootViewController" id="YxC-iI-FAa"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B6v-Th-A6W" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -537,7 +537,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pWX-Vv-xGC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1596" y="2571"/>
+            <point key="canvasLocation" x="1637" y="1953"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="bVn-c5-o8X">
@@ -577,6 +577,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="q5o-eP-omx"/>
+        <segue reference="Wjp-D4-yEo"/>
     </inferredMetricsTieBreakers>
 </document>
