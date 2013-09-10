@@ -9,10 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface WizardStudentPageViewController : UICollectionViewController {
-    
+   
 }
 
-@property (nonatomic, retain) NSString *class_period;
+@property (nonatomic, retain) ConfigurationInfo *configurationInfo;
 @property (nonatomic, retain) NSString *choosen_student;
 - (IBAction)chooseStudent:(id)sender;
 

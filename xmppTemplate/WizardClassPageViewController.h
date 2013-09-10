@@ -8,11 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "RosterModel.h"
+#import "CoreDataTableViewController.h"
 
-@interface WizardClassPageViewController : UITableViewController {
+@interface WizardClassPageViewController : CoreDataTableViewController {
 }
 
 @property (nonatomic, retain) NSArray *classes;
+
 - (IBAction)cancelLogin:(id)sender;
 
+- (void)setupFetchedResultsController;
 @end

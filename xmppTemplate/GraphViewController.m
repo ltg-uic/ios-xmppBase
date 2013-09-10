@@ -74,6 +74,7 @@
 
 -(void)setupDelegates {
     self.appDelegate.xmppBaseNewMessageDelegate = self;
+    self.appDelegate.playerDataDelegate = self;
 }
 
 #pragma mark - PLAYER DATA DELEGATE
@@ -82,6 +83,8 @@
     
     localPlayerDataPoints = playerDataPoints;
     localColorMap = colorMap;
+    
+    [graph reloadData];
 }
 
 #pragma mark - XMPP New Message Delegate
@@ -116,7 +119,7 @@
 #pragma mark - VIEWS
 
 -(void)viewDidAppear:(BOOL)animated {
-    [self initPlot];
+    //[self initPlot];
 }
 
 - (void)viewDidLoad
@@ -135,6 +138,7 @@
     // Set the gesture
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     
+    [self initPlot];
     //[self.graphView.];
     
     //[graph reloadData];
@@ -261,7 +265,7 @@
         
         PlayerDataPoint *pdp = [localPlayerDataPoints objectAtIndex:i];
 
-        CPTAxisLabel *newLabel = [[CPTAxisLabel alloc] initWithText:[pdp.name uppercaseString]
+        CPTAxisLabel *newLabel = [[CPTAxisLabel alloc] initWithText:[pdp.label uppercaseString]
                                                           textStyle:textStyle];
 
         newLabel.tickLocation = CPTDecimalFromUnsignedInteger(i);
@@ -370,35 +374,33 @@
 //        patchPlayerInfos = [[self appDelegate] patchPlayerInfos];
 //        
 //        
-//        NSArray *rfidKeys = [patchPlayerInfos allKeys];
-//        
-//        for( NSString *rfid in rfidKeys ) {
-//            //find the patch where she is at
-//            NSString *patch_id = [patchPlayerInfos objectForKey:rfid];
-//            
-//            
-//            //get the players score
-//            NSPredicate * playerPredicate = [NSPredicate predicateWithFormat:@"rfid = %@", rfid];
-//            PlayerDataPoint *pdp = [[localPlayerDataPoints filteredArrayUsingPredicate:playerPredicate] objectAtIndex: 0 ];
-//
-//            
-//            //calculate the new score
-//            float playerOldScore = [pdp.score floatValue];
-//            
-//            
-//        
-//            
-//            
+        
+        
+        for( PlayerDataPoint *pdp in localPlayerDataPoints ) {
+            //find the patch where she is at
+           // NSString *patch_id = [patchPlayerInfos objectForKey:rfid];
+            
+            
+            //get the players score
+       
+            
+            //calculate the new score
+           // float playerOldScore = [pdp.score floatValue];
+            pdp.score = [NSNumber numberWithFloat:[pdp.score floatValue] + random()];
+            
         
             
-       // }
+            
+        
+            
+       }
         
         
-        for (PlayerDataPoint *pdp in localPlayerDataPoints) {
-            if( [pdp.name isEqual:@"XPR"]) {
-                pdp.score = [NSNumber numberWithFloat:[pdp.score floatValue] + 10];
-            }
-        }
+//        for (PlayerDataPoint *pdp in localPlayerDataPoints) {
+//            if( [pdp.name isEqual:@"XPR"]) {
+//                pdp.score = [NSNumber numberWithFloat:[pdp.score floatValue] + 10];
+//            }
+//        }
         
         [graph reloadData];
     }

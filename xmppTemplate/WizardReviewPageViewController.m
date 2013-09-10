@@ -44,13 +44,16 @@
 
 - (IBAction)doLoginWithStudentName:(id)sender {
     
-    [[NSUserDefaults standardUserDefaults] setObject:[_choosen_student stringByAppendingString:XMPP_TAIL] forKey:kXMPPmyJID];
     
-    [[NSUserDefaults standardUserDefaults] setObject:_choosen_student forKey:kXMPPmyPassword];
+    NSString *xmppId = [_configurationInfo.run_id stringByAppendingFormat:@"#%@",_choosen_student];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:[xmppId stringByAppendingString:XMPP_TAIL] forKey:kXMPPmyJID];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:xmppId forKey:kXMPPmyPassword];
     
     [self dismissViewControllerAnimated:YES completion:^(void){
         
-        [[self appDelegate] setupConfigurationAndRosterWithRunId:@"period-1"];
+        [[self appDelegate] setupConfigurationAndRosterWithRunId:_configurationInfo.run_id];
         [[self appDelegate] disconnect];
         [[self appDelegate] connect];
     }];

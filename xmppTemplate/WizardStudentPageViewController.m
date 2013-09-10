@@ -8,11 +8,13 @@
 
 #import "WizardStudentPageViewController.h"
 #import "WizardReviewPageViewController.h"
-#import "RosterModel.h"
+#import "PlayerDataPoint.h"
 #import "WizardStudentCell.h"
 #import "AFNetworking.h"
 
-@interface WizardStudentPageViewController ()
+@interface WizardStudentPageViewController () {
+    NSArray *playerPoints;
+}
 
 @end
 
@@ -40,12 +42,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+	
 }
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self retrieveStudentDataRequestWithClass:_class_period];
+    playerPoints = [[_configurationInfo players] allObjects];
+    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"player_id" ascending:YES];
+    
+    [playerPoints sortedArrayUsingDescriptors:@[sort]];
+
+    
 
 }
 -(NSInteger) numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -53,53 +60,19 @@
 }
 
 -(NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    
-    NSArray *students = [RosterModel getStudentsForClass:_class_period];
-    
-    return students.count;
+    return playerPoints.count;
     
 }
 
-#pragma mark - JSON Requests
-
-
--(void)retrieveStudentDataRequestWithClass: (NSString *)clazz
-{
-    NSURL *url = [NSURL URLWithString: [@"http://ltg.evl.uic.edu:9000/" stringByAppendingString:clazz]];
-    
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    //AFNetworking asynchronous url request
-    AFJSONRequestOperation *operation = [AFJSONRequestOperation
-                                         JSONRequestOperationWithRequest:request
-                                         success:^(NSURLRequest *request, NSHTTPURLResponse *response, id responseObject)
-                                         {
-                                             NSLog(@"JSON RESULT %@", responseObject);
-                                             NSDictionary *data = [responseObject objectForKey:@"data"];
-                                             NSArray *students = [data objectForKey:@"roster"];
-                                             for (NSDictionary *someStudent in students) {
-                                                 NSString *studentId = [someStudent objectForKey:@"_id"];
-                                                 [RosterModel addStudent:studentId toClass:clazz];
-                                             }
-                                             [self.collectionView reloadData];
-                                             
-                                         }
-                                         failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id responseObject)
-                                         {
-                                             NSLog(@"Request Failed: %@, %@", error, error.userInfo);
-                                         }];
-    
-    [operation start];
-    
-}
 
 
 -(UICollectionViewCell *) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     WizardStudentCell *wz = [collectionView dequeueReusableCellWithReuseIdentifier:@"student_cell" forIndexPath:indexPath];
     
-    NSArray *students = [RosterModel getStudentsForClass:_class_period];
+    PlayerDataPoint *pdp = [playerPoints objectAtIndex:indexPath.row];
     
-    if( !(students == nil || [students count] == 0) ) {
-        [wz.nameButton setTitle: students[indexPath.row] forState: UIControlStateNormal];
+    if( !(pdp == nil || [playerPoints count] == 0) ) {
+        [wz.nameButton setTitle: pdp.player_id forState: UIControlStateNormal];
     }
     return wz;
 }
@@ -107,7 +80,8 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"review_segue"]) {
         WizardReviewPageViewController *destViewController = segue.destinationViewController;
-        destViewController.choosen_student = _choosen_student;
+        [destViewController setConfigurationInfo:_configurationInfo];
+        [destViewController setChoosen_student:_choosen_student];
     }
 }
 

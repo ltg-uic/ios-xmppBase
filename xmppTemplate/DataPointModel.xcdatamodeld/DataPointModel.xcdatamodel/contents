@@ -20,11 +20,11 @@
         <relationship name="configurationInfo" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="ConfigurationInfo" inverseName="patches" inverseEntity="ConfigurationInfo" syncable="YES"/>
     </entity>
     <entity name="PlayerDataPoint" representedClassName="PlayerDataPoint" syncable="YES">
-        <attribute name="cluster" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="color" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="currentPatch" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="rfid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="label" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="player_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rfid_tag" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="score" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <relationship name="configurationInfo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ConfigurationInfo" inverseName="players" inverseEntity="ConfigurationInfo" syncable="YES"/>
     </entity>
@@ -34,9 +34,9 @@
     <fetchRequest name="configurationInfoWithRunId" entity="ConfigurationInfo" predicateString="run_id == &quot;run_id&quot;"/>
     <fetchRequest name="playerDataPointWithRFID" entity="PlayerDataPoint" predicateString="rfid == rfid"/>
     <elements>
-        <element name="ConfigurationInfo" positionX="-92" positionY="-549" width="128" height="103"/>
-        <element name="EventInfo" positionX="171" positionY="-270" width="128" height="105"/>
-        <element name="PatchInfo" positionX="-56" positionY="-336" width="128" height="120"/>
-        <element name="PlayerDataPoint" positionX="-378" positionY="-276" width="128" height="148"/>
+        <element name="ConfigurationInfo" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="EventInfo" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="PatchInfo" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="PlayerDataPoint" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

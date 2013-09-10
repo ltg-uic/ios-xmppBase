@@ -2,7 +2,7 @@
 //  PlayerDataPoint.m
 //  hg-ios-class-display
 //
-//  Created by Anthony Perritano on 9/7/13.
+//  Created by Anthony Perritano on 9/9/13.
 //  Copyright (c) 2013 Learning Technologies Group. All rights reserved.
 //
 
@@ -12,12 +12,12 @@
 
 @implementation PlayerDataPoint
 
-@dynamic cluster;
 @dynamic color;
-@dynamic name;
 @dynamic currentPatch;
-@dynamic rfid;
+@dynamic label;
+@dynamic rfid_tag;
 @dynamic score;
+@dynamic player_id;
 @dynamic configurationInfo;
 
 @end
