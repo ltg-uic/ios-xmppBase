@@ -791,13 +791,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
                                                  
                                                  
                                                  [operationQueue addOperation:[self pullRosterDataWithRunId:ci WithCompletionBlock:nil]];
-                                                 
-                                                 //load in the roster
-                                                 //[self importCoreDataDefaultGraphWithConfigurationInfo:ci];
-                                                 
                                              }
-                                             
-                                             
                                          }
                                          
                                          failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id responseObject)
@@ -805,34 +799,11 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
                                              NSLog(@"Request Failed: %@, %@", error, error.userInfo);
                                          }];
     
-
-    NSMutableArray *ops = [[NSMutableArray alloc]init];
-    
-    
     [operationQueue waitUntilAllOperationsAreFinished];
     [operationQueue setMaxConcurrentOperationCount:1];
     [operationQueue addOperation:operation1];
 
     [operationQueue addObserver: self forKeyPath: @"operations" options: NSKeyValueObservingOptionNew context: NULL];
-
-    
-    
-//    [operationQueue addOperationWithBlock:^{
-//        NSArray *configInfos = [self getAllConfigurationsInfos];
-//        
-//        for(ConfigurationInfo *ci in configInfos) {
-//            if( [configInfos indexOfObject:ci] == [configInfos count] ) {
-//                [self pullRosterDataWithRunId:ci WithCompletionBlock:^(){
-//                    [self checkConnectionWithUser];
-//                }];
-//            } else {
-//                [operationQueue addOperation:[self pullRosterDataWithRunId:ci WithCompletionBlock:nil]];
-//            }
-//        }
-//
-//    }];
-    
-    
    
 }
 

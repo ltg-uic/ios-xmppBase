@@ -16,6 +16,7 @@
     //core data
     NSArray *localPlayerDataPoints;
     NSMutableDictionary *localColorMap;
+    NSArray *localPatches;
     
     NSSet *patchInfos;
     
@@ -51,7 +52,8 @@
         
         [self setupDelegates];
         localColorMap = [[self appDelegate] colorMap];
-        localPlayerDataPoints = [[self appDelegate] playerDataPoints]; 
+        localPlayerDataPoints = [[self appDelegate] playerDataPoints];
+        localPatches = [[[[self appDelegate] configurationInfo ] patches ] allObjects];
     }
     return self;
 }
@@ -338,27 +340,37 @@
 
 -(void)updateGraph {
     
-    if( isRUNNING && localPlayerDataPoints.count > 0 ) {
+    if( isRUNNING && localPlayerDataPoints.count > 0 && localPatches.count > 0) {
         
         //get all the current arrivals and departures
 //        patchPlayerInfos = [[self appDelegate] patchPlayerInfos];
 //        
 //        
-        
+        NSArray *players = [localPlayerDataPoints filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"currentPatch != nil"]];
+
+        if( players.count == 0 )
+            return;
         
         for( PlayerDataPoint *pdp in localPlayerDataPoints ) {
-            //find the patch where she is at
-           // NSString *patch_id = [patchPlayerInfos objectForKey:rfid];
+            //get the patch
             
             
+            
+            PatchInfo *pi = [[localPatches filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"patch_id == %@", pdp.currentPatch]] objectAtIndex:0];
+            
+            int numberOfPlayerAtPatches = [localPlayerDataPoints valueForKey:@"@count"];
             //get the players score
-       
+            
             
             //calculate the new score
-           // float playerOldScore = [pdp.score floatValue];
-            pdp.score = [NSNumber numberWithFloat:[pdp.score floatValue] + random()];
+            float playerOldScore = [pdp.score floatValue];
             
-        
+            float adjustment = pi.richness / numberOfPlayerAtPatches;
+
+            
+            pdp.score = [NSNumber numberWithFloat:(playerOldScore + adjustment)];
+            
+            NSLog(@"PLAYER %@ for score %f",pdp.player_id, [pdp.score floatValue]);
             
             
         
