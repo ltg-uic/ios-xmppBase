@@ -11,9 +11,7 @@
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, XMPPRoomStorage> {
     NSString *password;
-    NSMutableDictionary *lastMessageDict;
-    NSMutableDictionary *colorMap;
-    
+    NSMutableDictionary *lastMessageDict;    
     
 	BOOL allowSelfSignedCertificates;
 	BOOL allowSSLHostNameMismatch;
@@ -40,6 +38,7 @@
 
 
 @property (strong, nonatomic) NSArray *playerDataPoints;
+@property (strong, nonatomic) NSMutableDictionary *colorMap;
 @property (strong, nonatomic) ConfigurationInfo *configurationInfo;
 
 

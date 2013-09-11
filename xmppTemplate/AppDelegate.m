@@ -748,7 +748,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     _configurationInfo = [self getConfigurationInfoWithRunId:run_id];
     _playerDataPoints  = [[_configurationInfo players] allObjects];
     
-    [_playerDataDelegate playerDataDidUpdate:_playerDataPoints WithColorMap:colorMap];
+    [_playerDataDelegate playerDataDidUpdate:_playerDataPoints WithColorMap:_colorMap];
     
 }
 
@@ -878,7 +878,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
                                              for (NSDictionary *someStudent in students) {
                                                  
                                                  
-                                                 PlayerDataPoint *pdp = [self insertPlayerDataPointWithColor:[someStudent objectForKey:@"color"] WithLabel:[someStudent objectForKey:@"lable"] WithPatch:nil WithRfid:[someStudent objectForKey:@"rfid_tag"] WithScore:[someStudent objectForKey:@"score"] WithId:[someStudent objectForKey:@"_id"]];
+                                                 PlayerDataPoint *pdp = [self insertPlayerDataPointWithColor:[someStudent objectForKey:@"color"] WithLabel:[someStudent objectForKey:@"lable"] WithPatch:nil WithRfid:[someStudent objectForKey:@"rfid_tag"] WithScore:[NSNumber numberWithInt:1000] WithId:[someStudent objectForKey:@"_id"]];
                                                  
                                                  [configurationInfo addPlayersObject:pdp];
                                              }
@@ -959,11 +959,11 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     
     UIColor *hexColor = [UIColor colorWithHexString:[color stringByReplacingOccurrencesOfString:@"#" withString:@""]];
     
-    if( colorMap == nil ) {
-        colorMap = [[NSMutableDictionary alloc] init];
+    if( _colorMap == nil ) {
+        _colorMap = [[NSMutableDictionary alloc] init];
     }
     
-    [colorMap setObject:hexColor forKey:color];
+    [_colorMap setObject:hexColor forKey:color];
     
     return pdp;
 }

@@ -49,25 +49,9 @@
     if(self = [super initWithCoder:aDecoder])
     {
         
-       
-//        PatchInfo *pi = [[PatchInfo alloc] init];
-//        pi.patch_id = @"patch-1";
-//        pi.richness = 400.0f;
-//        pi.richness_per_second = 5.0f;
-//        
-//        [patchInfos addObject:pi];
-//        
-//        pi = [[PatchInfo alloc] init];
-//        
-//        pi.patch_id = @"patch-2";
-//        pi.richness = 600.0f;
-//        pi.richness_per_second = 8.0f;
-//        
-//        [patchInfos addObject:pi];
-        
         [self setupDelegates];
-       
-        
+        localColorMap = [[self appDelegate] colorMap];
+        localPlayerDataPoints = [[self appDelegate] playerDataPoints]; 
     }
     return self;
 }
@@ -81,10 +65,10 @@
 
 -(void)playerDataDidUpdate:(NSArray *)playerDataPoints WithColorMap:(NSMutableDictionary *)colorMap {
     
-    localPlayerDataPoints = playerDataPoints;
-    localColorMap = colorMap;
-    
-    [graph reloadData];
+//    localPlayerDataPoints = playerDataPoints;
+//    localColorMap = colorMap;
+//    
+//    [graph reloadData];
 }
 
 #pragma mark - XMPP New Message Delegate
@@ -159,7 +143,7 @@
     maxNumPlayers = [localPlayerDataPoints count];
     
     minYield = 0.0f;
-    maxYield = 30000.0f;
+    maxYield = 10000.0f;
     
     
     [self setupGraph];
@@ -234,10 +218,10 @@
     labelTitleTextStyleBlue.fontSize = 28.0;
     labelTitleTextStyleBlue.color = blueColor;
     
-    CPTMutableTextStyle *labelTitleTextStyleRed = [CPTMutableTextStyle textStyle];
-    labelTitleTextStyleRed.fontName = helveticaNeueMedium;
-    labelTitleTextStyleRed.fontSize = 28.0;
-    labelTitleTextStyleRed.color = redColor;
+    CPTMutableTextStyle *labelTitleTextStyleBlack = [CPTMutableTextStyle textStyle];
+    labelTitleTextStyleBlack.fontName = helveticaNeueMedium;
+    labelTitleTextStyleBlack.fontSize = 28.0;
+    labelTitleTextStyleBlack.color = [CPTColor blackColor];
     
     CPTXYAxis *y = axisSet.yAxis;
     
@@ -251,27 +235,13 @@
     NSMutableSet *newAxisLabels = [NSMutableSet set];
     for ( NSUInteger i = 0; i < [localPlayerDataPoints count]; i++ ) {
         
-        
-        CPTMutableTextStyle *textStyle;
-        if (i % 2) {
-            // odd
-            textStyle = labelTitleTextStyleBlue;
-        } else {
-            //even
-            textStyle = labelTitleTextStyleRed;
-        }
-        
-        
-        
         PlayerDataPoint *pdp = [localPlayerDataPoints objectAtIndex:i];
-
-        CPTAxisLabel *newLabel = [[CPTAxisLabel alloc] initWithText:[pdp.label uppercaseString]
-                                                          textStyle:textStyle];
-
+        
+        CPTAxisLabel *newLabel = [[CPTAxisLabel alloc] initWithText:[pdp.player_id uppercaseString]
+                                                          textStyle:labelTitleTextStyleBlack];
         newLabel.tickLocation = CPTDecimalFromUnsignedInteger(i);
         newLabel.offset       = y.labelOffset + y.majorTickLength;
 
-        
         [newAxisLabels addObject:newLabel];
     }
     y.axisLabels = newAxisLabels;
@@ -409,7 +379,6 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (AppDelegate *)appDelegate

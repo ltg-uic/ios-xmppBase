@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3394" systemVersion="12E55" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3396" systemVersion="12E55" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="ConfigurationInfo" representedClassName="ConfigurationInfo" syncable="YES">
         <attribute name="harvest_calculator_bout_length_in_minutes" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="run_id" optional="YES" attributeType="String" syncable="YES"/>
@@ -31,7 +31,7 @@
     <fetchRequest name="allConfigurationInfos" entity="ConfigurationInfo"/>
     <fetchRequest name="allPatchInfos" entity="PatchInfo"/>
     <fetchRequest name="allPlayerDataPoints" entity="PlayerDataPoint"/>
-    <fetchRequest name="configurationInfoWithRunId" entity="ConfigurationInfo" predicateString="run_id == &quot;run_id&quot;"/>
+    <fetchRequest name="configurationInfoWithRunId" entity="ConfigurationInfo" predicateString="run_id == run_id"/>
     <fetchRequest name="playerDataPointWithRFID" entity="PlayerDataPoint" predicateString="rfid == rfid"/>
     <elements>
         <element name="ConfigurationInfo" positionX="0" positionY="0" width="0" height="0"/>
