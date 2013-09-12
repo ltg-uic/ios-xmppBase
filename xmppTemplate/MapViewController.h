@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PlayerDataDelegate.h"
 
-@interface MapViewController : UIViewController
+@interface MapViewController : UIViewController<PlayerDataDelegate> {
+}
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
 
 @end

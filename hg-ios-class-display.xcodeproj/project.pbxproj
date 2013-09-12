@@ -40,6 +40,7 @@
 		705AE0DD17D595CC005F69B7 /* SBJsonStreamWriterState.m in Sources */ = {isa = PBXBuildFile; fileRef = 705AE0D217D595CC005F69B7 /* SBJsonStreamWriterState.m */; };
 		705AE0DE17D595CC005F69B7 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 705AE0D417D595CC005F69B7 /* SBJsonWriter.m */; };
 		705FC26317CC156D009D42B6 /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7056211F17C9D914007D117B /* libCorePlot-CocoaTouch.a */; };
+		7065422F17E0438900C38099 /* PatchMapUIView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7065422E17E0438900C38099 /* PatchMapUIView.xib */; };
 		706857E017C51A2600BF8AAF /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 706857CE17C51A2600BF8AAF /* AFHTTPClient.m */; };
 		706857E117C51A2600BF8AAF /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 706857D017C51A2600BF8AAF /* AFHTTPRequestOperation.m */; };
 		706857E217C51A2600BF8AAF /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 706857D217C51A2600BF8AAF /* AFImageRequestOperation.m */; };
@@ -132,6 +133,7 @@
 		70DF2EA117DE8EC300AFC798 /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70DF2EA017DE8EC300AFC798 /* CoreDataTableViewController.m */; };
 		70E866F217C66E76003C5BD2 /* fishhook.c in Sources */ = {isa = PBXBuildFile; fileRef = 70E866F017C66E76003C5BD2 /* fishhook.c */; };
 		70E866F417C66E8F003C5BD2 /* QuietAssertMacros.c in Sources */ = {isa = PBXBuildFile; fileRef = 70E866F317C66E8F003C5BD2 /* QuietAssertMacros.c */; };
+		70EC27D517E2287200077DF4 /* UIView+NibLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = 70EC27D417E2287200077DF4 /* UIView+NibLoading.m */; };
 		70EDB4D017B475960005E144 /* libresolv.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 70B44C1817B31E8D00C47B61 /* libresolv.9.dylib */; };
 		70F0F56D17CFD47C009B4E66 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F0F56C17CFD47C009B4E66 /* WebViewController.m */; };
 /* End PBXBuildFile section */
@@ -271,6 +273,7 @@
 		705FC2AF17CC1626009D42B6 /* NSCoderExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSCoderExtensions.h; sourceTree = "<group>"; };
 		705FC2B017CC1626009D42B6 /* NSDecimalNumberExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDecimalNumberExtensions.h; sourceTree = "<group>"; };
 		705FC2B117CC1626009D42B6 /* NSNumberExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSNumberExtensions.h; sourceTree = "<group>"; };
+		7065422E17E0438900C38099 /* PatchMapUIView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PatchMapUIView.xib; sourceTree = "<group>"; };
 		706857CD17C51A2600BF8AAF /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
 		706857CE17C51A2600BF8AAF /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPClient.m; sourceTree = "<group>"; };
 		706857CF17C51A2600BF8AAF /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -461,6 +464,8 @@
 		70E866F017C66E76003C5BD2 /* fishhook.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fishhook.c; sourceTree = "<group>"; };
 		70E866F117C66E76003C5BD2 /* fishhook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fishhook.h; sourceTree = "<group>"; };
 		70E866F317C66E8F003C5BD2 /* QuietAssertMacros.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = QuietAssertMacros.c; sourceTree = "<group>"; };
+		70EC27D317E2287200077DF4 /* UIView+NibLoading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+NibLoading.h"; sourceTree = "<group>"; };
+		70EC27D417E2287200077DF4 /* UIView+NibLoading.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+NibLoading.m"; sourceTree = "<group>"; };
 		70F0F56B17CFD47C009B4E66 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		70F0F56C17CFD47C009B4E66 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -761,6 +766,7 @@
 				703D86FA17D91E0500523417 /* MapViewController.h */,
 				703D86FB17D91E0500523417 /* MapViewController.m */,
 				707FE56F17D9412B0036DBAB /* PatchMapUIView.h */,
+				7065422E17E0438900C38099 /* PatchMapUIView.xib */,
 				707FE57017D9412B0036DBAB /* PatchMapUIView.m */,
 			);
 			name = map;
@@ -786,6 +792,7 @@
 		70AFBDAE17C7B4B800868211 /* library */ = {
 			isa = PBXGroup;
 			children = (
+				70EC27D617E2288E00077DF4 /* Nib */,
 				70B44AAE17B2F97B00C47B61 /* XMPP */,
 				706857CC17C51A2600BF8AAF /* AFNetworking */,
 				705AE0BF17D595B4005F69B7 /* SBJson */,
@@ -1205,6 +1212,15 @@
 			name = Output;
 			sourceTree = "<group>";
 		};
+		70EC27D617E2288E00077DF4 /* Nib */ = {
+			isa = PBXGroup;
+			children = (
+				70EC27D317E2287200077DF4 /* UIView+NibLoading.h */,
+				70EC27D417E2287200077DF4 /* UIView+NibLoading.m */,
+			);
+			name = Nib;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1269,6 +1285,7 @@
 				700C3A5C160427DA005A9E34 /* InfoPlist.strings in Resources */,
 				70B44BAC17B2F9A000C47B61 /* build-libidn.sh in Resources */,
 				70CD9B3617B49BF2008625BF /* logon_sound.aif in Resources */,
+				7065422F17E0438900C38099 /* PatchMapUIView.xib in Resources */,
 				70B44B8217B2F9A000C47B61 /* README.txt in Resources */,
 				70CEF76417C8443A00ED0CBE /* Default-568h@2x.png in Resources */,
 				700C3A6E160427DA005A9E34 /* MainStoryboard_iPad.storyboard in Resources */,
@@ -1361,6 +1378,7 @@
 				706857E617C51A2600BF8AAF /* AFURLConnectionOperation.m in Sources */,
 				70E866F417C66E8F003C5BD2 /* QuietAssertMacros.c in Sources */,
 				706857E517C51A2600BF8AAF /* AFPropertyListRequestOperation.m in Sources */,
+				70EC27D517E2287200077DF4 /* UIView+NibLoading.m in Sources */,
 				705AE0DB17D595CC005F69B7 /* SBJsonStreamWriter.m in Sources */,
 				70B44B7417B2F9A000C47B61 /* DDList.m in Sources */,
 				70B44BF417B2F9F700C47B61 /* NSXMLElement+XEP_0203.m in Sources */,

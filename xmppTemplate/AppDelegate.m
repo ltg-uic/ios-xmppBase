@@ -601,7 +601,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
                 if( arrivals != nil && arrivals.count > 0 ) {
                     
                     for (NSString *rfid in arrivals) {
-                        PlayerDataPoint *player = [[_playerDataPoints filteredArrayUsingPredicate: [NSPredicate predicateWithFormat:@"rfid == %@", rfid] ] objectAtIndex:0];
+                        PlayerDataPoint *player = [[_playerDataPoints filteredArrayUsingPredicate: [NSPredicate predicateWithFormat:@"rfid_tag == %@", rfid] ] objectAtIndex:0];
                         
                         //set the arrival
                         //[player setValue:destination forKey:@"PlayerDataPoint.currentPatch"];
@@ -612,7 +612,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
                 
                 if( departures != nil && departures.count > 0 ) {
                     for (NSString *rfid in departures) {
-                        PlayerDataPoint *player = [[_playerDataPoints filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"rfid == %@", rfid] ] objectAtIndex:0];
+                        PlayerDataPoint *player = [[_playerDataPoints filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"rfid_tag == %@", rfid] ] objectAtIndex:0];
                         
                         //set the arrival
                         //[player setValue:nil forKey:@"PlayerDataPoint.currentPatch"];

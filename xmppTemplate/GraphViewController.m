@@ -14,7 +14,7 @@
 @interface GraphViewController() {
 
     //core data
-    NSArray *localPlayerDataPoints;
+    //NSArray *localPlayerDataPoints;
     NSMutableDictionary *localColorMap;
     NSArray *localPatches;
     
@@ -52,7 +52,7 @@
         
         [self setupDelegates];
         localColorMap = [[self appDelegate] colorMap];
-        localPlayerDataPoints = [[self appDelegate] playerDataPoints];
+       // localPlayerDataPoints = [[self appDelegate] playerDataPoints];
         localPatches = [[[[self appDelegate] configurationInfo ] patches ] allObjects];
     }
     return self;
@@ -142,10 +142,10 @@
     redColor = [CPTColor colorWithComponentRed:198.0f/255.0f green:42.0f/255.0f blue:0.0f/255.0f alpha:1.0];
     
     minNumPlayers = -0.5f;
-    maxNumPlayers = [localPlayerDataPoints count];
+    maxNumPlayers = [[self getPlayerDataPoints] count];
     
     minYield = 0.0f;
-    maxYield = 10000.0f;
+    maxYield = 50000.0f;
     
     
     [self setupGraph];
@@ -234,10 +234,12 @@
     y.axisLineStyle               = axisLineStyle;
     y.majorTickLength             = 0.0f;
 
+    
+    
     NSMutableSet *newAxisLabels = [NSMutableSet set];
-    for ( NSUInteger i = 0; i < [localPlayerDataPoints count]; i++ ) {
+    for ( NSUInteger i = 0; i < [[[self appDelegate] playerDataPoints] count]; i++ ) {
         
-        PlayerDataPoint *pdp = [localPlayerDataPoints objectAtIndex:i];
+        PlayerDataPoint *pdp = [[[self appDelegate] playerDataPoints] objectAtIndex:i];
         
         CPTAxisLabel *newLabel = [[CPTAxisLabel alloc] initWithText:[pdp.player_id uppercaseString]
                                                           textStyle:labelTitleTextStyleBlack];
@@ -286,15 +288,15 @@
 #pragma mark - CPTPlotDataSource methods
 
 -(NSUInteger)numberOfRecordsForPlot:(CPTPlot *)plot {
-    return [localPlayerDataPoints count];
+    return [[self getPlayerDataPoints] count];
 }
 
 -(NSNumber *)numberForPlot:(CPTPlot *)plot field:(NSUInteger)fieldEnum recordIndex:(NSUInteger)index {
-	if ((fieldEnum == CPTBarPlotFieldBarTip) && (index < [localPlayerDataPoints count])) {
+	if ((fieldEnum == CPTBarPlotFieldBarTip) && (index < [[self getPlayerDataPoints] count])) {
 		if ([plot.identifier isEqual:harvestPlotId]) {
-            PlayerDataPoint *pdp = [localPlayerDataPoints objectAtIndex:index];
+            PlayerDataPoint *pdp = [[self getPlayerDataPoints] objectAtIndex:index];
             
-            NSLog(@"SCORES %f", [pdp.score floatValue]);
+           // NSLog(@"SCORES %f", [pdp.score floatValue]);
             
             return pdp.score;
         }
@@ -308,7 +310,7 @@
     axisTitleTextStyle.fontName = helveticaNeueMedium;
     axisTitleTextStyle.fontSize = 26.0;
     
-    PlayerDataPoint *pdp = [localPlayerDataPoints objectAtIndex:index];
+    PlayerDataPoint *pdp = [[self getPlayerDataPoints] objectAtIndex:index];
     
     CPTTextLayer *label=[[CPTTextLayer alloc] initWithText: [pdp.score stringValue] style:axisTitleTextStyle];
     return label;
@@ -325,7 +327,11 @@
                   recordIndex:(NSUInteger)index {
     
     if ( [barPlot.identifier isEqual:harvestPlotId] ) {
-        NSString *hexColor = [[localPlayerDataPoints objectAtIndex:index] valueForKey:@"color"];
+        
+        
+        
+        
+        NSString *hexColor = [[[self getPlayerDataPoints] objectAtIndex:index] valueForKey:@"color"];
         UIColor *rgbColor = [localColorMap objectForKey:hexColor];
         CPTFill *fill = [CPTFill fillWithColor:[CPTColor colorWithCGColor:rgbColor.CGColor]];
         return fill;
@@ -340,43 +346,48 @@
 
 -(void)updateGraph {
     
-    if( isRUNNING && localPlayerDataPoints.count > 0 && localPatches.count > 0) {
+    if( isRUNNING && [[self getPlayerDataPoints] count]  > 0 && [[self getPlayerDataPoints] count] > 0) {
         
         //get all the current arrivals and departures
 //        patchPlayerInfos = [[self appDelegate] patchPlayerInfos];
 //        
 //        
-        NSArray *players = [localPlayerDataPoints filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"currentPatch != nil"]];
+        NSArray *players = [[self getPlayerDataPoints] filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"currentPatch != nil"]];
 
-        if( players.count == 0 )
-            return;
+        if( players.count != 0 ) {
+           
         
-        for( PlayerDataPoint *pdp in localPlayerDataPoints ) {
+            for( PlayerDataPoint *pdp in players ) {
             //get the patch
             
             
             
-            PatchInfo *pi = [[localPatches filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"patch_id == %@", pdp.currentPatch]] objectAtIndex:0];
+               
+                
+                NSArray *pis = [[self getPatches] filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"patch_id == %@", pdp.currentPatch]];
             
-            int numberOfPlayerAtPatches = [localPlayerDataPoints valueForKey:@"@count"];
-            //get the players score
+                if( pis.count > 0) {
+                
+                    PatchInfo *pi = [pis objectAtIndex:0];
+                
+                int numberOfPlayerAtPatches = players.count;
+                //get the players score
             
             
-            //calculate the new score
-            float playerOldScore = [pdp.score floatValue];
+                //calculate the new score
+                float playerOldScore = [pdp.score floatValue];
             
-            float adjustment = pi.richness / numberOfPlayerAtPatches;
+                float adjustment = (pi.richness_per_second / 2) / numberOfPlayerAtPatches;
 
             
-            pdp.score = [NSNumber numberWithFloat:(playerOldScore + adjustment)];
+                pdp.score = [NSNumber numberWithFloat:(playerOldScore + adjustment)];
             
-            NSLog(@"PLAYER %@ for score %f",pdp.player_id, [pdp.score floatValue]);
+                NSLog(@"PLAYER %@ for score %f",pdp.player_id, [pdp.score floatValue]);
+                }
             
-            
-        
-            
-       }
-        
+            }
+            [graph reloadData];
+        }
         
 //        for (PlayerDataPoint *pdp in localPlayerDataPoints) {
 //            if( [pdp.name isEqual:@"XPR"]) {
@@ -384,7 +395,7 @@
 //            }
 //        }
         
-        [graph reloadData];
+        
     }
 }
 
@@ -392,6 +403,15 @@
 {
     [super didReceiveMemoryWarning];
 }
+
+-(NSArray *)getPlayerDataPoints {
+    return [[self appDelegate] playerDataPoints];
+}
+
+-(NSArray *)getPatches {
+    return [[[[self appDelegate] configurationInfo ] patches ] allObjects];
+}
+
 
 - (AppDelegate *)appDelegate
 {

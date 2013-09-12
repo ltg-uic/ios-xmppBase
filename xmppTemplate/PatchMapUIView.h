@@ -7,15 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface PatchMapUIView : UIView {
+#import "UIView+NibLoading.h"
+@interface PatchMapUIView :  NibLoadedView {
     
+  
 }
-
-@property (weak, nonatomic) IBOutlet UILabel *patchRichnessLabel;
-
-@property (weak, nonatomic) IBOutlet UILabel *patchNameLabel;
-
+@property (weak, nonatomic) IBOutlet UILabel *title;
+@property (weak, nonatomic) IBOutlet UILabel *richness;
 
 @end
 

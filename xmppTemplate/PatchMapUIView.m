@@ -10,23 +10,12 @@
 
 @implementation PatchMapUIView
 
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
-}
 
-- (id)initWithFrame:(CGRect)frame withPatchName:(NSString *)patchName withRichness:(NSString *)richness
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
-}
+
+//-(void)awakeFromNib {
+//    //Note that you must change @”BNYSharedView’ with whatever your nib is named
+//        [self addSubview: self.contentView ];
+//}
 
 /*
 // Only override drawRect: if you perform custom drawing.
@@ -36,5 +25,15 @@
     // Drawing code
 }
 */
+
+- (id) initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if( self ) {
+    self.layer.shadowColor = [[UIColor blackColor] CGColor];
+    self.layer.shadowOffset = CGSizeMake(1.0, 1.0);
+    self.layer.shadowOpacity = 0.40;
+    }
+    return self;
+}
 
 @end
