@@ -540,7 +540,6 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     NSDictionary *jsonObjects = [jsonParser objectWithString:msg];
     
     if( jsonObjects != nil){
-        NSString *destination = [jsonObjects objectForKey:@"destination"];
         
         
         NSString *event = [jsonObjects objectForKey:@"event"];
@@ -560,30 +559,30 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
                 
                 
                 NSDictionary *payload = [jsonObjects objectForKey:@"payload"];
-                NSArray *arrivals = [payload objectForKey:@"arrivals"];
-                NSArray *departures = [payload objectForKey:@"departures"];
+                NSString *player_id = [payload objectForKey:@"id"];
+                NSString *arrival = [payload objectForKey:@"arrival"];
+                NSString *departure = [payload objectForKey:@"departure"];
                 
-                if( arrivals != nil && arrivals.count > 0 ) {
+                 PlayerDataPoint *player = [[_playerDataPoints filteredArrayUsingPredicate: [NSPredicate predicateWithFormat:@"player_id == %@", player_id] ] objectAtIndex:0];
+                
+                if( arrival != nil ) {
                     
-                    for (NSString *rfid in arrivals) {
-                        PlayerDataPoint *player = [[_playerDataPoints filteredArrayUsingPredicate: [NSPredicate predicateWithFormat:@"rfid_tag == %@", rfid] ] objectAtIndex:0];
-                        
-                        //set the arrival
-                        //[player setValue:destination forKey:@"PlayerDataPoint.currentPatch"];
-                        player.currentPatch = destination;
+                   
+                   
+                    player.currentPatch = arrival;
 
-                    }
+                
                 }
                 
-                if( departures != nil && departures.count > 0 ) {
-                    for (NSString *rfid in departures) {
-                        PlayerDataPoint *player = [[_playerDataPoints filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"rfid_tag == %@", rfid] ] objectAtIndex:0];
-                        
-                        //set the arrival
+                if( ![departure isEqualToString: @""] ) {
+                                                //set the arrival
                         //[player setValue:nil forKey:@"PlayerDataPoint.currentPatch"];
                         player.currentPatch = nil;
-                    }
+                } else {
+                    departure = nil;
                 }
+                
+                [_playerDataDelegate playerDataDidUpdateWithArrival:arrival WithDeparture:departure WithPlayerId:player_id WithColor:player.color];
             }
             
             

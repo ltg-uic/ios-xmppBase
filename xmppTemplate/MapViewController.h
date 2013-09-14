@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "PlayerDataDelegate.h"
+#import "PatchMapUIView.h"
 
 @interface MapViewController : UIViewController<PlayerDataDelegate> {
 }
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *revealButtonItem;
+@property(retain) IBOutletCollection(PatchMapUIView) NSArray *patchUIViews;
+@property(nonatomic) BOOL hasInitialized;
 
 @end

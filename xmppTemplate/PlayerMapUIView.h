@@ -13,7 +13,9 @@
 }
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 
+@property (strong, nonatomic) NSString *player_id;
 @property (strong, nonatomic) NSString *color;
+@property (strong, nonatomic) UIColor *uiColor;
 @end
 
 

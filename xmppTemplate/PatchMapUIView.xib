@@ -7,84 +7,93 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PatchMapUIView">
             <connections>
                 <outlet property="centerView" destination="SjU-R9-znx" id="HEn-zm-q12"/>
+                <outlet property="extraPlayerCountLabel" destination="Oa9-qm-SkT" id="u3o-36-c2Q"/>
                 <outlet property="richness" destination="8Af-em-JjV" id="F4f-LZ-w6d"/>
                 <outlet property="title" destination="FSc-O9-gnG" id="Ihb-nQ-oEn"/>
+                <outletCollection property="players" destination="QMc-RS-3Zy" id="akz-cl-TMN"/>
+                <outletCollection property="players" destination="nqV-fP-Pe0" id="J4m-sJ-XHS"/>
+                <outletCollection property="players" destination="ZYJ-jT-1O5" id="kmg-Ci-Xkv"/>
+                <outletCollection property="players" destination="VQC-tl-ZNl" id="Cl8-c2-QiA"/>
+                <outletCollection property="players" destination="ifr-4n-IVF" id="DEt-lG-7b8"/>
+                <outletCollection property="players" destination="Q9D-WU-BEl" id="SCi-Oc-Wxg"/>
+                <outletCollection property="players" destination="dfI-af-LIf" id="Rpj-uM-HUC"/>
+                <outletCollection property="players" destination="mdv-ZK-sn8" id="h0S-H9-T1j"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="1" userLabel="(Container)">
-            <rect key="frame" x="0.0" y="0.0" width="241" height="196"/>
+            <rect key="frame" x="0.0" y="0.0" width="205" height="205"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" id="sbT-Tr-jdl" userLabel="MainView">
-                    <rect key="frame" x="0.0" y="0.0" width="241" height="196"/>
+                    <rect key="frame" x="0.0" y="0.0" width="205" height="205"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <view contentMode="scaleToFill" id="SjU-R9-znx" userLabel="CenterView">
-                            <rect key="frame" x="61" y="49" width="119" height="97"/>
+                            <rect key="frame" x="52" y="52" width="101" height="101"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Richness" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8Af-em-JjV" userLabel="Label - Number">
-                                    <rect key="frame" x="23" y="40" width="76" height="17"/>
+                                    <rect key="frame" x="12" y="47" width="76" height="17"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+8" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Oa9-qm-SkT" userLabel="Label - extras">
-                                    <rect key="frame" x="23" y="60" width="76" height="17"/>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Oa9-qm-SkT" userLabel="Label - extras">
+                                    <rect key="frame" x="12" y="69" width="76" height="17"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Patch Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FSc-O9-gnG">
-                                    <rect key="frame" x="27" y="20" width="69" height="17"/>
+                                    <rect key="frame" x="16" y="25" width="69" height="17"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
-                            <color key="backgroundColor" red="0.77647060160000003" green="0.1647058874" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" red="0.96862751250000001" green="0.96862751250000001" blue="0.96862751250000001" alpha="1" colorSpace="deviceRGB"/>
                         </view>
-                        <view contentMode="scaleToFill" id="nqV-fP-Pe0" customClass="PlayerMapUIView">
-                            <rect key="frame" x="183" y="99" width="58" height="47"/>
+                        <view hidden="YES" contentMode="scaleToFill" id="nqV-fP-Pe0" customClass="PlayerMapUIView">
+                            <rect key="frame" x="155" y="103" width="50" height="50"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.26274511220000002" green="0.60784316059999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </view>
-                        <view contentMode="scaleToFill" id="ZYJ-jT-1O5" customClass="PlayerMapUIView">
-                            <rect key="frame" x="122" y="149" width="58" height="47"/>
+                        <view hidden="YES" contentMode="scaleToFill" id="ZYJ-jT-1O5" customClass="PlayerMapUIView">
+                            <rect key="frame" x="103" y="155" width="50" height="50"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.26274511220000002" green="0.60784316059999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </view>
-                        <view contentMode="scaleToFill" id="VQC-tl-ZNl" customClass="PlayerMapUIView">
-                            <rect key="frame" x="61" y="149" width="58" height="47"/>
+                        <view hidden="YES" contentMode="scaleToFill" id="VQC-tl-ZNl" customClass="PlayerMapUIView">
+                            <rect key="frame" x="52" y="155" width="50" height="50"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.26274511220000002" green="0.60784316059999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </view>
-                        <view contentMode="scaleToFill" id="ifr-4n-IVF" customClass="PlayerMapUIView">
-                            <rect key="frame" x="0.0" y="99" width="58" height="47"/>
+                        <view hidden="YES" contentMode="scaleToFill" id="ifr-4n-IVF" customClass="PlayerMapUIView">
+                            <rect key="frame" x="0.0" y="104" width="50" height="50"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.26274511220000002" green="0.60784316059999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </view>
-                        <view contentMode="scaleToFill" id="Q9D-WU-BEl" customClass="PlayerMapUIView">
-                            <rect key="frame" x="0.0" y="49" width="58" height="47"/>
+                        <view hidden="YES" contentMode="scaleToFill" id="Q9D-WU-BEl" customClass="PlayerMapUIView">
+                            <rect key="frame" x="0.0" y="52" width="50" height="50"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.26274511220000002" green="0.60784316059999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </view>
-                        <view contentMode="scaleToFill" id="dfI-af-LIf" customClass="PlayerMapUIView">
-                            <rect key="frame" x="61" y="0.0" width="58" height="47"/>
+                        <view hidden="YES" contentMode="scaleToFill" id="dfI-af-LIf" customClass="PlayerMapUIView">
+                            <rect key="frame" x="52" y="0.0" width="50" height="50"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.26274511220000002" green="0.60784316059999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </view>
-                        <view contentMode="scaleToFill" id="mdv-ZK-sn8" customClass="PlayerMapUIView">
-                            <rect key="frame" x="122" y="0.0" width="58" height="47"/>
+                        <view hidden="YES" contentMode="scaleToFill" id="mdv-ZK-sn8" customClass="PlayerMapUIView">
+                            <rect key="frame" x="103" y="0.0" width="50" height="50"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.26274511220000002" green="0.60784316059999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </view>
-                        <view contentMode="scaleToFill" id="QMc-RS-3Zy" customClass="PlayerMapUIView">
-                            <rect key="frame" x="183" y="49" width="58" height="47"/>
+                        <view hidden="YES" contentMode="scaleToFill" id="QMc-RS-3Zy" customClass="PlayerMapUIView">
+                            <rect key="frame" x="155" y="52" width="50" height="50"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.26274511220000002" green="0.60784316059999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </view>

@@ -49,33 +49,31 @@
 
 - (void) prepareForSegue: (UIStoryboardSegue *) segue sender: (id) sender
 {
-    // Set the title of navigation bar by using the menu items
-    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-    UINavigationController *destViewController = (UINavigationController*)segue.destinationViewController;
-    destViewController.title = [[_menuItems objectAtIndex:indexPath.row] capitalizedString];
-    
-    //Prefetch the data
-    if ([segue.identifier isEqualToString:@"showGraph"]) {
-        GraphViewController *graphViewController = (GraphViewController*)segue.destinationViewController;
-       
-       // graphViewController per
-//        NSString *photoFilename = [NSString stringWithFormat:@"%@_photo.jpg", [_menuItems objectAtIndex:indexPath.row]];
-//        photoController.photoFilename = photoFilename;
-    }
-    
-    if ( [segue isKindOfClass: [SWRevealViewControllerSegue class]] ) {
-        SWRevealViewControllerSegue *swSegue = (SWRevealViewControllerSegue*) segue;
         
-        swSegue.performBlock = ^(SWRevealViewControllerSegue* rvc_segue, UIViewController* svc, UIViewController* dvc) {
+    // configure the segue.
+    // in this case we dont swap out the front view controller, which is a UINavigationController.
+    // but we could..
+    if ( [segue isKindOfClass: [SWRevealViewControllerSegue class]] )
+    {
+        SWRevealViewControllerSegue* rvcs = (SWRevealViewControllerSegue*) segue;
+        
+        SWRevealViewController* rvc = self.revealViewController;
+        NSAssert( rvc != nil, @"oops! must have a revealViewController" );
+        
+        NSAssert( [rvc.frontViewController isKindOfClass: [UINavigationController class]], @"oops!  for this segue we want a permanent navigation controller in the front!" );
+        
+        rvcs.performBlock = ^(SWRevealViewControllerSegue* rvc_segue, UIViewController* svc, UIViewController* dvc) {
             
-            UINavigationController* navController = (UINavigationController*)self.revealViewController.frontViewController;
-            [navController setViewControllers: @[dvc] animated: NO ];
-            [self.revealViewController setFrontViewPosition: FrontViewPositionLeft animated: YES];
+            //            UINavigationController* nc = (UINavigationController*)rvc.frontViewController;
+            //            [nc setViewControllers: @[ dvc ] animated: NO ];
+            //            [rvc setFrontViewPosition: FrontViewPositionLeft animated: YES];
+            
+            UINavigationController* nc = [[UINavigationController alloc] initWithRootViewController:dvc];
+            [rvc setFrontViewController:nc animated:YES];
         };
-        
     }
-    
 }
+
 
 
 

@@ -7,8 +7,9 @@
     
 }
 
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *revealButtonItem;
 
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
+
 @property (nonatomic, strong) IBOutlet CPTGraphHostingView *graphView;
 
 //ploting methods

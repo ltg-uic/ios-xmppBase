@@ -98,6 +98,23 @@ typedef enum
 @end
 
 
+#pragma mark - StatusBar Helper Function
+
+// computes the required offset adjustment due to the status bar for the passed in view,
+// it will return the statusBar height if view fully overlaps the statusBar, otherwise returns 0.0f
+static CGFloat statusBarAdjustment( UIView* view )
+{
+    CGFloat adjustment = 0.0f;
+    CGRect viewFrame = [view convertRect:view.bounds toView:nil];
+    CGRect statusBarFrame = [[UIApplication sharedApplication] statusBarFrame];
+    
+    if ( CGRectContainsRect(viewFrame, statusBarFrame) )
+        adjustment = fminf(statusBarFrame.size.width, statusBarFrame.size.height);
+
+    return adjustment;
+}
+
+
 #pragma mark - SWRevealView Class
 
 @interface SWRevealView: UIView
@@ -158,6 +175,17 @@ static CGFloat scaledValue( CGFloat v1, CGFloat min2, CGFloat max2, CGFloat min1
 }
 
 
+- (CGRect)hierarchycalFrameAdjustment:(CGRect)frame
+{
+    if ( _c.presentFrontViewHierarchically )
+    {
+        CGFloat offset = 44 + statusBarAdjustment(self);
+        frame.origin.y += offset;
+        frame.size.height -= offset;
+    }
+    return frame;
+}
+
 - (void)layoutSubviews
 {
     if ( _disableLayout ) return;
@@ -168,7 +196,8 @@ static CGFloat scaledValue( CGFloat v1, CGFloat min2, CGFloat max2, CGFloat min1
     
     [self _layoutRearViewsForLocation:xLocation];
     
-    _frontView.frame = CGRectMake(xLocation, 0.0f, bounds.size.width, bounds.size.height);
+    CGRect frame = CGRectMake(xLocation, 0.0f, bounds.size.width, bounds.size.height);
+    _frontView.frame = [self hierarchycalFrameAdjustment:frame];
     
     UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRect:_frontView.bounds];
     _frontView.layer.shadowPath = shadowPath.CGPath;
@@ -233,23 +262,12 @@ static CGFloat scaledValue( CGFloat v1, CGFloat min2, CGFloat max2, CGFloat min1
     xLocation = [self _adjustedDragLocationForLocation:xLocation];
     [self _layoutRearViewsForLocation:xLocation];
     
-    _frontView.frame = CGRectMake(xLocation, 0.0f, bounds.size.width, bounds.size.height);
+    CGRect frame = CGRectMake(xLocation, 0.0f, bounds.size.width, bounds.size.height);
+    _frontView.frame = [self hierarchycalFrameAdjustment:frame];
 }
 
 
 # pragma mark private
-
-//- (void)_layoutRearViews
-//{
-//    CGRect bounds = self.bounds;
-//    
-//    CGFloat rearWidth = _c.rearViewRevealWidth + _c.rearViewRevealOverdraw;
-//    _rearView.frame = CGRectMake(0.0, 0.0, rearWidth, bounds.size.height);
-//    
-//    CGFloat rightWidth = _c.rightViewRevealWidth + _c.rightViewRevealOverdraw;
-//    _rightView.frame = CGRectMake(bounds.size.width-rightWidth, 0.0f, rightWidth, bounds.size.height);
-//}
-
 
 
 - (void)_layoutRearViewsForLocation:(CGFloat)xLocation
@@ -395,6 +413,7 @@ const int FrontViewPositionNone = 0xff;
     _bounceBackOnLeftOverdraw = YES;
     _stableDragOnOverdraw = NO;
     _stableDragOnLeftOverdraw = NO;
+    _presentFrontViewHierarchically = NO;
     _quickFlickVelocity = 250.0f;
     _toggleAnimationDuration = 0.25;
     _frontViewShadowRadius = 2.5f;
@@ -459,7 +478,11 @@ static NSString * const SWSegueRightIdentifier = @"sw_right";
     
     // This is what Apple tells us to set as the initial frame, which is of course totally irrelevant
     // with the modern view controller containment patterns, let's leave it for the sake of it!
-    CGRect frame = [[UIScreen mainScreen] applicationFrame];
+    //CGRect frame = [[UIScreen mainScreen] applicationFrame];
+    
+    // On iOS7 the applicationFrame does not return the whole screen. This is possibly a bug.
+    // As a workaround we use the screen bounds, this still works on iOS6
+    CGRect frame = [[UIScreen mainScreen] bounds];
 
     // create a custom content view for the controller
     _contentView = [[SWRevealView alloc] initWithFrame:frame controller:self];
@@ -473,15 +496,29 @@ static NSString * const SWSegueRightIdentifier = @"sw_right";
     // load any defined front/rear controllers from the storyboard
     if ( self.storyboard && _rearViewController == nil )
     {
+        //Try each segue separately so it doesn't break prematurely if either Rear or Right views are not used.
         @try
         {
             [self performSegueWithIdentifier:SWSegueRearIdentifier sender:nil];
+        }
+        @catch(NSException *exception)
+        {
+        }
+        
+        @try
+        {
             [self performSegueWithIdentifier:SWSegueFrontIdentifier sender:nil];
+        }
+        @catch(NSException *exception)
+        {
+        }
+        
+        @try
+        {
             [self performSegueWithIdentifier:SWSegueRightIdentifier sender:nil];
         }
         @catch(NSException *exception)
         {
-            //NSLog(@"Caught %@: %@", [exception name], [exception reason]);
         }
     }
     
@@ -988,13 +1025,12 @@ static NSString * const SWSegueRightIdentifier = @"sw_right";
     [self _dequeue];
 }
 
-
 // Primitive method for rear controller transition
 - (void)_setRearViewController:(UIViewController*)newRearViewController
 {
     UIViewController *old = _rearViewController;
     _rearViewController = newRearViewController;
-    [self _transitionFromViewController:old toViewController:newRearViewController inView:_contentView.frontView]();
+    [self _transitionFromViewController:old toViewController:newRearViewController inView:_contentView.rearView]();
     [self _dequeue];
 }
 
@@ -1071,6 +1107,9 @@ static NSString * const SWSegueRightIdentifier = @"sw_right";
 // that must be invoked on animation completion in order to finish deployment
 - (void (^)(void))_rearViewDeploymentForNewFrontViewPosition:(FrontViewPosition)newPosition
 {
+    if ( _presentFrontViewHierarchically )
+        newPosition = FrontViewPositionRight;
+    
     if ( _rearViewController == nil && newPosition > FrontViewPositionLeft )
         newPosition = FrontViewPositionLeft;
 
@@ -1121,9 +1160,21 @@ static NSString * const SWSegueRightIdentifier = @"sw_right";
     if ( !controller || !view )
         return ^(void){};
     
+    CGRect frame = view.bounds;
+    
     UIView *controllerView = controller.view;
     controllerView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    controllerView.frame = view.bounds;
+    controllerView.frame = frame;
+    
+    if ( [controller respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)] && [controllerView isKindOfClass:[UIScrollView class]] )
+    {
+        BOOL adjust = (BOOL)[controller performSelector:@selector(automaticallyAdjustsScrollViewInsets) withObject:nil];
+        
+        if ( adjust )
+        {
+            [(id)controllerView setContentInset:UIEdgeInsetsMake(statusBarAdjustment(_contentView), 0, 0, 0)];
+        }
+    }
     
     [view addSubview:controllerView];
     

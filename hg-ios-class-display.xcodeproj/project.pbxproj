@@ -20,6 +20,7 @@
 		700C3A9E16042944005A9E34 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 700C3A9D16042944005A9E34 /* CFNetwork.framework */; };
 		700C3B2E16042BBD005A9E34 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 700C3B2D16042BBD005A9E34 /* Security.framework */; };
 		700C3B3A160430DA005A9E34 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 700C3B39160430DA005A9E34 /* SystemConfiguration.framework */; };
+		7013B01117E4CF9C00194BA5 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7013B01017E4CF9C00194BA5 /* SWRevealViewController.m */; };
 		7025949817C3E370006E596B /* RosterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7025949717C3E370006E596B /* RosterModel.m */; };
 		7025949B17C3FFE7006E596B /* WizardStudentPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7025949A17C3FFE7006E596B /* WizardStudentPageViewController.m */; };
 		7025949E17C40065006E596B /* WizardStudentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7025949D17C40065006E596B /* WizardStudentCell.m */; };
@@ -56,7 +57,6 @@
 		707FE57117D9412B0036DBAB /* PatchMapUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 707FE57017D9412B0036DBAB /* PatchMapUIView.m */; };
 		70879019160BB0A50099DD5D /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70879018160BB0A50099DD5D /* CoreData.framework */; };
 		70AAC26A17C325460018A84B /* WizardClassPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AAC26917C325460018A84B /* WizardClassPageViewController.m */; };
-		70AFBDB117C7B52400868211 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AFBDB017C7B52400868211 /* SWRevealViewController.m */; };
 		70AFBDB917C7B9E900868211 /* GraphViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AFBDB617C7B9E900868211 /* GraphViewController.m */; };
 		70AFBDD017C7E4B700868211 /* SidebarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AFBDCF17C7E4B700868211 /* SidebarViewController.m */; };
 		70AFBDD417C7E9DF00868211 /* sidebar_icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70AFBDD317C7E9DF00868211 /* sidebar_icons.xcassets */; };
@@ -161,6 +161,8 @@
 		700C3A9D16042944005A9E34 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		700C3B2D16042BBD005A9E34 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		700C3B39160430DA005A9E34 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		7013B00F17E4CF9C00194BA5 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
+		7013B01017E4CF9C00194BA5 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		7025949617C3E370006E596B /* RosterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RosterModel.h; sourceTree = "<group>"; };
 		7025949717C3E370006E596B /* RosterModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RosterModel.m; sourceTree = "<group>"; };
 		7025949917C3FFE7006E596B /* WizardStudentPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizardStudentPageViewController.h; sourceTree = "<group>"; };
@@ -306,8 +308,6 @@
 		70AAC26517C31AE90018A84B /* wizard.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = wizard.xcassets; sourceTree = "<group>"; };
 		70AAC26817C325460018A84B /* WizardClassPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizardClassPageViewController.h; sourceTree = "<group>"; };
 		70AAC26917C325460018A84B /* WizardClassPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WizardClassPageViewController.m; sourceTree = "<group>"; };
-		70AFBDAF17C7B52400868211 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
-		70AFBDB017C7B52400868211 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		70AFBDB517C7B9E900868211 /* GraphViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphViewController.h; sourceTree = "<group>"; };
 		70AFBDB617C7B9E900868211 /* GraphViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphViewController.m; sourceTree = "<group>"; };
 		70AFBDCE17C7E4B700868211 /* SidebarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SidebarViewController.h; sourceTree = "<group>"; };
@@ -730,8 +730,8 @@
 			children = (
 				70AFBDCE17C7E4B700868211 /* SidebarViewController.h */,
 				70AFBDCF17C7E4B700868211 /* SidebarViewController.m */,
-				70AFBDAF17C7B52400868211 /* SWRevealViewController.h */,
-				70AFBDB017C7B52400868211 /* SWRevealViewController.m */,
+				7013B00F17E4CF9C00194BA5 /* SWRevealViewController.h */,
+				7013B01017E4CF9C00194BA5 /* SWRevealViewController.m */,
 				70CEF76517C8474E00ED0CBE /* SideBarCell.h */,
 				70CEF76617C8474E00ED0CBE /* SideBarCell.m */,
 			);
@@ -768,11 +768,11 @@
 		707FE56E17D940CC0036DBAB /* map */ = {
 			isa = PBXGroup;
 			children = (
+				703D86FA17D91E0500523417 /* MapViewController.h */,
+				703D86FB17D91E0500523417 /* MapViewController.m */,
 				704AA4BF17E3F3E200A7FF9C /* PlayerMapUIView.h */,
 				704AA4C217E3F6E400A7FF9C /* PlayerMapUIView.xib */,
 				704AA4C017E3F3E200A7FF9C /* PlayerMapUIView.m */,
-				703D86FA17D91E0500523417 /* MapViewController.h */,
-				703D86FB17D91E0500523417 /* MapViewController.m */,
 				707FE56F17D9412B0036DBAB /* PatchMapUIView.h */,
 				7065422E17E0438900C38099 /* PatchMapUIView.xib */,
 				707FE57017D9412B0036DBAB /* PatchMapUIView.m */,
@@ -1335,11 +1335,11 @@
 				70B44BEE17B2F9F700C47B61 /* XMPPRoomOccupantMemoryStorageObject.m in Sources */,
 				70AFBDB917C7B9E900868211 /* GraphViewController.m in Sources */,
 				705AE0DA17D595CC005F69B7 /* SBJsonStreamTokeniser.m in Sources */,
+				7013B01117E4CF9C00194BA5 /* SWRevealViewController.m in Sources */,
 				705AE0D917D595CC005F69B7 /* SBJsonStreamParserState.m in Sources */,
 				705AE0DE17D595CC005F69B7 /* SBJsonWriter.m in Sources */,
 				70CEF76717C8474E00ED0CBE /* SideBarCell.m in Sources */,
 				70B44B6917B2F9A000C47B61 /* NSData+XMPP.m in Sources */,
-				70AFBDB117C7B52400868211 /* SWRevealViewController.m in Sources */,
 				700C3A5E160427DA005A9E34 /* main.m in Sources */,
 				705AE0DC17D595CC005F69B7 /* SBJsonStreamWriterAccumulator.m in Sources */,
 				700C3A62160427DA005A9E34 /* AppDelegate.m in Sources */,

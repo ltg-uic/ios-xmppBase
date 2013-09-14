@@ -10,7 +10,7 @@
 #import "PlayerDataPoint.h"
 #import "PatchInfo.h"
 #import "UIColor-Expanded.h"
-
+#import "SWRevealViewController.h"
 @interface GraphViewController() {
 
     //core data
@@ -73,6 +73,10 @@
 //    [graph reloadData];
 }
 
+-(void)playerDataDidUpdateWithArrival:(NSString *)arrival_patch_id WithDeparture:(NSString *)departure_patch_id WithPlayerId:(NSString *)player_id WithColor:(NSString *)color {
+    
+}
+
 #pragma mark - XMPP New Message Delegate
 
 - (void)newMessageReceived:(NSDictionary *)messageContent {
@@ -118,12 +122,11 @@
     //_sidebarButton.tintColor = [UIColor colorWithWhite:0.96f alpha:0.2f];
     
     // Set the side bar button action. When it's tapped, it'll show up the sidebar.
-    _sidebarButton.target = self.revealViewController;
-    _sidebarButton.action = @selector(revealToggle:);
     
-    // Set the gesture
-    [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
-    
+    [self.revealButtonItem setTarget: self.revealViewController];
+    [self.revealButtonItem setAction: @selector( revealToggle: )];
+    [self.navigationController.navigationBar addGestureRecognizer: self.revealViewController.panGestureRecognizer];
+
     [self initPlot];
     //[self.graphView.];
     

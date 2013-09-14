@@ -121,6 +121,12 @@ typedef enum
 @property (assign, nonatomic) BOOL stableDragOnOverdraw;
 @property (assign, nonatomic) BOOL stableDragOnLeftOverdraw; // <-- simetric implementation of the above for the rightViewController
 
+// If YES (default is NO) the front view controller will be ofsseted vertically by the height of a navigation bar.
+// Use this on iOS7 when you add an instance of RevealViewController as a child of a UINavigationController (or another SWRevealViewController)
+// and you want the front view controller to be presented below the navigation bar of its UINavigationController grand parent .
+// The rearViewController will still appear full size and blurred behind the navigation bar of its UINavigationController grand parent
+@property (assign, nonatomic) BOOL presentFrontViewHierarchically;
+
 // Velocity required for the controller to toggle its state based on a swipe movement, default is 300
 @property (assign, nonatomic) CGFloat quickFlickVelocity;
 
