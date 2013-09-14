@@ -6,9 +6,11 @@
 //  Copyright (c) 2013 Learning Technologies Group. All rights reserved.
 //
 
+#import "PlayerDataPoint.h"
+
 @protocol PlayerDataDelegate
 
-#import "PlayerDataPoint.h"
+
 
 -(void)playerDataDidUpdate:(NSArray *)playerDataPoints WithColorMap:(NSMutableDictionary *) colorMap;
 
