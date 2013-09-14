@@ -27,6 +27,8 @@
 		703047E217C9DEB80043FD7B /* libiconv.2.4.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 70B44C1F17B3607A00C47B61 /* libiconv.2.4.0.dylib */; };
 		703D86FC17D91E0500523417 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 703D86FB17D91E0500523417 /* MapViewController.m */; };
 		703D870017D938C900523417 /* awareness.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 703D86FF17D938C900523417 /* awareness.xcassets */; };
+		704AA4C117E3F3E200A7FF9C /* PlayerMapUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 704AA4C017E3F3E200A7FF9C /* PlayerMapUIView.m */; };
+		704AA4C317E3F6E400A7FF9C /* PlayerMapUIView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 704AA4C217E3F6E400A7FF9C /* PlayerMapUIView.xib */; };
 		7056212417C9DBB3007D117B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7056212117C9D9C3007D117B /* QuartzCore.framework */; };
 		705AE0BE17D5949A005F69B7 /* EventInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 705AE0BD17D5949A005F69B7 /* EventInfo.m */; };
 		705AE0D517D595CC005F69B7 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 705AE0C217D595CC005F69B7 /* SBJsonParser.m */; };
@@ -171,6 +173,9 @@
 		703D86FB17D91E0500523417 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		703D86FF17D938C900523417 /* awareness.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = awareness.xcassets; path = ../awareness.xcassets; sourceTree = "<group>"; };
 		7042A38016320B3C001B44B5 /* XMPPBaseOnlineDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = XMPPBaseOnlineDelegate.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		704AA4BF17E3F3E200A7FF9C /* PlayerMapUIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerMapUIView.h; sourceTree = "<group>"; };
+		704AA4C017E3F3E200A7FF9C /* PlayerMapUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerMapUIView.m; sourceTree = "<group>"; };
+		704AA4C217E3F6E400A7FF9C /* PlayerMapUIView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerMapUIView.xib; sourceTree = "<group>"; };
 		7056211F17C9D914007D117B /* libCorePlot-CocoaTouch.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libCorePlot-CocoaTouch.a"; sourceTree = "<group>"; };
 		7056212117C9D9C3007D117B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		705AE0BC17D5949A005F69B7 /* EventInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EventInfo.h; path = entity/EventInfo.h; sourceTree = "<group>"; };
@@ -763,6 +768,9 @@
 		707FE56E17D940CC0036DBAB /* map */ = {
 			isa = PBXGroup;
 			children = (
+				704AA4BF17E3F3E200A7FF9C /* PlayerMapUIView.h */,
+				704AA4C217E3F6E400A7FF9C /* PlayerMapUIView.xib */,
+				704AA4C017E3F3E200A7FF9C /* PlayerMapUIView.m */,
 				703D86FA17D91E0500523417 /* MapViewController.h */,
 				703D86FB17D91E0500523417 /* MapViewController.m */,
 				707FE56F17D9412B0036DBAB /* PatchMapUIView.h */,
@@ -1286,6 +1294,7 @@
 				70B44BAC17B2F9A000C47B61 /* build-libidn.sh in Resources */,
 				70CD9B3617B49BF2008625BF /* logon_sound.aif in Resources */,
 				7065422F17E0438900C38099 /* PatchMapUIView.xib in Resources */,
+				704AA4C317E3F6E400A7FF9C /* PlayerMapUIView.xib in Resources */,
 				70B44B8217B2F9A000C47B61 /* README.txt in Resources */,
 				70CEF76417C8443A00ED0CBE /* Default-568h@2x.png in Resources */,
 				700C3A6E160427DA005A9E34 /* MainStoryboard_iPad.storyboard in Resources */,
@@ -1359,6 +1368,7 @@
 				705AE0BE17D5949A005F69B7 /* EventInfo.m in Sources */,
 				70B44B6C17B2F9A000C47B61 /* XMPPElement.m in Sources */,
 				70B44B6617B2F9A000C47B61 /* XMPPDigestMD5Authentication.m in Sources */,
+				704AA4C117E3F3E200A7FF9C /* PlayerMapUIView.m in Sources */,
 				700C3A71160427DA005A9E34 /* RootViewController.m in Sources */,
 				70B44BE517B2F9F700C47B61 /* XMPPRoomCoreDataStorage.m in Sources */,
 				70B44B7117B2F9A000C47B61 /* XMPPParser.m in Sources */,

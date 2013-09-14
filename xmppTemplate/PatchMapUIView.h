@@ -14,6 +14,7 @@
 }
 @property (weak, nonatomic) IBOutlet UILabel *title;
 @property (weak, nonatomic) IBOutlet UILabel *richness;
+@property (weak, nonatomic) IBOutlet UIView *centerView;
 
 @end
 

@@ -556,42 +556,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 //            return;
 //        
         if( event != nil) {
-            if( [event isEqualToString:@"patch_init_data"]){
-//                
-//                [[DataStore sharedInstance] resetPlayerCount];
-//                
-//                NSDictionary *payload = [jsonObjects objectForKey:@"payload"];
-//                
-//                feedRatio = @([[payload objectForKey:@"feed-ratio"] integerValue]);
-//                
-//                NSArray *tags = [payload objectForKey:@"tags"];
-//                
-//                for (NSDictionary *tag in tags) {
-//                    
-//                    NSString *tagId = [tag objectForKey:@"tag"];
-//                    NSString *cluster = [tag objectForKey:@"cluster"];
-//                    NSString *color = [tag objectForKey:@"color"];
-//                    
-//                    [[DataStore sharedInstance] addPlayerWithRFID:tagId withCluster:cluster withColor:color];
-//                }
-//                
-//                [[DataStore sharedInstance] printPlayers];
-//                
-//                [[DataStore sharedInstance] addPlayerSpacing];
-//                
-//                
-//                
-//                //init the graph
-//                if( hasGraph) {
-//                    [graph reloadData];
-//                } else {
-//                    hasGraph = YES;
-//                    
-//                    [self initPlot];
-//                }
-//                
-//                
-            } else if( [event isEqualToString:@"rfid_update"] ){
+            if( [event isEqualToString:@"rfid_update"] ){
                 
                 
                 NSDictionary *payload = [jsonObjects objectForKey:@"payload"];

@@ -36,28 +36,28 @@
 -(void)playerDataDidUpdate:(NSArray *)playerDataPoints WithColorMap:(NSMutableDictionary *)colorMap {
     
     
-    if ( patchViewMap == nil || patchViewMap.count == 0 ) {
-        
-        patchViewMap = [[NSMutableDictionary alloc] init];
-        patchInfos = [[[[self appDelegate] configurationInfo ] patches ] allObjects];
-        
-        int x = 20;
-        int y = 60;
-        for( PatchInfo *pi in patchInfos) {
-            
-            
-            PatchMapUIView *patchView = [self createPatchViewsWithPatchInfo:pi AtX:x AtY:y];
-            [patchViewMap setObject:patchView forKey:pi.patch_id];
-            [self.view addSubview:patchView];
-            
-            x = x + 200;
-            y = y + 100;
-            
-        }
-        
-        
-        [self.view setNeedsDisplay];
-    }
+//    if ( patchViewMap == nil || patchViewMap.count == 0 ) {
+//        
+//        patchViewMap = [[NSMutableDictionary alloc] init];
+//        patchInfos = [[[[self appDelegate] configurationInfo ] patches ] allObjects];
+//        
+//        int x = 20;
+//        int y = 60;
+//        for( PatchInfo *pi in patchInfos) {
+//            
+//            
+//            PatchMapUIView *patchView = [self createPatchViewsWithPatchInfo:pi AtX:x AtY:y];
+//            [patchViewMap setObject:patchView forKey:pi.patch_id];
+//            [self.view addSubview:patchView];
+//            
+//            x = x + 200;
+//            y = y + 100;
+//            
+//        }
+//        
+//        
+//        [self.view setNeedsDisplay];
+//    }
     
     
     
@@ -83,10 +83,10 @@
     // Set the gesture
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     
-    [patchViewMap enumerateKeysAndObjectsWithOptions:NSEnumerationConcurrent
-                                             usingBlock:^(id key, id object, BOOL *stop) {
-                                                 [self.view addSubview:object];
-                                             }];
+//    [patchViewMap enumerateKeysAndObjectsWithOptions:NSEnumerationConcurrent
+//                                             usingBlock:^(id key, id object, BOOL *stop) {
+//                                                 [self.view addSubview:object];
+//                                             }];
 }
 
 -(PatchMapUIView *)createPatchViewsWithPatchInfo:(PatchInfo *)patchInfo AtX:(int)x AtY:(int)y  {
@@ -99,9 +99,9 @@
     frame.origin.y = y;
 
     patchView.frame = frame;
-    patchView.backgroundColor = [UIColor greenColor];
-    patchView.richness.text = [NSString stringWithFormat:@"%f", patchInfo.richness_per_minute];
+    patchView.richness.text = [NSString stringWithFormat:@"%.0f", patchInfo.richness_per_minute];
     patchView.title.text = patchInfo.patch_id;
+    [patchView setTranslatesAutoresizingMaskIntoConstraints:NO];
     
     return patchView;
     
