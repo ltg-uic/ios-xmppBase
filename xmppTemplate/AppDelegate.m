@@ -92,7 +92,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
                                                                      bundle: nil];
             
             UIViewController *controller = (UIViewController *)[mainStoryboard instantiateViewControllerWithIdentifier: @"WizardNavController"];
-            controller.modalPresentationStyle = UIModalPresentationFormSheet;
+           // controller.modalPresentationStyle = UIModalPresentationFormSheet;
             
             
 			[self.window.rootViewController presentViewController:controller animated:YES completion:nil];

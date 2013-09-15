@@ -28,7 +28,7 @@
 {
     [super viewDidLoad];
     
-    studentNameLabel.text = [[_choosen_student capitalizedString] stringByAppendingString:@"?"];
+    yesButton.titleLabel.text =[[_choosen_student uppercaseString] stringByAppendingString:@" - YES"];
 	// Do any additional setup after loading the view.
 }
 

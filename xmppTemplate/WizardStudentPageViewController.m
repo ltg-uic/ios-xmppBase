@@ -11,6 +11,7 @@
 #import "PlayerDataPoint.h"
 #import "WizardStudentCell.h"
 #import "AFNetworking.h"
+#import "UIColor-Expanded.h"
 
 @interface WizardStudentPageViewController () {
     NSArray *playerPoints;
@@ -71,10 +72,33 @@
     
     PlayerDataPoint *pdp = [playerPoints objectAtIndex:indexPath.row];
     
+    UIColor *hexColor = [UIColor colorWithHexString:[pdp.color stringByReplacingOccurrencesOfString:@"#" withString:@""]];
+    
+    wz.nameButton.backgroundColor = hexColor;
+  
     if( !(pdp == nil || [playerPoints count] == 0) ) {
         [wz.nameButton setTitle: pdp.player_id forState: UIControlStateNormal];
+        [wz.nameButton setTitleColor: [self getTextColor:hexColor]  forState:UIControlStateNormal];
+
     }
     return wz;
+}
+
+- (UIColor *) getTextColor:(UIColor *)color
+{
+    const CGFloat *componentColors = CGColorGetComponents(color.CGColor);
+    
+    CGFloat colorBrightness = ((componentColors[0] * 299) + (componentColors[1] * 587) + (componentColors[2] * 114)) / 1000;
+    if (colorBrightness < 0.5)
+    {
+        NSLog(@"my color is dark");
+        return [UIColor whiteColor];
+    }
+    else
+    {
+        NSLog(@"my color is light");
+        return [UIColor blackColor];
+    }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

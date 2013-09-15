@@ -10,6 +10,7 @@
 
 @interface WizardReviewPageViewController : UIViewController {
     
+    __weak IBOutlet UIButton *yesButton;
     __weak IBOutlet UILabel *studentNameLabel;
 }
 
