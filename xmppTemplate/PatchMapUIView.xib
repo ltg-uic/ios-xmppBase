@@ -56,6 +56,9 @@
                                 </label>
                             </subviews>
                             <color key="backgroundColor" red="0.96862751250000001" green="0.96862751250000001" blue="0.96862751250000001" alpha="1" colorSpace="deviceRGB"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="10"/>
+                            </userDefinedRuntimeAttributes>
                         </view>
                         <view hidden="YES" contentMode="scaleToFill" id="nqV-fP-Pe0" customClass="PlayerMapUIView">
                             <rect key="frame" x="155" y="103" width="50" height="50"/>

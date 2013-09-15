@@ -58,7 +58,7 @@
  
 }
 
--(void)playerDataDidUpdateWithArrival:(NSString *)arrival_patch_id WithDeparture:(NSString *)departure_patch_id WithPlayerId:(NSString *)player_id WithColor:(NSString*)color {
+-(void)playerDataDidUpdateWithArrival:(NSString *)arrival_patch_id WithDeparture:(NSString *)departure_patch_id WithPlayerDataPoint:(PlayerDataPoint *)playerDataPoint {
     
     if( arrival_patch_id != nil ) {
         PatchMapUIView *arrivalView = [[_patchUIViews filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"patch_id == %@", arrival_patch_id]] objectAtIndex:0];
@@ -69,11 +69,12 @@
                 
                 if( pmp.hidden == YES ) {
                     
-                    UIColor *hexColor = [UIColor colorWithHexString:[color stringByReplacingOccurrencesOfString:@"#" withString:@""]];
+                    UIColor *hexColor = [UIColor colorWithHexString:[playerDataPoint.color stringByReplacingOccurrencesOfString:@"#" withString:@""]];
                     pmp.uiColor = hexColor;
                     pmp.backgroundColor = [UIColor clearColor];
-                    pmp.player_id = player_id;
-                    pmp.nameLabel.text = player_id;
+                    pmp.player_id = playerDataPoint.rfid_tag;
+                    pmp.nameLabel.text = playerDataPoint.player_id;
+                    pmp.nameLabel.textColor = [self getTextColor:hexColor];
                     pmp.hidden = NO;
                     [pmp setNeedsDisplay];
                     break;
@@ -90,7 +91,7 @@
             
             for(PlayerMapUIView *pmp in departureView.players ) {
                 
-                if( pmp.hidden == YES ) {
+                if( pmp.hidden == NO ) {
                     
                     pmp.backgroundColor = [UIColor clearColor];
                     pmp.player_id = nil;
@@ -105,6 +106,24 @@
     }
     
 }
+
+- (UIColor *) getTextColor:(UIColor *)color
+{
+    const CGFloat *componentColors = CGColorGetComponents(color.CGColor);
+    
+    CGFloat colorBrightness = ((componentColors[0] * 299) + (componentColors[1] * 587) + (componentColors[2] * 114)) / 1000;
+    if (colorBrightness < 0.5)
+    {
+        NSLog(@"my color is dark");
+        return [UIColor whiteColor];
+    }
+    else
+    {
+        NSLog(@"my color is light");
+        return [UIColor blackColor];
+    }
+}
+
 
 - (void)viewDidLoad
 {

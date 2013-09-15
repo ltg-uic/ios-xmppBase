@@ -559,12 +559,12 @@
 		700C3A57160427DA005A9E34 /* display */ = {
 			isa = PBXGroup;
 			children = (
-				703047E017C9DC3E0043FD7B /* tabs */,
 				700C3A6F160427DA005A9E34 /* RootViewController.h */,
 				700C3A70160427DA005A9E34 /* RootViewController.m */,
 				700C3A60160427DA005A9E34 /* AppDelegate.h */,
 				700C3A61160427DA005A9E34 /* AppDelegate.m */,
 				700C3A6C160427DA005A9E34 /* MainStoryboard_iPad.storyboard */,
+				703047E017C9DC3E0043FD7B /* tabs */,
 				70AAC26417C319030018A84B /* wizard */,
 				7004510317B5CA4E000A83F1 /* entity */,
 				705FC2B617CC22DB009D42B6 /* sidebar */,

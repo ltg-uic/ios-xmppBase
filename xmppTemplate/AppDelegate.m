@@ -559,11 +559,11 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
                 
                 
                 NSDictionary *payload = [jsonObjects objectForKey:@"payload"];
-                NSString *player_id = [payload objectForKey:@"id"];
+                NSString *rfid_tag = [payload objectForKey:@"id"];
                 NSString *arrival = [payload objectForKey:@"arrival"];
                 NSString *departure = [payload objectForKey:@"departure"];
                 
-                 PlayerDataPoint *player = [[_playerDataPoints filteredArrayUsingPredicate: [NSPredicate predicateWithFormat:@"player_id == %@", player_id] ] objectAtIndex:0];
+                 PlayerDataPoint *player = [[_playerDataPoints filteredArrayUsingPredicate: [NSPredicate predicateWithFormat:@"rfid_tag == %@", rfid_tag] ] objectAtIndex:0];
                 
                 if( arrival != nil ) {
                     
@@ -582,7 +582,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
                     departure = nil;
                 }
                 
-                [_playerDataDelegate playerDataDidUpdateWithArrival:arrival WithDeparture:departure WithPlayerId:player_id WithColor:player.color];
+                [_playerDataDelegate playerDataDidUpdateWithArrival:arrival WithDeparture:departure WithPlayerDataPoint:player];
             }
             
             
