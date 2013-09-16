@@ -21,7 +21,6 @@
 		700C3B2E16042BBD005A9E34 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 700C3B2D16042BBD005A9E34 /* Security.framework */; };
 		700C3B3A160430DA005A9E34 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 700C3B39160430DA005A9E34 /* SystemConfiguration.framework */; };
 		7013B01117E4CF9C00194BA5 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7013B01017E4CF9C00194BA5 /* SWRevealViewController.m */; };
-		7025949817C3E370006E596B /* RosterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7025949717C3E370006E596B /* RosterModel.m */; };
 		7025949B17C3FFE7006E596B /* WizardStudentPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7025949A17C3FFE7006E596B /* WizardStudentPageViewController.m */; };
 		7025949E17C40065006E596B /* WizardStudentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7025949D17C40065006E596B /* WizardStudentCell.m */; };
 		702FAA7617DAE1DE003A05AE /* PatchInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 702FAA7517DAE1DE003A05AE /* PatchInfo.m */; };
@@ -163,8 +162,6 @@
 		700C3B39160430DA005A9E34 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		7013B00F17E4CF9C00194BA5 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		7013B01017E4CF9C00194BA5 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
-		7025949617C3E370006E596B /* RosterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RosterModel.h; sourceTree = "<group>"; };
-		7025949717C3E370006E596B /* RosterModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RosterModel.m; sourceTree = "<group>"; };
 		7025949917C3FFE7006E596B /* WizardStudentPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizardStudentPageViewController.h; sourceTree = "<group>"; };
 		7025949A17C3FFE7006E596B /* WizardStudentPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WizardStudentPageViewController.m; sourceTree = "<group>"; };
 		7025949C17C40065006E596B /* WizardStudentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizardStudentCell.h; sourceTree = "<group>"; };
@@ -510,8 +507,6 @@
 				700B8B2A17DBC961001E1C0A /* ConfigurationInfo.m */,
 				705AE0BC17D5949A005F69B7 /* EventInfo.h */,
 				705AE0BD17D5949A005F69B7 /* EventInfo.m */,
-				7025949617C3E370006E596B /* RosterModel.h */,
-				7025949717C3E370006E596B /* RosterModel.m */,
 				702FAA7417DAE1DE003A05AE /* PatchInfo.h */,
 				702FAA7517DAE1DE003A05AE /* PatchInfo.m */,
 				700450FD17B5C99E000A83F1 /* DataPointModel.xcdatamodeld */,
@@ -1330,7 +1325,6 @@
 				70B44B7517B2F9A000C47B61 /* GCDMulticastDelegate.m in Sources */,
 				70F0F56D17CFD47C009B4E66 /* WebViewController.m in Sources */,
 				70AFBDD017C7E4B700868211 /* SidebarViewController.m in Sources */,
-				7025949817C3E370006E596B /* RosterModel.m in Sources */,
 				70B44C0E17B2FDDF00C47B61 /* XMPPCapabilities.xcdatamodel in Sources */,
 				70B44BEE17B2F9F700C47B61 /* XMPPRoomOccupantMemoryStorageObject.m in Sources */,
 				70AFBDB917C7B9E900868211 /* GraphViewController.m in Sources */,

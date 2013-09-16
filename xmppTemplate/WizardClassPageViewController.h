@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "RosterModel.h"
 #import "CoreDataTableViewController.h"
 
 @interface WizardClassPageViewController : CoreDataTableViewController {
