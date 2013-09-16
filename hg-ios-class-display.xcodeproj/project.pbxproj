@@ -590,11 +590,11 @@
 		703047E017C9DC3E0043FD7B /* tabs */ = {
 			isa = PBXGroup;
 			children = (
+				707FE56E17D940CC0036DBAB /* map */,
 				70AFBDB517C7B9E900868211 /* GraphViewController.h */,
 				70AFBDB617C7B9E900868211 /* GraphViewController.m */,
 				70F0F56B17CFD47C009B4E66 /* WebViewController.h */,
 				70F0F56C17CFD47C009B4E66 /* WebViewController.m */,
-				707FE56E17D940CC0036DBAB /* map */,
 			);
 			name = tabs;
 			sourceTree = "<group>";
