@@ -11,17 +11,14 @@
 #import "PatchInfo.h"
 #import "UIColor-Expanded.h"
 #import "SWRevealViewController.h"
-@interface GraphViewController() {
 
-    //core data
-    //NSArray *localPlayerDataPoints;
+@interface GraphViewController() {
+    
     NSMutableDictionary *localColorMap;
     NSArray *localPatches;
-    
     NSSet *patchInfos;
-    
-    NSTimer *intervalTimer;
-    
+    NSTimer *timer;
+
     //corePlot
     CPTColor *blueColor;
     CPTColor *redColor;
@@ -45,13 +42,16 @@
 
 @implementation GraphViewController
 
-
 - (id)initWithCoder:(NSCoder *)aDecoder {
     if(self = [super initWithCoder:aDecoder])
     {
         
         [self setupDelegates];
         localColorMap = [[self appDelegate] colorMap];
+        
+        
+        
+        
        // localPlayerDataPoints = [[self appDelegate] playerDataPoints];
         localPatches = [[[[self appDelegate] configurationInfo ] patches ] allObjects];
     }
@@ -61,49 +61,6 @@
 -(void)setupDelegates {
     self.appDelegate.xmppBaseNewMessageDelegate = self;
     self.appDelegate.playerDataDelegate = self;
-}
-
-#pragma mark - PLAYER DATA DELEGATE
-
--(void)playerDataDidUpdate:(NSArray *)playerDataPoints WithColorMap:(NSMutableDictionary *)colorMap {
-    
-//    localPlayerDataPoints = playerDataPoints;
-//    localColorMap = colorMap;
-//    
-//    [graph reloadData];
-}
-
--(void)playerDataDidUpdateWithArrival:(NSString *)arrival_patch_id WithDeparture:(NSString *)departure_patch_id WithPlayerId:(NSString *)player_id WithColor:(NSString *)color {
-    
-}
-
-#pragma mark - XMPP New Message Delegate
-
-- (void)newMessageReceived:(NSDictionary *)messageContent {
-    NSLog(@"NEW MESSAGE RECIEVED");
-}
-
-- (void)replyMessageTo:(NSString *)from {
-    
-}
-
-#pragma mark - TIMER
-
--(void)startTimer {
-    if( intervalTimer == nil)
-        intervalTimer = [NSTimer scheduledTimerWithTimeInterval:.2
-                                                         target:self
-                                                       selector:@selector(updateGraph)
-                                                       userInfo:nil
-                                                        repeats:YES];
-
-}
-
--(void)stopTimer {
-    if( intervalTimer != nil)
-        [intervalTimer invalidate];
-    intervalTimer = nil;
-
 }
 
 #pragma mark - VIEWS
@@ -148,7 +105,7 @@
     maxNumPlayers = [[self getPlayerDataPoints] count];
     
     minYield = 0.0f;
-    maxYield = 50000.0f;
+    maxYield = 10000.0f;
     
     
     [self setupGraph];
@@ -237,8 +194,7 @@
     y.axisLineStyle               = axisLineStyle;
     y.majorTickLength             = 0.0f;
 
-    
-    
+
     NSMutableSet *newAxisLabels = [NSMutableSet set];
     for ( NSUInteger i = 0; i < [[[self appDelegate] playerDataPoints] count]; i++ ) {
         
@@ -252,9 +208,7 @@
         [newAxisLabels addObject:newLabel];
     }
     y.axisLabels = newAxisLabels;
-    
-    
-    
+
     CPTXYAxis *x = axisSet.xAxis;
     
     x.plotSpace                   = graph.defaultPlotSpace;
@@ -268,23 +222,8 @@
 
     x.majorIntervalLength         = CPTDecimalFromString(@"1");
     x.orthogonalCoordinateDecimal = CPTDecimalFromString(@"1");
-
-    
-    
     graph.axisSet.axes = @[x,y];
 
-    
-}
-
-- (IBAction)fireTimer:(id)sender {
-    
-    if( isRUNNING == NO) {
-        isRUNNING = YES;
-        [self startTimer];
-    } else {
-        isRUNNING = NO;
-        [self stopTimer];
-    }
     
 }
 
@@ -297,11 +236,10 @@
 -(NSNumber *)numberForPlot:(CPTPlot *)plot field:(NSUInteger)fieldEnum recordIndex:(NSUInteger)index {
 	if ((fieldEnum == CPTBarPlotFieldBarTip) && (index < [[self getPlayerDataPoints] count])) {
 		if ([plot.identifier isEqual:harvestPlotId]) {
+            
             PlayerDataPoint *pdp = [[self getPlayerDataPoints] objectAtIndex:index];
             
-           // NSLog(@"SCORES %f", [pdp.score floatValue]);
-            
-            return pdp.score;
+            return [pdp score];
         }
 	}
 	return [NSDecimalNumber numberWithUnsignedInteger:index];
@@ -313,9 +251,13 @@
     axisTitleTextStyle.fontName = helveticaNeueMedium;
     axisTitleTextStyle.fontSize = 26.0;
     
+   
+    
     PlayerDataPoint *pdp = [[self getPlayerDataPoints] objectAtIndex:index];
     
-    CPTTextLayer *label=[[CPTTextLayer alloc] initWithText: [pdp.score stringValue] style:axisTitleTextStyle];
+    
+    CPTTextLayer *label =[[CPTTextLayer alloc] initWithText: [NSString stringWithFormat:@"%.0f",[pdp.score floatValue]] style:axisTitleTextStyle];
+        
     return label;
 }
 
@@ -330,76 +272,73 @@
                   recordIndex:(NSUInteger)index {
     
     if ( [barPlot.identifier isEqual:harvestPlotId] ) {
-        
-        
-        
-        
         NSString *hexColor = [[[self getPlayerDataPoints] objectAtIndex:index] valueForKey:@"color"];
         UIColor *rgbColor = [localColorMap objectForKey:hexColor];
         CPTFill *fill = [CPTFill fillWithColor:[CPTColor colorWithCGColor:rgbColor.CGColor]];
         return fill;
-        
     }
     return [CPTFill fillWithColor:redColor];
     
 }
 
+#pragma mark - PLAYER DATA DELEGATE
 
-#pragma update
+-(void)playerDataDidUpdate {
+    
+}
+
+-(void)playerDataDidUpdateWithArrival:(NSString *)arrival_patch_id WithDeparture:(NSString *)departure_patch_id WithPlayerDataPoint:(PlayerDataPoint *)playerDataPoint {
+    [self startTimer];
+    [graph reloadData];
+//    if( arrival_patch_id == nil && departure_patch_id != nil ) {
+//        [patchPlayerMap setObject:[NSNull null] forKey:playerDataPoint.rfid_tag];
+//    } else if( arrival_patch_id != nil ) {
+//        [patchPlayerMap setObject:arrival_patch_id forKey:playerDataPoint.rfid_tag];
+//        [self startTimer];
+//    }
+//    
+//    if( departure_patch_id != nil ) {
+//        [patchPlayerMap setObject: [NSNull null] forKey:playerDataPoint.rfid_tag];
+//    }
+}
+
+#pragma mark - TIMER
+
+- (void)startTimer {
+    
+    if( timer == nil )
+        timer = [NSTimer timerWithTimeInterval:self.appDelegate.refreshRate
+                                        target:self
+                                      selector:@selector(updateGraph)
+                                      userInfo:nil repeats:YES];
+    [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+    
+    
+}
+
+#pragma mark - UPDATE
 
 -(void)updateGraph {
+    [graph reloadData];
+}
+
+- (void)stopTimer {
     
-    if( isRUNNING && [[self getPlayerDataPoints] count]  > 0 && [[self getPlayerDataPoints] count] > 0) {
-        
-        //get all the current arrivals and departures
-//        patchPlayerInfos = [[self appDelegate] patchPlayerInfos];
-//        
-//        
-        NSArray *players = [[self getPlayerDataPoints] filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"currentPatch != nil"]];
-
-        if( players.count != 0 ) {
-           
-        
-            for( PlayerDataPoint *pdp in players ) {
-            //get the patch
-            
-            
-            
-               
-                
-                NSArray *pis = [[self getPatches] filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"patch_id == %@", pdp.currentPatch]];
-            
-                if( pis.count > 0) {
-                
-                    PatchInfo *pi = [pis objectAtIndex:0];
-                
-                int numberOfPlayerAtPatches = players.count;
-                //get the players score
-            
-            
-                //calculate the new score
-                float playerOldScore = [pdp.score floatValue];
-            
-                float adjustment = (pi.richness_per_second / 2) / numberOfPlayerAtPatches;
-
-            
-                pdp.score = [NSNumber numberWithFloat:(playerOldScore + adjustment)];
-            
-                NSLog(@"PLAYER %@ for score %f",pdp.player_id, [pdp.score floatValue]);
-                }
-            
-            }
-            [graph reloadData];
-        }
-        
-//        for (PlayerDataPoint *pdp in localPlayerDataPoints) {
-//            if( [pdp.name isEqual:@"XPR"]) {
-//                pdp.score = [NSNumber numberWithFloat:[pdp.score floatValue] + 10];
-//            }
-//        }
-        
-        
+    if( timer != nil ) {
+        [timer invalidate];
     }
+    
+    
+}
+
+#pragma mark - XMPP New Message Delegate
+
+- (void)newMessageReceived:(NSDictionary *)messageContent {
+    NSLog(@"NEW MESSAGE RECIEVED");
+}
+
+- (void)replyMessageTo:(NSString *)from {
+    
 }
 
 - (void)didReceiveMemoryWarning

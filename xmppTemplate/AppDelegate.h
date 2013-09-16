@@ -37,9 +37,11 @@
 @property (nonatomic, strong, readonly) NSManagedObjectContext *managedObjectContext;
 
 
+@property (strong, nonatomic) NSArray *patcheInfos;
 @property (strong, nonatomic) NSArray *playerDataPoints;
 @property (strong, nonatomic) NSMutableDictionary *colorMap;
 @property (strong, nonatomic) ConfigurationInfo *configurationInfo;
+@property (nonatomic) float refreshRate;
 
 
 

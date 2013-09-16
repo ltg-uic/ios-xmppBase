@@ -28,7 +28,9 @@
 {
     [super viewDidLoad];
     
-    yesButton.titleLabel.text =[[_choosen_student uppercaseString] stringByAppendingString:@" - YES"];
+    
+    [yesButton setTitle:[[_choosen_student uppercaseString] stringByAppendingString:@" - YES"] forState: UIControlStateNormal];
+
 	// Do any additional setup after loading the view.
 }
 

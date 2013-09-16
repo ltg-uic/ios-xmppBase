@@ -16,6 +16,5 @@
 -(void)initPlot;
 -(void)setupGraph;
 -(void)setupAxes;
--(IBAction)fireTimer:(id)sender;
 
 @end

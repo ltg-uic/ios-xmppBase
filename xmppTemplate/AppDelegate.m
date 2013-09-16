@@ -30,12 +30,16 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 
     NSArray *patchInfos;
     NSOperationQueue *operationQueue;
+    NSTimer *timer;
+    NSMutableDictionary *patchPlayerMap;
+
 
 }
 
 @end
 
 @implementation AppDelegate
+
 
 #pragma mark APPDELEGATE METHODS
 
@@ -453,42 +457,9 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
         
         [self processXmppMessage:msg];
         
-        
-//        NSString *from = [[message attributeForName:@"from"] stringValue];
-//        
-//        lastMessageDict = [[NSMutableDictionary alloc] init];
-//        [lastMessageDict setObject:msg forKey:@"msg"];
-//        [lastMessageDict setObject:from forKey:@"sender"];
-//        
-//        
-//        if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive)
-//		{
-//			UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Message"
-//                                                                message:msg
-//                                                               delegate:nil
-//                                                      cancelButtonTitle:@"Ok"
-//                                                      otherButtonTitles:nil];
-//			[alertView show];
-//		}
-//		else
-//		{
-//			// We are not active, so use a local notification instead
-//			UILocalNotification *localNotification = [[UILocalNotification alloc] init];
-//			localNotification.alertAction = @"Ok";
-//			//localNotification.alertBody = [NSString stringWithFormat:@"From: %@\n\n%@",displayName,body];
-//            
-//			[[UIApplication sharedApplication] presentLocalNotificationNow:localNotification];
-//		}
-        
-        //[_xmppBaseNewMessageDelegate newMessageReceived:lastMessageDict];
 
 	} else if ([message isChatMessageWithBody]) {
-		//XMPPUserCoreDataStorageObject *user = [xmppRosterStorage userForJID:[message from]
-		//                                                         _xmppStream:_xmppStream
-		 //                                              managedObjectContext:[self managedObjectContext_roster]];
-		
-		//NSString *body = [[message elementForName:@"body"] stringValue];
-		//NSString *displayName = [user displayName];
+
         
         NSString *msg = [[message elementForName:@"body"] stringValue];
         
@@ -498,18 +469,6 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
         lastMessageDict = [[NSMutableDictionary alloc] init];
         [lastMessageDict setObject:msg forKey:@"msg"];
         [lastMessageDict setObject:from forKey:@"sender"];
-        
-//        DataPoint *dp = [NSEntityDescription insertNewObjectForEntityForName:@"DataPoint"
-//                                                   inManagedObjectContext:self.managedObjectContext];
-//        
-//        dp.from = from;
-//        dp.to = @"bob";
-//        dp.message = msg;
-//        dp.timestamp = [NSDate date];
-//
-//        
-//        [self.managedObjectContext save:nil];
-    
         
 		if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive)
 		{
@@ -529,7 +488,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
             
 			[[UIApplication sharedApplication] presentLocalNotificationNow:localNotification];
 		}
-        [_xmppBaseNewMessageDelegate newMessageReceived:lastMessageDict];
+        //[_xmppBaseNewMessageDelegate newMessageReceived:lastMessageDict];
 
 	}
 }
@@ -544,45 +503,31 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
         
         NSString *event = [jsonObjects objectForKey:@"event"];
         
-//        if( [event isEqualToString:@"game_reset"] ) {
-//            [self resetGame];
-//        } else if( [event isEqualToString:@"game_stop"] ) {
-//            isRUNNING = NO;
-//            isGAME_STOPPED = YES;
-//        }
-//        
-//        if( ! [destination isEqualToString:[self origin]] )
-//            return;
-//        
         if( event != nil) {
             if( [event isEqualToString:@"rfid_update"] ){
                 
                 
                 NSDictionary *payload = [jsonObjects objectForKey:@"payload"];
                 NSString *rfid_tag = [payload objectForKey:@"id"];
-                NSString *arrival = [payload objectForKey:@"arrival"];
-                NSString *departure = [payload objectForKey:@"departure"];
+                NSString *arrival_patch_id = [payload objectForKey:@"arrival"];
+                NSString *departure_patch_id = [payload objectForKey:@"departure"];
                 
                  PlayerDataPoint *player = [[_playerDataPoints filteredArrayUsingPredicate: [NSPredicate predicateWithFormat:@"rfid_tag == %@", rfid_tag] ] objectAtIndex:0];
                 
-                if( arrival != nil ) {
-                    
-                   
-                   
-                    player.currentPatch = arrival;
-
-                
+               
+                if( [arrival_patch_id isEqualToString:@"null"] && [departure_patch_id isEqualToString:@"null"]) {
+                    [patchPlayerMap setObject:[NSNull null] forKey:player.rfid_tag];
+                    player.currentPatch = nil;
+                } else if( ![arrival_patch_id isEqualToString:@"null"] ) {
+                    [patchPlayerMap setObject:arrival_patch_id forKey:player.rfid_tag];
+                    player.currentPatch = arrival_patch_id;
+                }
+            
+                if( departure_patch_id == [NSNull null]  ) {
+                    [patchPlayerMap setObject: [NSNull null] forKey:player.rfid_tag];
                 }
                 
-                if( ![departure isEqualToString: @""] ) {
-                                                //set the arrival
-                        //[player setValue:nil forKey:@"PlayerDataPoint.currentPatch"];
-                        player.currentPatch = nil;
-                } else {
-                    departure = nil;
-                }
-                
-                [_playerDataDelegate playerDataDidUpdateWithArrival:arrival WithDeparture:departure WithPlayerDataPoint:player];
+                [_playerDataDelegate playerDataDidUpdateWithArrival:arrival_patch_id WithDeparture:departure_patch_id WithPlayerDataPoint:player];
             }
             
             
@@ -711,10 +656,106 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     
     _configurationInfo = [self getConfigurationInfoWithRunId:run_id];
     _playerDataPoints  = [[_configurationInfo players] allObjects];
+    _patcheInfos = [[_configurationInfo patches] allObjects];
+    _refreshRate = .2f;
     
-    [_playerDataDelegate playerDataDidUpdate:_playerDataPoints WithColorMap:_colorMap];
+    [_playerDataDelegate playerDataDidUpdate];
+    
+    [self setupPlayerMap];
+    [self startTimer];
+}
+
+-(void)setupPlayerMap {
+    if ( patchPlayerMap == nil ) {
+        
+        patchPlayerMap = [[NSMutableDictionary alloc] init];
+        
+        for( PlayerDataPoint *pdp in _playerDataPoints ) {
+            if( pdp.currentPatch == nil ) {
+                [patchPlayerMap setObject:[NSNull null] forKey:pdp.rfid_tag];
+            } else {
+                [patchPlayerMap setObject:pdp.currentPatch forKey:pdp.rfid_tag];
+            }
+        }
+    }
+}
+
+#pragma mark - TIMER
+
+- (void)startTimer {
+    
+    if( timer == nil )
+        timer = [NSTimer timerWithTimeInterval:_refreshRate
+                                        target:self
+                                      selector:@selector(updateCalorieTotals)
+                                      userInfo:nil repeats:YES];
+    [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+    
     
 }
+
+- (void)stopTimer {
+    
+    if( timer != nil ) {
+        [timer invalidate];
+    }
+    
+    
+}
+
+-(void)updateCalorieTotals {
+    if( timer != nil ) {
+        
+        for(NSString * rfid_tag in patchPlayerMap) {
+           
+            
+            
+            if( [patchPlayerMap objectForKey:rfid_tag] != [NSNull null] ) {
+                 NSString *patch_id = [patchPlayerMap objectForKey:rfid_tag];
+                NSArray *pis = [_patcheInfos filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"patch_id == %@", patch_id]];
+                
+                if( pis != nil && pis.count > 0) {
+                    
+                    PatchInfo *patchInfo = [pis objectAtIndex:0];
+                    
+                    NSArray *players = [_playerDataPoints filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"currentPatch == %@", patch_id]];
+                    
+                    if( players != nil  && players.count > 0 ) {
+                        
+                        
+                        NSArray *thePlayer = [_playerDataPoints filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"rfid_tag == %@", rfid_tag]];
+                        
+                        if( thePlayer != nil && thePlayer.count > 0 ) {
+                            
+                            PlayerDataPoint *pdp = [thePlayer objectAtIndex:0];
+                            
+                            //number of the patches at the patch
+                            int numberOfPlayerAtPatches = players.count;
+                            
+                            //calculate the new score
+                            float playerOldScore = [pdp.score floatValue];
+                            
+                            //calc new richness
+                            float adjustedRichness = (patchInfo.richness_per_minute / numberOfPlayerAtPatches );
+                            
+                            //figure out the adjusted rate for the refreshrate
+                            float adjustedRate = (adjustedRichness / 60 ) * _refreshRate;
+                            
+                            pdp.score = [NSNumber numberWithFloat:(playerOldScore + adjustedRate)];
+                            
+                            NSLog(@"PLAYER %@ NEW score %f",pdp.player_id, [pdp.score floatValue]);
+                        }
+                        
+                    }
+                    
+                }
+                
+            }
+        }
+    }
+
+}
+
 
 #pragma NETWORK OPERATIONS
 
@@ -738,6 +779,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
                                                  NSString *boutLength = [someConfig objectForKey:@"harvest_calculator_bout_length_in_minutes"];
                                                  NSArray *patches = [someConfig objectForKey:@"patches"];
                                                  
+                                                
                                                  ConfigurationInfo *ci = [self insertConfigurationWithRunId:run_id withHarvestCalculatorBoutLengthInMinutes:[boutLength floatValue]];
                                                  
                                                  for(NSDictionary *somePatch in patches) {
@@ -746,6 +788,8 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
                                                      float richness = [[somePatch objectForKey:@"richness"] floatValue];
                                                      float richnessPerMinute = [[somePatch objectForKey:@"richness_per_minute"] floatValue];
                                                      float richnessPerSecond = [[somePatch objectForKey:@"richness_per_second"] floatValue];
+                                                     
+                                                
                                                      
                                                      PatchInfo *pi = [self insertPatchInfoWithPatchId:patch_id withRichness:richness withRichnessPerSecond: richnessPerSecond withRichnessPerMinute:richnessPerMinute];
                                                      [ci addPatchesObject:pi];
@@ -813,7 +857,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
                                              for (NSDictionary *someStudent in students) {
                                                  
                                                  
-                                                 PlayerDataPoint *pdp = [self insertPlayerDataPointWithColor:[someStudent objectForKey:@"color"] WithLabel:[someStudent objectForKey:@"lable"] WithPatch:nil WithRfid:[someStudent objectForKey:@"rfid_tag"] WithScore:[NSNumber numberWithInt:1000] WithId:[someStudent objectForKey:@"_id"]];
+                                                 PlayerDataPoint *pdp = [self insertPlayerDataPointWithColor:[someStudent objectForKey:@"color"] WithLabel:[someStudent objectForKey:@"lable"] WithPatch:nil WithRfid:[someStudent objectForKey:@"rfid_tag"] WithScore:[NSNumber numberWithInt:0] WithId:[someStudent objectForKey:@"_id"]];
                                                  
                                                  [configurationInfo addPlayersObject:pdp];
                                              }
@@ -982,54 +1026,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 - (void)importCoreDataDefaultGraphWithConfigurationInfo:(ConfigurationInfo *)configurationInfo {
     
     NSLog(@"Importing Core Data Default Values for Graph.......");
-    
-    
-//    PlayerDataPoint *pdp = [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#89369e" WithLabel:@"XPR" WithPatch:@"3" WithRfid:@"1623110" WithScore:[NSNumber numberWithInt:0] WithId:@"Player-1"];
-//    [configurationInfo addPlayersObject:pdp];
-//    
-//    
-//    pdp = [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#99896f" WithLabel:@"NOI" WithPatch:@"3" WithRfid:@"1623392" WithScore:[NSNumber numberWithInt:0] WithId:@"Player-1"];
-//    [configurationInfo addPlayersObject:pdp];
-//    pdp = [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#cb5012" WithLabel:@"NLO" WithPatch:@"3" WithRfid:@"1623115" WithScore:[NSNumber numberWithInt:0] WithId:@"Player-1"];
-//    [configurationInfo addPlayersObject:pdp];
-//    pdp = [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#146d71" WithLabel:@"NUI" WithPatch:@"3" WithRfid:@"1623373" WithScore:[NSNumber numberWithInt:0] WithId:@"Player-1"];
-//        [configurationInfo addPlayersObject:pdp];
-//    pdp = [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#ffbeb4" WithLabel:@"NER" WithPatch:@"3" WithRfid:@"1623110" WithScore:[NSNumber numberWithInt:0] WithId:@"Player-1"];
-//        [configurationInfo addPlayersObject:pdp];
-//    pdp = [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#89369e" WithLabel:@"NWE" WithPatch:@"3" WithRfid:@"1623667" WithScore:[NSNumber numberWithInt:0] WithId:@"Player-1"];
-//        [configurationInfo addPlayersObject:pdp];
-//    pdp = [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#89369e" WithLabel:@"NQW" WithPatch:@"3" WithRfid:@"1623678" WithScore:[NSNumber numberWithInt:0] WithId:@"Player-1"];
-//        [configurationInfo addPlayersObject:pdp];
-//    pdp = [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#99896f" WithLabel:@"NSE" WithPatch:@"3" WithRfid:@"1623663" WithScore:[NSNumber numberWithInt:0] WithId:@"Player-1"];
-//        [configurationInfo addPlayersObject:pdp];
-//    pdp = [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#cb5012" WithLabel:@"NXS" WithPatch:@"3" WithRfid:@"1623302" WithScore:[NSNumber numberWithInt:0] WithId:@"Player-1"];
-//        [configurationInfo addPlayersObject:pdp];
-//    pdp = [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#146d71" WithLabel:@"NLP" WithPatch:@"3" WithRfid:@"1623303" WithScore:[NSNumber numberWithInt:10000] WithId:@"Player-1"];
-//        [configurationInfo addPlayersObject:pdp];
-//    pdp = [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#ffbeb4" WithLabel:@"NPR" WithPatch:@"3" WithRfid:@"1623126" WithScore:[NSNumber numberWithInt:0] WithId:@"Player-1"];
-//        [configurationInfo addPlayersObject:pdp];
-//    
-//    
-//    pdp = [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#89369e" WithLabel:@"NIR" WithPatch:@"3" WithRfid:@"1623238" WithScore:[NSNumber numberWithInt:0] WithId:@"Player-1"];
-//        [configurationInfo addPlayersObject:pdp];
-//    pdp = [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#89369e" WithLabel:@"NWR" WithPatch:@"3" WithRfid:@"1623257" WithScore:[NSNumber numberWithInt:0] WithId:@"Player-1"];
-//        [configurationInfo addPlayersObject:pdp];
-//    pdp = [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#99896f" WithLabel:@"NWR" WithPatch:@"3" WithRfid:@"1623210" WithScore:[NSNumber numberWithInt:0] WithId:@"Player-1"];
-//        [configurationInfo addPlayersObject:pdp];
-//    pdp = [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#cb5012" WithLabel:@"NMR" WithPatch:@"3" WithRfid:@"1623305" WithScore:[NSNumber numberWithInt:0] WithId:@"Player-1"];
-//        [configurationInfo addPlayersObject:pdp];
-//    pdp = [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#146d71" WithLabel:@"EPR" WithPatch:@"3" WithRfid:@"1623386" WithScore:[NSNumber numberWithInt:0] WithId:@"Player-1"];
-//        [configurationInfo addPlayersObject:pdp];
-//    
-//    
-//    pdp = [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#ffbeb4" WithLabel:@"OPR" WithPatch:@"3" WithRfid:@"1623392" WithScore:[NSNumber numberWithInt:0] WithId:@"Player-1"];
-//        [configurationInfo addPlayersObject:pdp];
-//    pdp = [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#99896f" WithLabel:@"KPR" WithPatch:@"3" WithRfid:@"1623115" WithScore:[NSNumber numberWithInt:0] WithId:@"Player-1"];
-//        [configurationInfo addPlayersObject:pdp];
-//    pdp = [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#cb5012" WithLabel:@"MPR" WithPatch:@"3" WithRfid:@"1623373" WithScore:[NSNumber numberWithInt:0] WithId:@"Player-1"];
-//        [configurationInfo addPlayersObject:pdp];
-//    pdp = [self insertPlayerDataPointWithCluster:@"a" WithColor:@"#cb5012" WithLabel:@"JPR" WithPatch:@"3" WithRfid:@"1623110" WithScore:[NSNumber numberWithInt:0] WithId:@"Player-1"];
-//        [configurationInfo addPlayersObject:pdp];
+
     NSLog(@"Importing Core Data Default Values for Graph Completed!");
 }
 

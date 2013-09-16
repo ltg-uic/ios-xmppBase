@@ -25,10 +25,7 @@
 - (id)initWithCoder:(NSCoder *)aDecoder {
     if(self = [super initWithCoder:aDecoder])
     {
-        
         self.appDelegate.playerDataDelegate = self;
-       
-
     }
     return self;
 }
@@ -37,7 +34,6 @@
     
      patchInfos = [[[[self appDelegate] configurationInfo ] patches ] allObjects];
     
-    _hasInitialized = YES;
     
     for (int i = 0; i < _patchUIViews.count; i++) {
         PatchMapUIView *pmap = _patchUIViews[i];
@@ -51,17 +47,27 @@
 
 #pragma mark - PLAYER DATA DELEGATE
 
--(void)playerDataDidUpdate:(NSArray *)playerDataPoints WithColorMap:(NSMutableDictionary *)colorMap {
+-(void)playerDataDidUpdate {
     
-    if(_hasInitialized == NO )
         [self setupPatches];
  
 }
 
+
 -(void)playerDataDidUpdateWithArrival:(NSString *)arrival_patch_id WithDeparture:(NSString *)departure_patch_id WithPlayerDataPoint:(PlayerDataPoint *)playerDataPoint {
     
+    
+    if(_hasInitialized == NO )
+        [self setupPatches];
+    
     if( arrival_patch_id != nil ) {
-        PatchMapUIView *arrivalView = [[_patchUIViews filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"patch_id == %@", arrival_patch_id]] objectAtIndex:0];
+        PatchMapUIView *arrivalView;
+        
+        NSArray *patchUIViews = [_patchUIViews filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"patch_id == %@", arrival_patch_id]];
+        
+        if( patchUIViews != nil && patchUIViews.count > 0 ) {
+            arrivalView = [patchUIViews objectAtIndex:0];
+        }
         
         if( arrivalView != nil ) {
             
@@ -85,7 +91,14 @@
     }
     
     if( departure_patch_id != nil ) {
-        PatchMapUIView *departureView = [[_patchUIViews filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"patch_id == %@", departure_patch_id]] objectAtIndex:0];
+        
+        NSArray *patchUIViews = [_patchUIViews filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"patch_id == %@", departure_patch_id]];
+        
+        PatchMapUIView *departureView;
+        
+        if( patchUIViews != nil && patchUIViews.count > 0 ) {
+            departureView = [patchUIViews objectAtIndex:0];
+        }
         
         if( departureView != nil ) {
             
@@ -143,6 +156,9 @@
 
     // Set the gesture
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+    
+    
+    [self setupPatches];
     
     
 
