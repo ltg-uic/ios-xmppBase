@@ -42,20 +42,38 @@
 
 @implementation GraphViewController
 
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+        // Custom initialization
+    }
+    return self;
+}
+
+- (id)init
+{
+    self = [super init];
+    if (self)
+    {
+        [self setupDelegates];
+        [self setupLocalData];
+       
+    }
+     return self;
+}
+
 - (id)initWithCoder:(NSCoder *)aDecoder {
     if(self = [super initWithCoder:aDecoder])
     {
         
         [self setupDelegates];
-        localColorMap = [[self appDelegate] colorMap];
-        
-        
-        
-        
-       // localPlayerDataPoints = [[self appDelegate] playerDataPoints];
-        localPatches = [[[[self appDelegate] configurationInfo ] patches ] allObjects];
+        [self setupLocalData];
     }
     return self;
+}
+
+-(void)setupLocalData {
+    localColorMap = [[self appDelegate] colorMap];
+    localPatches = [[[[self appDelegate] configurationInfo ] patches ] allObjects];
 }
 
 -(void)setupDelegates {
@@ -105,8 +123,7 @@
     maxNumPlayers = [[self getPlayerDataPoints] count];
     
     minYield = 0.0f;
-    maxYield = 10000.0f;
-    
+    maxYield = 1000.0f;
     
     [self setupGraph];
     [self setupAxes];

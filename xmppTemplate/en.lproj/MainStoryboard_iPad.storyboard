@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F37" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="9YR-ky-vJI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F37" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
@@ -9,7 +9,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="WizardClassPageViewController" autoresizesArchivedViewToFullSize="NO" title="Class Chooser" modalPresentationStyle="currentContext" id="wzZ-Et-LzK" customClass="WizardClassPageViewController" sceneMemberID="viewController">
                     <tableView key="view" autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleAspectFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="150" sectionHeaderHeight="22" sectionFooterHeight="22" id="mGa-jY-l1q">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="2044"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="2440"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <inset key="scrollIndicatorInsets" minX="0.0" minY="5" maxX="0.0" maxY="5"/>
@@ -78,7 +78,7 @@
             <objects>
                 <collectionViewController autoresizesArchivedViewToFullSize="NO" title="WizardStudentPageViewController" modalPresentationStyle="currentContext" id="B93-el-CwP" customClass="WizardStudentPageViewController" sceneMemberID="viewController">
                     <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="Ejr-No-Nvx">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="2000"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="2396"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="0.0" id="TMk-tL-8Sm">
@@ -151,7 +151,7 @@
                         <viewControllerLayoutGuide type="bottom" id="88c-On-rVh"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="CR1-C1-sWK">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="2000"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="2396"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <userGuides>
                             <userLayoutGuide location="259" affinity="minY"/>
@@ -199,33 +199,10 @@
             </objects>
             <point key="canvasLocation" x="3538" y="-468"/>
         </scene>
-        <!--Reveal View Controller-->
-        <scene sceneID="g1o-nk-k9i">
-            <objects>
-                <viewController id="9YR-ky-vJI" customClass="SWRevealViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="gxG-1V-o3I"/>
-                        <viewControllerLayoutGuide type="bottom" id="w1x-Qe-hgf"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="BjH-Ly-5zQ">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <nil key="simulatedStatusBarMetrics"/>
-                    <connections>
-                        <segue destination="IT0-wV-PD5" kind="custom" identifier="sw_rear" customClass="SWRevealViewControllerSegue" id="JEq-N2-mke"/>
-                        <segue destination="Pdj-Qa-WSf" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegue" id="ozg-mv-Utn"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="joz-Mq-1tO" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-682" y="1204"/>
-        </scene>
         <!--Sidebar View Controller-->
         <scene sceneID="fVD-Sr-KDN">
             <objects>
-                <tableViewController id="IT0-wV-PD5" customClass="SidebarViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="sidebarViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="IT0-wV-PD5" customClass="SidebarViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" id="Ffv-KR-eem">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -267,9 +244,6 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="k2h-ak-l4V" kind="custom" customClass="SWRevealViewControllerSegue" id="Wjp-D4-yEo"/>
-                                </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="graph_item" id="W1n-4M-SBc">
                                 <rect key="frame" x="0.0" y="142" width="768" height="60"/>
@@ -290,9 +264,6 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="ifl-4T-Tjx" kind="custom" identifier="showGraph" customClass="SWRevealViewControllerSegue" id="q5o-eP-omx"/>
-                                </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="settings_title_item" rowHeight="60" id="AGI-FD-Krm">
                                 <rect key="frame" x="0.0" y="202" width="768" height="60"/>
@@ -356,26 +327,10 @@
             </objects>
             <point key="canvasLocation" x="252" y="1145"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="8ef-gc-vVf">
-            <objects>
-                <navigationController definesPresentationContext="YES" id="Pdj-Qa-WSf" sceneMemberID="viewController">
-                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="fM6-QB-hDp">
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="k2h-ak-l4V" kind="relationship" relationship="rootViewController" id="YxC-iI-FAa"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="B6v-Th-A6W" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="363" y="2393"/>
-        </scene>
         <!--Map View Controller - Harvest Map-->
         <scene sceneID="UXG-m4-02P">
             <objects>
-                <viewController id="k2h-ak-l4V" customClass="MapViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="mapViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="k2h-ak-l4V" customClass="MapViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="kJL-LV-jcc"/>
                         <viewControllerLayoutGuide type="bottom" id="Z8N-LY-DjD"/>
@@ -445,12 +400,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Iyr-XE-cvq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1436" y="1101"/>
+            <point key="canvasLocation" x="276" y="2389"/>
         </scene>
         <!--Graph View Controller - Harvest-->
         <scene sceneID="TjX-eJ-JbX">
             <objects>
-                <viewController storyboardIdentifier="harvest" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ifl-4T-Tjx" customClass="GraphViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="graphViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ifl-4T-Tjx" customClass="GraphViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="iou-0t-o2r"/>
                         <viewControllerLayoutGuide type="bottom" id="kD2-Q7-0rk"/>
@@ -485,7 +440,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pWX-Vv-xGC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1637" y="1953"/>
+            <point key="canvasLocation" x="1469" y="2109"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="bVn-c5-o8X">
@@ -522,7 +477,4 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
-    <inferredMetricsTieBreakers>
-        <segue reference="Wjp-D4-yEo"/>
-    </inferredMetricsTieBreakers>
 </document>

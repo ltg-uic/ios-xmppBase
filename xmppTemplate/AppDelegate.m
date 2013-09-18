@@ -17,7 +17,7 @@
 #import "SBJsonParser.h"
 #import "AFNetworking.h"
 #import "UIColor-Expanded.h"
-
+#import "SidebarViewController.h"
 
 // Log levels: off, error, warn, info, verbose
 #if DEBUG
@@ -26,7 +26,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 static const int ddLogLevel = LOG_LEVEL_INFO;
 #endif
 
-@interface AppDelegate() {
+@interface AppDelegate()<SWRevealViewControllerDelegate>{
 
     NSArray *patchInfos;
     NSOperationQueue *operationQueue;
@@ -52,6 +52,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [self setupInterface];
     [self clearUserDefaults];
     
     //[self customizeGlobalAppearance];
@@ -84,6 +85,41 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     
 
     return YES;
+}
+
+-(void)setupInterface {
+    UIWindow *window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+	self.window = window;
+	
+    
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPad"
+                                                             bundle: nil];
+    
+    SidebarViewController *sideViewController = (SidebarViewController *)[mainStoryboard instantiateViewControllerWithIdentifier: @"sidebarViewController"];
+    
+    UIViewController *mapViewController = (UIViewController *)[mainStoryboard instantiateViewControllerWithIdentifier: @"mapViewController"];
+    
+    
+    
+	
+	UINavigationController *frontNavigationController = [[UINavigationController alloc] initWithRootViewController:mapViewController];
+    
+    [[sideViewController controllerMap] setObject:frontNavigationController forKey:@"mapViewController"];
+    
+    UINavigationController *rearNavigationController = [[UINavigationController alloc] initWithRootViewController:sideViewController];
+	
+	SWRevealViewController *revealController = [[SWRevealViewController alloc] initWithRearViewController:rearNavigationController frontViewController:frontNavigationController];
+    revealController.delegate = self;
+    
+    
+    
+    //revealController.bounceBackOnOverdraw=NO;
+    //revealController.stableDragOnOverdraw=YES;
+    
+	self.viewController = revealController;
+	
+	self.window.rootViewController = self.viewController;
+	[self.window makeKeyAndVisible];
 }
 
 -(void)checkConnectionWithUser {
@@ -736,7 +772,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
                             float playerOldScore = [pdp.score floatValue];
                             
                             //calc new richness
-                            float adjustedRichness = (patchInfo.richness_per_minute / numberOfPlayerAtPatches );
+                            float adjustedRichness = (patchInfo.quality_per_minute / numberOfPlayerAtPatches );
                             
                             //figure out the adjusted rate for the refreshrate
                             float adjustedRate = (adjustedRichness / 60 ) * _refreshRate;
@@ -786,12 +822,12 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
                                                      
                                                      NSString *patch_id = [somePatch objectForKey:@"patch_id"];
                                                      float richness = [[somePatch objectForKey:@"richness"] floatValue];
-                                                     float richnessPerMinute = [[somePatch objectForKey:@"richness_per_minute"] floatValue];
-                                                     float richnessPerSecond = [[somePatch objectForKey:@"richness_per_second"] floatValue];
+                                                     float qualityPerMinute = [[somePatch objectForKey:@"quality_per_minute"] floatValue];
+                                                     float qualityPerSecond = [[somePatch objectForKey:@"quality_per_second"] floatValue];
                                                      
                                                 
                                                      
-                                                     PatchInfo *pi = [self insertPatchInfoWithPatchId:patch_id withRichness:richness withRichnessPerSecond: richnessPerSecond withRichnessPerMinute:richnessPerMinute];
+                                                     PatchInfo *pi = [self insertPatchInfoWithPatchId:patch_id withRichness:richness withQualityPerSecond: qualityPerSecond withQualityPerMinute:qualityPerMinute];
                                                      [ci addPatchesObject:pi];
                                                  }
                                                  
@@ -900,15 +936,15 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 
 #pragma mark CORE DATA INSERTS
 
--(PatchInfo *)insertPatchInfoWithPatchId: (NSString *)patch_id withRichness:(float) richness withRichnessPerSecond: (float)richness_per_second withRichnessPerMinute:(float)richness_per_minute {
+-(PatchInfo *)insertPatchInfoWithPatchId: (NSString *)patch_id withRichness:(float) richness withQualityPerSecond: (float)richness_per_second withQualityPerMinute:(float)richness_per_minute {
     
     PatchInfo *pi = [NSEntityDescription insertNewObjectForEntityForName:@"PatchInfo"
                                                   inManagedObjectContext:self.managedObjectContext];
     
     pi.patch_id = patch_id;
     pi.richness = richness;
-    pi.richness_per_second = richness_per_second;
-    pi.richness_per_minute = richness_per_minute;
+    pi.quality_per_minute = richness_per_second;
+    pi.quality_per_minute = richness_per_minute;
     
     return pi;
 }
@@ -1160,8 +1196,13 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"localdb.sqlite"];
     
     NSError *error = nil;
+    
+    NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
+                             [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption,
+                             [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
+    
     persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    if (![persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error])
+    if (![persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:options error:&error])
     {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();

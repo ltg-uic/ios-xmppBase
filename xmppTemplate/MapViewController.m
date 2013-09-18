@@ -40,7 +40,7 @@
         PatchInfo *pi = patchInfos[i];
         pmap.patch_id = pi.patch_id;
         pmap.title.text = pi.patch_id;
-        pmap.richness.text = [NSString stringWithFormat:@"%.2f", pi.richness_per_minute];
+        pmap.richness.text = [NSString stringWithFormat:@"%.2f", pi.quality_per_minute];
     }
     
 }
@@ -158,10 +158,15 @@
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     
     
-    [self setupPatches];
+    //[self setupPatches];
     
     
 
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.appDelegate.playerDataDelegate = self;
 }
 
 -(PatchMapUIView *)createPatchViewsWithPatchInfo:(PatchInfo *)patchInfo AtX:(int)x AtY:(int)y  {
@@ -174,7 +179,7 @@
     frame.origin.y = y;
 
     patchView.frame = frame;
-    patchView.richness.text = [NSString stringWithFormat:@"%.0f", patchInfo.richness_per_minute];
+    patchView.richness.text = [NSString stringWithFormat:@"%.0f", patchInfo.quality_per_minute];
     patchView.title.text = patchInfo.patch_id;
     [patchView setTranslatesAutoresizingMaskIntoConstraints:NO];
     

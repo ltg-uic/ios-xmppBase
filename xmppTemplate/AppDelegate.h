@@ -8,6 +8,7 @@
 #import <UIKit/UIKit.h>
 #import "ConfigurationInfo.h"
 #import "PlayerDataDelegate.h"
+#import "XMPPFramework.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, XMPPRoomStorage> {
     NSString *password;
@@ -29,6 +30,8 @@
 @property (nonatomic, strong) XMPPStream *xmppStream;
 @property (nonatomic, strong) XMPPReconnect *xmppReconnect;
 @property (nonatomic, strong) XMPPRoom *xmppRoom;
+@property (strong, nonatomic) SWRevealViewController *viewController;
+
 
 
 @property (nonatomic, weak) id <XMPPBaseNewMessageDelegate> xmppBaseNewMessageDelegate;

@@ -12,4 +12,7 @@
 
 }
 
+
+@property (nonatomic, strong) NSMutableDictionary *controllerMap;
+
 @end
