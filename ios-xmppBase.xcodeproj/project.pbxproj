@@ -170,7 +170,6 @@
 		70AFBDD417C7E9DF00868211 /* sidebar_icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70AFBDD317C7E9DF00868211 /* sidebar_icons.xcassets */; };
 		70B4119017B4600900F61347 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 70B44C1C17B35B4B00C47B61 /* libxml2.2.dylib */; };
 		70BC894D17CBB35300DC0AD1 /* UIColor-Expanded.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BC894C17CBB35300DC0AD1 /* UIColor-Expanded.m */; };
-		70BE736617DF8C27008B29D8 /* Toast+UIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BE736517DF8C27008B29D8 /* Toast+UIView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		70C567E217DE41A100466AF0 /* PlayerDataPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 70C567E117DE41A100466AF0 /* PlayerDataPoint.m */; };
 		70CD9B3417B4988E008625BF /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70CD9B3317B4988E008625BF /* AudioToolbox.framework */; };
 		70CD9B3617B49BF2008625BF /* logon_sound.aif in Resources */ = {isa = PBXBuildFile; fileRef = 70CD9B3517B49BF2008625BF /* logon_sound.aif */; };
@@ -591,8 +590,6 @@
 		70B44C1F17B3607A00C47B61 /* libiconv.2.4.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.2.4.0.dylib; path = usr/lib/libiconv.2.4.0.dylib; sourceTree = SDKROOT; };
 		70BC894B17CBB35300DC0AD1 /* UIColor-Expanded.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor-Expanded.h"; sourceTree = "<group>"; };
 		70BC894C17CBB35300DC0AD1 /* UIColor-Expanded.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor-Expanded.m"; sourceTree = "<group>"; };
-		70BE736417DF8C27008B29D8 /* Toast+UIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Toast+UIView.h"; sourceTree = "<group>"; };
-		70BE736517DF8C27008B29D8 /* Toast+UIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Toast+UIView.m"; sourceTree = "<group>"; };
 		70C567E017DE41A100466AF0 /* PlayerDataPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlayerDataPoint.h; path = entity/PlayerDataPoint.h; sourceTree = "<group>"; };
 		70C567E117DE41A100466AF0 /* PlayerDataPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlayerDataPoint.m; path = entity/PlayerDataPoint.m; sourceTree = "<group>"; };
 		70CD9B3317B4988E008625BF /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -661,7 +658,7 @@
 		700C3A42160427DA005A9E34 = {
 			isa = PBXGroup;
 			children = (
-				700C3A57160427DA005A9E34 /* display */,
+				700C3A57160427DA005A9E34 /* Display */,
 				700C3A50160427DA005A9E34 /* Frameworks */,
 				700C3A4E160427DA005A9E34 /* Products */,
 			);
@@ -695,7 +692,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		700C3A57160427DA005A9E34 /* display */ = {
+		700C3A57160427DA005A9E34 /* Display */ = {
 			isa = PBXGroup;
 			children = (
 				700C3A6F160427DA005A9E34 /* RootViewController.h */,
@@ -711,7 +708,7 @@
 				70AFBDAE17C7B4B800868211 /* library */,
 				700C3A58160427DA005A9E34 /* supporting */,
 			);
-			name = display;
+			name = Display;
 			path = xmppTemplate;
 			sourceTree = "<group>";
 		};
@@ -1620,8 +1617,6 @@
 				70E866EF17C66279003C5BD2 /* Constants.h */,
 				70DF2E9F17DE8EC300AFC798 /* CoreDataTableViewController.h */,
 				70DF2EA017DE8EC300AFC798 /* CoreDataTableViewController.m */,
-				70BE736417DF8C27008B29D8 /* Toast+UIView.h */,
-				70BE736517DF8C27008B29D8 /* Toast+UIView.m */,
 			);
 			name = library;
 			sourceTree = "<group>";
@@ -1886,7 +1881,6 @@
 				705BEE2C17EA643A0042D313 /* XMPPSystemInputActivityMonitor.m in Sources */,
 				705BECFF17EA64000042D313 /* NSXMLElement+XMPP.m in Sources */,
 				700B8B2B17DBC961001E1C0A /* ConfigurationInfo.m in Sources */,
-				70BE736617DF8C27008B29D8 /* Toast+UIView.m in Sources */,
 				705BEE3617EA643A0042D313 /* XMPPRoomOccupantCoreDataStorageObject.m in Sources */,
 				705BEE4E17EA643A0042D313 /* NSXMLElement+XEP_0059.m in Sources */,
 				705AE0D717D595CC005F69B7 /* SBJsonStreamParserAccumulator.m in Sources */,

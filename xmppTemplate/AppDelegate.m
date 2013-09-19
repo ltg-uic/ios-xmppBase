@@ -559,7 +559,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
                     player.currentPatch = arrival_patch_id;
                 }
             
-                if( departure_patch_id == [NSNull null]  ) {
+                if( [departure_patch_id isEqual: [NSNull null]  ] ) {
                     [patchPlayerMap setObject: [NSNull null] forKey:player.rfid_tag];
                 }
                 
@@ -723,7 +723,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     if( timer == nil )
         timer = [NSTimer timerWithTimeInterval:_refreshRate
                                         target:self
-                                      selector:@selector(updateCalorieTotals)
+                                      selector:@selector(refreshCalorieTotals)
                                       userInfo:nil repeats:YES];
     [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
     
@@ -739,7 +739,16 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     
 }
 
--(void)updateCalorieTotals {
+-(void) refreshCalorieTotals {
+    void (^simpleBlock)(void) = ^{
+        [self updateData];
+        NSLog(@"This is a block");
+    };
+    simpleBlock();
+}
+
+
+-(void)updateData {
     if( timer != nil ) {
         
         for(NSString * rfid_tag in patchPlayerMap) {
